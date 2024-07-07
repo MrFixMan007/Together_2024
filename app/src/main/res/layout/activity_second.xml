@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SecondActivity">
+
+    <View
+        android:id="@+id/figureView"
+        android:layout_marginTop="@dimen/figure_margin_top_front"
+        android:layout_marginStart="@dimen/figure_margin_top_front"
+        android:layout_marginEnd="@dimen/figure_margin_top_front"
+
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="@drawable/figure"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/image"
+        android:contentDescription="@string/second_activity_image_content_description"
+
+        android:layout_marginTop="@dimen/figure_margin_top_front"
+        android:layout_marginStart="@dimen/figure_margin_top_front"
+        android:layout_marginEnd="@dimen/figure_margin_top_front"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/figureView"
+        />
+
+    <Button
+        style="@style/MyCenterButton"
+        android:text="@string/second_activity_button_label"
+        android:layout_marginTop="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

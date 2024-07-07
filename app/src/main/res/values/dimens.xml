@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_front_margin">32dp</dimen>
+    <dimen name="button_corner_radius">12dp</dimen>
+
+    <dimen name="figure_left_top_corner_radius">16dp</dimen>
+    <dimen name="figure_right_bottom_corner_radius">32dp</dimen>
+    <dimen name="figure_margin_top_front">50dp</dimen>
+</resources>

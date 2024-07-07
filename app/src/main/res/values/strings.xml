@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">profsoft-tasks-2024</string>
+    <string name="main_activity_text">Hello World!</string>
+    <string name="main_activity_button_label">Активити 2</string>
+    <string name="second_activity_button_label">Уведомление</string>
+    <string name="second_activity_image_content_description">Картинка</string>
 </resources>

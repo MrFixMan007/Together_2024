@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyButton">
+        <item name="android:background">@drawable/rounded_button</item>
+    </style>
+
+    <style name="MyCenterButton" parent="MyButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/button_front_margin</item>
+        <item name="android:layout_marginStart">@dimen/button_front_margin</item>
+    </style>
+</resources>
