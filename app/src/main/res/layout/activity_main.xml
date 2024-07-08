@@ -18,6 +18,7 @@
 
     <Button
         style="@style/MyCenterButton"
+        android:id="@+id/buttonMainActivityNavigate"
         android:layout_marginTop="40dp"
         android:text="@string/main_activity_button_label"
 

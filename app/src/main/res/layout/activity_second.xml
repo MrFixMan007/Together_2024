@@ -39,6 +39,7 @@
 
     <Button
         style="@style/MyCenterButton"
+        android:id="@+id/buttonSecondActivityNotify"
         android:text="@string/second_activity_button_label"
         android:layout_marginTop="16dp"
 
