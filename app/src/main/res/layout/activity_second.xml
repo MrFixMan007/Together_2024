@@ -9,8 +9,7 @@
     <View
         android:id="@+id/figureView"
         android:layout_marginTop="@dimen/figure_margin_top_front"
-        android:layout_marginStart="@dimen/figure_margin_top_front"
-        android:layout_marginEnd="@dimen/figure_margin_top_front"
+        android:layout_marginHorizontal="@dimen/figure_margin_top_front"
 
         android:layout_width="match_parent"
         android:layout_height="112dp"
@@ -23,21 +22,19 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/image"
         android:contentDescription="@string/second_activity_image_content_description"
 
         android:layout_marginTop="@dimen/figure_margin_top_front"
-        android:layout_marginStart="@dimen/figure_margin_top_front"
-        android:layout_marginEnd="@dimen/figure_margin_top_front"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/figureView"
+        app:layout_constraintStart_toStartOf="@+id/figureView"
         app:layout_constraintTop_toBottomOf="@+id/figureView"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         style="@style/MyCenterButton"
         android:id="@+id/buttonSecondActivityNotify"
         android:text="@string/second_activity_button_label"

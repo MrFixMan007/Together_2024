@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         style="@style/MyCenterButton"
         android:id="@+id/buttonMainActivityNavigate"
         android:layout_marginTop="40dp"
