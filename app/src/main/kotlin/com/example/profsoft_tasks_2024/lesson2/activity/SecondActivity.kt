@@ -1,4 +1,4 @@
-package com.example.profsoft_tasks_2024.activity
+package com.example.profsoft_tasks_2024.lesson2.activity
 
 import android.app.Activity
 import android.os.Bundle

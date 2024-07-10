@@ -1,4 +1,4 @@
-package com.example.profsoft_tasks_2024.activity
+package com.example.profsoft_tasks_2024.lesson2.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

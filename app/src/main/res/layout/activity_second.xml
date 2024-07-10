@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SecondActivity">
+    tools:context=".lesson2.activity.SecondActivity">
 
     <View
         android:id="@+id/figureView"
