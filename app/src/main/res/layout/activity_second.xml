@@ -8,41 +8,38 @@
 
     <View
         android:id="@+id/figureView"
-        android:layout_marginTop="@dimen/figure_margin_top_front"
-        android:layout_marginHorizontal="@dimen/figure_margin_top_front"
-
         android:layout_width="match_parent"
         android:layout_height="112dp"
+
+        android:layout_marginHorizontal="@dimen/figure_margin_top_front"
+        android:layout_marginTop="@dimen/figure_margin_top_front"
         android:background="@drawable/figure"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/image"
-        android:contentDescription="@string/second_activity_image_content_description"
-
         android:layout_marginTop="@dimen/figure_margin_top_front"
+        android:background="@drawable/image"
+
+        android:contentDescription="@string/second_activity_image_content_description"
 
         app:layout_constraintEnd_toEndOf="@+id/figureView"
         app:layout_constraintStart_toStartOf="@+id/figureView"
-        app:layout_constraintTop_toBottomOf="@+id/figureView"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/figureView" />
 
     <com.google.android.material.button.MaterialButton
-        style="@style/MyCenterButton"
         android:id="@+id/buttonSecondActivityNotify"
-        android:text="@string/second_activity_button_label"
+        style="@style/MyCenterButton"
         android:layout_marginTop="16dp"
+        android:text="@string/second_activity_button_label"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
