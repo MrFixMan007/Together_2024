@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="MyCenterButton">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd">@dimen/button_front_margin</item>
-        <item name="android:layout_marginStart">@dimen/button_front_margin</item>
+    <style name="MyButton">
         <item name="cornerRadius">@dimen/button_corner_radius</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">12dp</item>
+    </style>
+    <style name="MyCenterButton" parent="MyButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/button_front_margin</item>
+        <item name="android:layout_marginStart">@dimen/button_front_margin</item>
     </style>
 </resources>
