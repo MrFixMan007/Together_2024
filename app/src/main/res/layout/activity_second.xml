@@ -24,7 +24,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/figure_margin_top_front"
-        android:background="@drawable/image"
+        android:src="@drawable/image"
+        android:scaleType="centerCrop"
 
         android:contentDescription="@string/second_activity_image_content_description"
 
