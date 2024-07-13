@@ -57,7 +57,6 @@
         app:layout_constraintBottom_toTopOf="@+id/txtViewLastName"
         app:layout_constraintEnd_toStartOf="@+id/txtViewDateOfBirth"
 
-        app:layout_constraintHorizontal_weight="3"
         app:layout_constraintStart_toEndOf="@+id/imageViewProfile"
         app:layout_constraintTop_toTopOf="@id/topView"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -98,7 +97,6 @@
         android:textSize="@dimen/textSize10"
         app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toEndOf="@+id/txtViewFirstName"
         app:layout_constraintTop_toTopOf="@+id/txtViewFirstName" />
 
