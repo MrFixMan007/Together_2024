@@ -33,7 +33,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSecondActivityNotify"
-        style="@style/MyCenterButton"
+        style="@style/Widget.MaterialComponents.MyCenterButton"
         android:layout_marginTop="16dp"
         android:text="@string/second_activity_button_label"
 

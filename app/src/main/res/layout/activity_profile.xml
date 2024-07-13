@@ -51,7 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="6dp"
-        android:text="@string/firstName"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/firstname"
         android:textSize="@dimen/textSize13"
         app:layout_constraintBottom_toTopOf="@+id/txtViewLastName"
         app:layout_constraintEnd_toStartOf="@+id/txtViewDateOfBirth"
@@ -66,7 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="@string/lastName"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/lastname"
         android:textSize="@dimen/textSize13"
 
         app:layout_constraintBottom_toTopOf="@+id/txtViewPatronymic"
@@ -78,6 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
+        android:fontFamily="@font/roboto_regular"
         android:text="@string/patronymic"
         android:textSize="@dimen/textSize13"
 
@@ -90,7 +93,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
-        android:text="@string/dateOfBirth"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/date_of_birth"
         android:textSize="@dimen/textSize10"
         app:layout_constraintEnd_toEndOf="parent"
 
@@ -103,12 +107,73 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="@string/date"
+        android:fontFamily="@font/roboto_regular"
 
+        android:text="@string/date"
         android:textSize="@dimen/textSize10"
         app:layout_constraintStart_toStartOf="@+id/txtViewDateOfBirth"
         app:layout_constraintTop_toBottomOf="@+id/txtViewDateOfBirth" />
 
+    <TextView
+        android:id="@+id/txtViewCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/city"
+        android:textColor="@color/text_color_accent"
+        android:textSize="@dimen/textSize14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topView" />
 
+    <TextView
+        android:id="@+id/txtViewCityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/Saratov"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textSize14"
+        app:layout_constraintStart_toStartOf="@id/txtViewCity"
+        app:layout_constraintTop_toBottomOf="@id/txtViewCity" />
+
+    <TextView
+        android:id="@+id/txtViewAboutMyself"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/about_myself"
+        android:textColor="@color/text_color_accent"
+        android:textSize="@dimen/textSize14"
+        app:layout_constraintStart_toStartOf="@id/txtViewCity"
+        app:layout_constraintTop_toBottomOf="@id/txtViewCityName" />
+
+    <TextView
+        android:id="@+id/txtViewText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/example_text"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/textSize14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtViewCity"
+        app:layout_constraintTop_toBottomOf="@id/txtViewAboutMyself" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnEditProfile"
+        style="@style/Widget.MaterialComponents.MyCenterButton.Blue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/edit_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

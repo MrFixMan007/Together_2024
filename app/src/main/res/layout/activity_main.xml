@@ -18,7 +18,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMainNavToSecondActivity"
-        style="@style/MyCenterButton"
+        style="@style/Widget.MaterialComponents.MyCenterButton"
         android:layout_marginTop="40dp"
         android:text="@string/main_activity_button_label"
 
@@ -28,7 +28,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMainNavToProfile"
-        style="@style/MyCenterButton"
+        style="@style/Widget.MaterialComponents.MyCenterButton"
         android:layout_marginTop="40dp"
         android:text="@string/profile"
 
