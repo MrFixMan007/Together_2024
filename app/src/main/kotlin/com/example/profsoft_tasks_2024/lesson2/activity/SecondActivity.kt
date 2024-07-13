@@ -15,7 +15,7 @@ class SecondActivity : Activity() {
         setContentView(R.layout.activity_second)
 
         extra = intent.extras?.getString(EXTRA_KEY).orEmpty()
-        buttonNotify = findViewById(R.id.buttonSecondActivityNotify)
+        buttonNotify = findViewById(R.id.btnSecondActivityNotify)
         buttonNotify.setOnClickListener {
             Toast.makeText(this, extra, Toast.LENGTH_LONG).show()
         }

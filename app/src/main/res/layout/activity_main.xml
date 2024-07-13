@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonMainActivityNavigate"
+        android:id="@+id/btnMainNavToSecondActivity"
         style="@style/MyCenterButton"
         android:layout_marginTop="40dp"
         android:text="@string/main_activity_button_label"
@@ -25,5 +25,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMainNavToProfile"
+        style="@style/MyCenterButton"
+        android:layout_marginTop="40dp"
+        android:text="@string/profile"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMainNavToSecondActivity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

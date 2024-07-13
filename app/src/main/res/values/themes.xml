@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Profsofttasks2024" parent="Theme.MaterialComponents.Light.NoActionBar" >
+
+    <style name="Theme.ProfSoftTasks2024" parent="Theme.MaterialComponents.Light.NoActionBar" >
         <item name="fontFamily">@font/roboto_medium</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0</item>
-        <item name="colorPrimary">@color/button_color_light</item>
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.MyButton</item>
+        <item name="buttonStyle">@style/Widget.MaterialComponents.MyButton</item>
+    </style>
+
+    <style name="Theme.ProfSoftTasks2024.WithActionBar">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
     </style>
 </resources>

@@ -5,4 +5,5 @@
     <string name="main_activity_button_label">Активити 2</string>
     <string name="second_activity_button_label">Уведомление</string>
     <string name="second_activity_image_content_description">Картинка</string>
+    <string name="profile">Профиль</string>
 </resources>
