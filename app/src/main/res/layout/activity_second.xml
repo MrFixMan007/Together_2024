@@ -10,7 +10,6 @@
         android:id="@+id/figureView"
         android:layout_width="match_parent"
         android:layout_height="112dp"
-
         android:layout_marginHorizontal="@dimen/figure_margin_top_front"
         android:layout_marginTop="@dimen/figure_margin_top_front"
         android:background="@drawable/figure"
@@ -24,10 +23,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/figure_margin_top_front"
-        android:src="@drawable/image"
-        android:scaleType="centerCrop"
-
         android:contentDescription="@string/second_activity_image_content_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image"
 
         app:layout_constraintEnd_toEndOf="@+id/figureView"
         app:layout_constraintStart_toStartOf="@+id/figureView"

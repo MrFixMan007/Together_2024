@@ -109,16 +109,6 @@
         app:layout_constraintStart_toStartOf="@+id/txtViewDateOfBirth"
         app:layout_constraintTop_toBottomOf="@+id/txtViewDateOfBirth" />
 
-    <!--    <androidx.cardview.widget.CardView-->
-    <!--        android:id="@+id/viewWithPersonInfo"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginVertical="20dp"-->
-    <!--        app:cardCornerRadius="12dp"-->
 
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/topView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toEndOf="@id/imageViewProfile"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
