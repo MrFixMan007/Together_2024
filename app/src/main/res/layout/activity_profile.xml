@@ -1,8 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".lesson3.ProfileActivity">
+
+    <View
+        android:id="@+id/topView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/primary_color_accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="64dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:contentDescription="@string/second_activity_image_content_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image"
+        app:layout_constraintBottom_toBottomOf="@+id/topView"
+        app:layout_constraintDimensionRatio="1"
+
+        app:layout_constraintEnd_toStartOf="@id/txtViewFirstName"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topView" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="-12dp"
+        android:layout_marginEnd="-20dp"
+        android:layout_marginBottom="-12dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewPatronymic"
+        app:layout_constraintEnd_toEndOf="@+id/txtViewDateOfBirth"
+        app:layout_constraintStart_toStartOf="@+id/txtViewFirstName"
+        app:layout_constraintTop_toTopOf="@+id/txtViewFirstName" />
+
+    <TextView
+        android:id="@+id/txtViewFirstName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/firstName"
+        android:textSize="@dimen/textSize13"
+        app:layout_constraintBottom_toTopOf="@+id/txtViewLastName"
+        app:layout_constraintEnd_toStartOf="@+id/txtViewDateOfBirth"
+
+        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintStart_toEndOf="@+id/imageViewProfile"
+        app:layout_constraintTop_toTopOf="@id/topView"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/txtViewLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/lastName"
+        android:textSize="@dimen/textSize13"
+
+        app:layout_constraintBottom_toTopOf="@+id/txtViewPatronymic"
+        app:layout_constraintStart_toStartOf="@+id/txtViewFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewFirstName" />
+
+    <TextView
+        android:id="@+id/txtViewPatronymic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/patronymic"
+        android:textSize="@dimen/textSize13"
+
+        app:layout_constraintBottom_toBottomOf="@id/topView"
+        app:layout_constraintStart_toStartOf="@+id/txtViewFirstName"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewLastName" />
+
+    <TextView
+        android:id="@+id/txtViewDateOfBirth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:text="@string/dateOfBirth"
+        android:textSize="@dimen/textSize10"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@+id/txtViewFirstName"
+        app:layout_constraintTop_toTopOf="@+id/txtViewFirstName" />
+
+    <TextView
+        android:id="@+id/txtViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/date"
+
+        android:textSize="@dimen/textSize10"
+        app:layout_constraintStart_toStartOf="@+id/txtViewDateOfBirth"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewDateOfBirth" />
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:id="@+id/viewWithPersonInfo"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginVertical="20dp"-->
+    <!--        app:cardCornerRadius="12dp"-->
+
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/topView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@id/imageViewProfile"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

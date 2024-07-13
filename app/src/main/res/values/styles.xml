@@ -3,7 +3,7 @@
     <style name="Widget.MaterialComponents.MyButton" parent="Widget.MaterialComponents.Button">
         <item name="cornerRadius">@dimen/button_corner_radius</item>
         <item name="android:textColor">@color/text_color</item>
-        <item name="backgroundTint">@color/button_color_light</item>
+        <item name="backgroundTint">@color/primary_color_accent</item>
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">12dp</item>
     </style>
