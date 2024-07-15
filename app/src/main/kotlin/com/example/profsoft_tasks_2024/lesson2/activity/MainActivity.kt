@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.profsoft_tasks_2024.other.CoordinatorLayoutActivity
 import com.example.profsoft_tasks_2024.R
 import com.example.profsoft_tasks_2024.lesson3.ProfileActivity
 
@@ -12,6 +13,7 @@ const val EXTRA_KEY = "extra_key"
 class MainActivity : AppCompatActivity() {
     private lateinit var btnNavigateToSecondActivity: Button
     private lateinit var btnNavigateToProfile: Button
+    private lateinit var btnNavigateToCoordinator: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         btnNavigateToProfile = findViewById(R.id.btnMainNavToProfile)
         btnNavigateToProfile.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnNavigateToCoordinator = findViewById(R.id.btnMainNavToCoordinatorLayout)
+        btnNavigateToCoordinator.setOnClickListener {
+            val intent = Intent(this, CoordinatorLayoutActivity::class.java)
             startActivity(intent)
         }
     }

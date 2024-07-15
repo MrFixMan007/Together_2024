@@ -29,11 +29,21 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMainNavToProfile"
         style="@style/Widget.MaterialComponents.MyCenterButton"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:text="@string/profile"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnMainNavToSecondActivity" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMainNavToCoordinatorLayout"
+        style="@style/Widget.MaterialComponents.MyCenterButton"
+        android:layout_marginTop="10dp"
+        android:text="@string/coordinator"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMainNavToProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
