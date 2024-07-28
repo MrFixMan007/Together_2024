@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Погода</string>
+
+    <string name="city">City</string>
+    <string name="temperature">Temperature</string>
+    <string name="feels_temp_and_clouds">Feels temp and clouds</string>
+    <string name="details">Details</string>
+    <string name="wind">Wind</string>
+    <string name="failMessage">Запрос не удался</string>
+
+    <string name="feelsLike">Feels like</string>
+    <string name="min">min</string>
+    <string name="max">max</string>
+    <string name="pressure">pressure</string>
+    <string name="humidity">humidity</string>
+    <string name="visibility">visibility</string>
+    <string name="windSpeed">wind speed</string>
+    <string name="gust">gust</string>
+    <string name="direction">direction</string>
+
+<!--    Units of Measurement-->
+    <string name="degreeUnit">\u2103</string>
+    <string name="hpa">hPa</string>
+    <string name="km">km</string>
+    <string name="ms">m/s</string>
+
+</resources>
