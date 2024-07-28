@@ -4,10 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.profsoft_2024_task4_retrofit_koin.R
 import com.example.profsoft_2024_task4_retrofit_koin.databinding.ActivityMainBinding
 import com.example.profsoft_2024_task4_retrofit_koin.domain.model.Weather
 import com.example.profsoft_2024_task4_retrofit_koin.presentation.viewmodel.NetworkViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -16,13 +20,25 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<NetworkViewModel>()
     private lateinit var context: Context
     private lateinit var degreeSymbol: String
+    private lateinit var refreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         context = binding.root.context
-        degreeSymbol = context.getString(R.string.degreeUnit)
         setContentView(binding.root)
+        init()
+    }
+
+    private fun init() {
+        degreeSymbol = context.getString(R.string.degreeUnit)
+        refreshLayout = binding.main
+
+        refreshLayout.setOnRefreshListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                refreshContent()
+            }
+        }
 
         viewModel.state.observe(this) {
             it?.let {
@@ -30,6 +46,14 @@ class MainActivity : AppCompatActivity() {
             }
                 ?: notifyAboutWrongRequest()
         }
+
+        viewModel.isRefreshing.observe(this) {
+            refreshLayout.isRefreshing = it
+        }
+    }
+
+    private suspend fun refreshContent() {
+        viewModel.refresh()
     }
 
     private fun notifyAboutWrongRequest() {

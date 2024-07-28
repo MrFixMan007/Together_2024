@@ -16,6 +16,9 @@ class NetworkViewModel(
     val state: LiveData<Weather?> get() = _state
     private val _state = MutableLiveData<Weather?>()
 
+    val isRefreshing: LiveData<Boolean> get() = _isRefreshing
+    private val _isRefreshing = MutableLiveData<Boolean>()
+
 
     init {
         viewModelScope.launch {
@@ -23,7 +26,12 @@ class NetworkViewModel(
         }
     }
 
+    suspend fun refresh() {
+        getRequest()
+    }
+
     private suspend fun getRequest() {
+        _isRefreshing.value = true
         val response = kotlin.runCatching {
             getWeatherUseCase.execute(cityId)
         }
@@ -35,6 +43,6 @@ class NetworkViewModel(
             Log.e("response", "getRequest: Получить запрос не удалось")
             _state.value = null
         }
-        Log.e("getRequest", _state.value.toString())
+        _isRefreshing.value = false
     }
 }
