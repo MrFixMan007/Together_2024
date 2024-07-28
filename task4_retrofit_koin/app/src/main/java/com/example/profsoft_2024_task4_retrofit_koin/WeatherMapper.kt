@@ -45,6 +45,6 @@ object WeatherMapper {
     }
 
     private fun toDegree(tempFahrenheit: Float): Float {
-        return (tempFahrenheit - 32) * 5 / 9
+        return tempFahrenheit - 273.15f
     }
 }
