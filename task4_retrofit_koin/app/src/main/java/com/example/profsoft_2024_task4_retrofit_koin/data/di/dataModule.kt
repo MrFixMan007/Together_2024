@@ -15,10 +15,8 @@ import java.util.concurrent.TimeUnit
 
 val dataModule = module {
 
-//    val READ_TIMEOUT_IN_SECONDS = 15L
-//    val CONNECTION_TIMEOUT_IN_SECONDS = 15L
-    val READ_TIMEOUT_IN_SECONDS = 5L
-    val CONNECTION_TIMEOUT_IN_SECONDS = 5L
+    val READ_TIMEOUT_IN_SECONDS = 15L
+    val CONNECTION_TIMEOUT_IN_SECONDS = 15L
     val DEV_BASE_URL = "https://api.openweathermap.org"
 
     factory<Moshi> {
