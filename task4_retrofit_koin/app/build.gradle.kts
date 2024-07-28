@@ -23,7 +23,7 @@ android {
             val properties = Properties()
             properties.load(rootProject.file("local.properties").inputStream())
             properties.getProperty("API_KEY")
-                ?:"is no key"
+                ?:""
         }
         buildConfigField ("String", "API_KEY", "\"${apiKey}\"")
     }

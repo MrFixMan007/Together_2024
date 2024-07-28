@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.profsoft_2024_task4_retrofit_koin.BuildConfig
 import com.example.profsoft_2024_task4_retrofit_koin.R
 import com.example.profsoft_2024_task4_retrofit_koin.databinding.ActivityMainBinding
 import com.example.profsoft_2024_task4_retrofit_koin.domain.model.Weather
@@ -33,6 +34,14 @@ class MainActivity : AppCompatActivity() {
     private fun init() {
         degreeSymbol = context.getString(R.string.degreeUnit)
         refreshLayout = binding.main
+
+        if (BuildConfig.API_KEY == ""){
+            Toast.makeText(context, R.string.noKeyMessage, Toast.LENGTH_SHORT).show()
+            refreshLayout.setOnRefreshListener {
+                refreshLayout.isRefreshing = false
+            }
+            return
+        }
 
         refreshLayout.setOnRefreshListener {
             CoroutineScope(Dispatchers.Main).launch {
