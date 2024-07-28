@@ -1,7 +1,7 @@
 package com.example.profsoft_2024_task4_retrofit_koin
 
 import com.example.profsoft_2024_task4_retrofit_koin.data.model.WeatherDto
-import com.example.profsoft_2024_task4_retrofit_koin.ui.model.Weather
+import com.example.profsoft_2024_task4_retrofit_koin.domain.model.Weather
 
 object WeatherMapper {
     private const val POSITION = 0

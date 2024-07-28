@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_task4_retrofit_koin.ui.model
+package com.example.profsoft_2024_task4_retrofit_koin.domain.model
 
 data class Weather(
     val cityName: String,

@@ -66,4 +66,7 @@ dependencies {
     implementation(libs.okhttpLoggerInterceptor)
     implementation(libs.chucker)
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
+
+    implementation(libs.koin.android)
+    implementation(libs.koin.core)
 }

@@ -1,22 +1,19 @@
-package com.example.profsoft_2024_task4_retrofit_koin.ui
+package com.example.profsoft_2024_task4_retrofit_koin.presentation
 
 import android.content.Context
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.profsoft_2024_task4_retrofit_koin.R
 import com.example.profsoft_2024_task4_retrofit_koin.databinding.ActivityMainBinding
-import com.example.profsoft_2024_task4_retrofit_koin.ui.model.Weather
-import com.example.profsoft_2024_task4_retrofit_koin.ui.viewmodel.NetworkViewModel
+import com.example.profsoft_2024_task4_retrofit_koin.domain.model.Weather
+import com.example.profsoft_2024_task4_retrofit_koin.presentation.viewmodel.NetworkViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel by viewModels<NetworkViewModel> {
-        NetworkViewModel.MyNetworkViewModelFactory(
-            this
-        )
-    }
+    private val viewModel by viewModel<NetworkViewModel>()
     private lateinit var context: Context
     private lateinit var degreeSymbol: String
 
@@ -28,8 +25,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.state.observe(this) {
-            renderWeather(it)
+            it?.let {
+                renderWeather(it)
+            }
+                ?: notifyAboutWrongRequest()
         }
+    }
+
+    private fun notifyAboutWrongRequest() {
+        Toast.makeText(context, R.string.failMessage, Toast.LENGTH_SHORT).show()
     }
 
     private fun renderWeather(weather: Weather) {
