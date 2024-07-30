@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_DIP
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.profsoft_2024_task5_recycler.R
 import com.example.profsoft_2024_task5_recycler.databinding.ActivityMainBinding
 import com.example.profsoft_2024_task5_recycler.presentation.adapter.SimpleAdapter
 import com.example.profsoft_2024_task5_recycler.presentation.adapter.TextViewItem
@@ -24,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private val secondAdapter = SimpleAdapter()
     private lateinit var context: Context
     private lateinit var refreshLayout: SwipeRefreshLayout
+    private var isAnimating = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +55,38 @@ class MainActivity : AppCompatActivity() {
 
         refreshLayout.setOnRefreshListener {
             refreshContent()
+            refreshLayout.isRefreshing = false
+        }
+
+        val inAnimation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.slide_in_right)
+        val outAnimation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.slide_out_left)
+
+        inAnimation.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation) {
+                isAnimating = true
+            }
+
+            override fun onAnimationEnd(animation: Animation) {
+                isAnimating = false
+            }
+
+            override fun onAnimationRepeat(animation: Animation) {}
+        })
+
+        viewFlipper.inAnimation = inAnimation
+        viewFlipper.outAnimation = outAnimation
+
+        viewFlipper.setOnClickListener {
+            if (!isAnimating) {
+                viewFlipper.showNext()
+            }
         }
     }
 
-    private fun refreshContent() {
+    private fun refreshContent() = with(binding) {
         firstAdapter.clearAll()
         secondAdapter.clearAll()
-        refreshLayout.isRefreshing = false
+        if (viewFlipper.displayedChild != 0) viewFlipper.displayedChild = 0
     }
 
     private fun addItemDecoration(recyclerView: RecyclerView) {

@@ -5,4 +5,5 @@
 
     <dimen name="leftMargin">16dp</dimen>
     <dimen name="widthRecyclerView">98dp</dimen>
+    <dimen name="cornerRadius">12dp</dimen>
 </resources>
