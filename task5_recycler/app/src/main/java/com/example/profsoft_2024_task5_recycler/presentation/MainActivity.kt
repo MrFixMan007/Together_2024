@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.profsoft_2024_task5_recycler.R
 import com.example.profsoft_2024_task5_recycler.databinding.ActivityMainBinding
 import com.example.profsoft_2024_task5_recycler.presentation.adapter.SimpleAdapter
@@ -26,20 +25,17 @@ class MainActivity : AppCompatActivity() {
     private val firstAdapter = SimpleAdapter()
     private val secondAdapter = SimpleAdapter()
     private lateinit var context: Context
-    private lateinit var refreshLayout: SwipeRefreshLayout
     private var isAnimating = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        context = binding.main.context
+        context = binding.root.context
         init()
     }
 
     private fun init() = with(binding) {
-        refreshLayout = binding.main
-
         firstRecyclerView.layoutManager = LinearLayoutManager(context)
         firstRecyclerView.adapter = firstAdapter
         addItemDecoration(firstRecyclerView)
@@ -53,29 +49,17 @@ class MainActivity : AppCompatActivity() {
             secondAdapter.addItem(TextViewItem(text = "item", type = SimpleAdapter.WITH_BACKGROUND))
         }
 
-        refreshLayout.setOnRefreshListener {
+        swipeRefreshLayout.setOnRefreshListener {
             refreshContent()
-            refreshLayout.isRefreshing = false
+            swipeRefreshLayout.isRefreshing = false
         }
 
         val inAnimation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.slide_in_right)
         val outAnimation = AnimationUtils.loadAnimation(this@MainActivity, R.anim.slide_out_left)
-
-        inAnimation.setAnimationListener(object : Animation.AnimationListener {
-            override fun onAnimationStart(animation: Animation) {
-                isAnimating = true
-            }
-
-            override fun onAnimationEnd(animation: Animation) {
-                isAnimating = false
-            }
-
-            override fun onAnimationRepeat(animation: Animation) {}
-        })
+        inAnimation.setAnimationListener(MyAnimationListener(this@MainActivity))
 
         viewFlipper.inAnimation = inAnimation
         viewFlipper.outAnimation = outAnimation
-
         viewFlipper.setOnClickListener {
             if (!isAnimating) {
                 viewFlipper.showNext()
@@ -89,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         if (viewFlipper.displayedChild != 0) viewFlipper.displayedChild = 0
     }
 
-    private fun addItemDecoration(recyclerView: RecyclerView) {
+    private fun addItemDecoration(recyclerView: RecyclerView, padding: Int = 6) {
         recyclerView.addItemDecoration(object : ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
@@ -100,10 +84,23 @@ class MainActivity : AppCompatActivity() {
                 super.getItemOffsets(outRect, view, parent, state)
                 outRect.top = TypedValue.applyDimension(
                     COMPLEX_UNIT_DIP,
-                    6 + 0.5f,
+                    padding + 0.5f,
                     resources.displayMetrics
                 ).toInt()
             }
         })
+    }
+
+    private class MyAnimationListener(private val activity: MainActivity) :
+        Animation.AnimationListener {
+        override fun onAnimationStart(animation: Animation) {
+            activity.isAnimating = true
+        }
+
+        override fun onAnimationEnd(animation: Animation) {
+            activity.isAnimating = false
+        }
+
+        override fun onAnimationRepeat(animation: Animation) {}
     }
 }
