@@ -13,7 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val adapter = SimpleAdapter()
+    private val firstAdapter = SimpleAdapter()
+    private val secondAdapter = SimpleAdapter()
     private lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,9 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() = with(binding) {
         firstRecyclerView.layoutManager = LinearLayoutManager(context)
-        firstRecyclerView.adapter = adapter
+        firstRecyclerView.adapter = firstAdapter
+
+        secondRecyclerView.layoutManager = LinearLayoutManager(context)
+        secondRecyclerView.adapter = secondAdapter
+
         buttonAddToRecycler.setOnClickListener {
-            adapter.addItem(TextViewItem(text = "Hi!!!"))
+            firstAdapter.addItem(TextViewItem(text = "Hi!!!"))
+            secondAdapter.addItem(TextViewItem(text = "Lol", type = SimpleAdapter.WITH_BACKGROUND))
         }
     }
 }
