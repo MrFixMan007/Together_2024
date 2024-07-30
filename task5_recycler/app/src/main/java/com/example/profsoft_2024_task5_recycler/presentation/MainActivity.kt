@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.profsoft_2024_task5_recycler.databinding.ActivityMainBinding
 import com.example.profsoft_2024_task5_recycler.presentation.adapter.SimpleAdapter
 import com.example.profsoft_2024_task5_recycler.presentation.adapter.TextViewItem
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private val firstAdapter = SimpleAdapter()
     private val secondAdapter = SimpleAdapter()
     private lateinit var context: Context
+    private lateinit var refreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() = with(binding) {
+        refreshLayout = binding.main
+
         firstRecyclerView.layoutManager = LinearLayoutManager(context)
         firstRecyclerView.adapter = firstAdapter
         addItemDecoration(firstRecyclerView)
@@ -44,6 +48,16 @@ class MainActivity : AppCompatActivity() {
             firstAdapter.addItem(TextViewItem(text = "item "))
             secondAdapter.addItem(TextViewItem(text = "item", type = SimpleAdapter.WITH_BACKGROUND))
         }
+
+        refreshLayout.setOnRefreshListener {
+            refreshContent()
+        }
+    }
+
+    private fun refreshContent() {
+        firstAdapter.clearAll()
+        secondAdapter.clearAll()
+        refreshLayout.isRefreshing = false
     }
 
     private fun addItemDecoration(recyclerView: RecyclerView) {

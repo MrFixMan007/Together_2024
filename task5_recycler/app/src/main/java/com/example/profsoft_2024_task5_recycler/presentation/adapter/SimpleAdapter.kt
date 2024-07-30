@@ -68,10 +68,10 @@ class SimpleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyItemInserted(list.size - 1)
     }
 
-    fun addItems(itemList: List<TextViewItem>) {
+    fun clearAll(){
         val oldSize = list.size
-        list.addAll(itemList)
-        notifyItemRangeInserted(oldSize - 1, list.size - oldSize)
+        list.clear()
+        notifyItemRangeRemoved(0, oldSize)
     }
 
     override fun getItemViewType(position: Int): Int {
