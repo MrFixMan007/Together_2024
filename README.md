@@ -6,3 +6,5 @@ You need to register the key in the local.properties with keyname "API_KEY", for
 ### 1 - with DI on Koin
 ### 2 - with DI on Hilt
 You also need to register the key in the local.properties like in task3
+## task5 - simple project with two recycler views and one view flipper
+You can click to view flipper for slide, add items to recycler views by button click, refresh page by swipe to down.
