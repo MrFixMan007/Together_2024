@@ -56,9 +56,10 @@ class SimpleAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = TextViewItem(text = "${list[position].text.trim()} $position", type = list[position].type)
         when (holder) {
-            is TextViewHolder -> holder.bind(list[position])
-            is TextViewHolderWithBackground -> holder.bind(list[position])
+            is TextViewHolder -> holder.bind(item)
+            is TextViewHolderWithBackground -> holder.bind(item)
         }
     }
 

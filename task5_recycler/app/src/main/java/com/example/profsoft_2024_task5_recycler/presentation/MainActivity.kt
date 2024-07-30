@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         addItemDecoration(secondRecyclerView)
 
         buttonAddToRecycler.setOnClickListener {
-            firstAdapter.addItem(TextViewItem(text = "Hi!!!"))
-            secondAdapter.addItem(TextViewItem(text = "Lol", type = SimpleAdapter.WITH_BACKGROUND))
+            firstAdapter.addItem(TextViewItem(text = "item "))
+            secondAdapter.addItem(TextViewItem(text = "item", type = SimpleAdapter.WITH_BACKGROUND))
         }
     }
 
