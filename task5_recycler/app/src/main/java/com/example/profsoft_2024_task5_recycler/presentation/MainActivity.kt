@@ -8,6 +8,7 @@ import android.util.TypedValue.COMPLEX_UNIT_DIP
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private val secondAdapter = SimpleAdapter()
     private lateinit var context: Context
     private var isAnimating = false
+    private lateinit var indicators: Array<ImageView>
+    private var selectedIndicator = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,14 @@ class MainActivity : AppCompatActivity() {
         secondRecyclerView.layoutManager = LinearLayoutManager(context)
         secondRecyclerView.adapter = secondAdapter
         addItemDecoration(secondRecyclerView)
+
+        indicators = arrayOf(
+            indicator1,
+            indicator2,
+            indicator3,
+            indicator4,
+            indicator5,
+        )
 
         buttonAddToRecycler.setOnClickListener {
             firstAdapter.addItem(TextViewItem(text = "item "))
@@ -63,14 +74,26 @@ class MainActivity : AppCompatActivity() {
         viewFlipper.setOnClickListener {
             if (!isAnimating) {
                 viewFlipper.showNext()
+                setIndicator(selectedIndicator + 1)
             }
         }
+    }
+
+    private fun setIndicator(index: Int = 0) {
+        val localIndex = if (index >= indicators.size) 0 else index
+        for (i in indicators.indices) {
+            indicators[i].setImageResource(if (i == localIndex) R.drawable.indicator_selected else R.drawable.indicator_unselected)
+        }
+        selectedIndicator = localIndex
     }
 
     private fun refreshContent() = with(binding) {
         firstAdapter.clearAll()
         secondAdapter.clearAll()
-        if (viewFlipper.displayedChild != 0) viewFlipper.displayedChild = 0
+        if (viewFlipper.displayedChild != 0) {
+            viewFlipper.displayedChild = 0
+            setIndicator()
+        }
     }
 
     private fun addItemDecoration(recyclerView: RecyclerView, padding: Int = 6) {
