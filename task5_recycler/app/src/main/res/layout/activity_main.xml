@@ -14,18 +14,11 @@
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/firstRecyclerView"
+            android:id="@+id/recyclerView"
             android:layout_width="@dimen/widthRecyclerView"
-            android:layout_height="57dp"
+            android:layout_height="192dp"
             android:layout_marginStart="@dimen/leftMargin"
             android:layout_marginTop="20dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/secondRecyclerView"
-            android:layout_width="@dimen/widthRecyclerView"
-            android:layout_height="129dp"
-            android:layout_marginStart="@dimen/leftMargin"
-            android:layout_marginTop="6dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonAddToRecycler"

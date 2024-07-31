@@ -10,6 +10,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
@@ -39,13 +40,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() = with(binding) {
-        firstRecyclerView.layoutManager = LinearLayoutManager(context)
-        firstRecyclerView.adapter = firstAdapter
-        addItemDecoration(firstRecyclerView)
-
-        secondRecyclerView.layoutManager = LinearLayoutManager(context)
-        secondRecyclerView.adapter = secondAdapter
-        addItemDecoration(secondRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val concatAdapter = ConcatAdapter(firstAdapter, secondAdapter)
+        recyclerView.adapter = concatAdapter
+        addItemDecoration(recyclerView)
 
         indicators = arrayOf(
             indicator1,
