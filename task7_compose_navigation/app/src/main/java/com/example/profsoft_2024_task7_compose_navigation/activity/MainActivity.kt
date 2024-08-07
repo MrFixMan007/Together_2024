@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SetContentPage(
+            SetMainPage(
                 title = resources.getString(R.string.main_activity_title),
                 buttonText = resources.getString(R.string.profile)
             )
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 @Composable
-fun SetContentPage(title: String, buttonText: String) {
+fun SetMainPage(title: String, buttonText: String) {
     ComposeTheme {
         SetActionBar(title = title) {}
         Column(
@@ -53,8 +53,8 @@ fun SetContentPage(title: String, buttonText: String) {
 
 @Preview
 @Composable
-fun PreviewContent() {
-    SetContentPage(
+fun PreviewMainContent() {
+    SetMainPage(
         title = "Hello World!",
         buttonText = "Активити 2"
     )
