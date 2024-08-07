@@ -8,22 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_task7_compose_navigation.R
-import com.example.profsoft_2024_task7_compose_navigation.component.SetButton
+import com.example.profsoft_2024_task7_compose_navigation.component.SetActionBar
+import com.example.profsoft_2024_task7_compose_navigation.component.SetButtonInCenter
 import com.example.profsoft_2024_task7_compose_navigation.theme.ComposeTheme
-import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
-
-const val EXTRA_KEY = "extra_key"
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,36 +24,26 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContent {
             SetContentPage(
-                textViewText = resources.getString(R.string.main_activity_text),
-                buttonText = resources.getString(R.string.main_activity_button_label)
+                title = resources.getString(R.string.main_activity_title),
+                buttonText = resources.getString(R.string.profile)
             )
         }
     }
 }
 
 @Composable
-fun SetContentPage(textViewText: String, buttonText: String) {
+fun SetContentPage(title: String, buttonText: String) {
     ComposeTheme {
+        SetActionBar(title = title) {}
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .fillMaxSize(),
+            verticalArrangement = Arrangement.Bottom
         ) {
             val context = LocalContext.current
-            val intent = Intent(context, SecondActivity::class.java).apply {
-                putExtra(EXTRA_KEY, context.getString(R.string.extra_message))
-            }
-            Text(
-                text = textViewText, style = Typography.bodyMedium
-            )
-
-            SetButton(
-                buttonText = buttonText, modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 40.dp)
-                    .height(49.dp)
+            val intent = Intent(context, SecondActivity::class.java)
+            SetButtonInCenter(
+                buttonText = buttonText
             ) {
                 context.startActivity(intent)
             }
@@ -73,7 +55,7 @@ fun SetContentPage(textViewText: String, buttonText: String) {
 @Composable
 fun PreviewContent() {
     SetContentPage(
-        textViewText = "Hello World!",
+        title = "Hello World!",
         buttonText = "Активити 2"
     )
 }

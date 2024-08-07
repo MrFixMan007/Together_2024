@@ -24,29 +24,29 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_task7_compose_navigation.R
+import com.example.profsoft_2024_task7_compose_navigation.component.SetActionBar
 import com.example.profsoft_2024_task7_compose_navigation.component.SetButton
 import com.example.profsoft_2024_task7_compose_navigation.theme.ComposeTheme
 import com.example.profsoft_2024_task7_compose_navigation.theme.Red
 
 class SecondActivity : AppCompatActivity() {
-    private lateinit var extra: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             SetPage(
-                extra = extra,
-                buttonText = resources.getString(R.string.second_activity_button_label)
+                buttonText = resources.getString(R.string.profile)
             )
         }
-        extra = intent.extras?.getString(EXTRA_KEY).orEmpty()
     }
 }
 
 @Composable
-fun SetPage(extra: String, buttonText: String) {
+fun SetPage(buttonText: String) {
     ComposeTheme {
+        SetActionBar(title = "Пшеше", haveBackArrow = true) {
+            
+        }
         Column(
             modifier = Modifier
                 .fillMaxSize(),
@@ -76,7 +76,7 @@ fun SetPage(extra: String, buttonText: String) {
                     .padding(start = 32.dp, end = 32.dp, top = 16.dp)
                     .height(50.dp)
             ) {
-                Toast.makeText(context, extra, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "нажал", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -98,5 +98,5 @@ fun SetMiddlePicture() {
 @Preview
 @Composable
 fun PreviewPage() {
-    SetPage("test", "Уведомление")
+    SetPage("test")
 }

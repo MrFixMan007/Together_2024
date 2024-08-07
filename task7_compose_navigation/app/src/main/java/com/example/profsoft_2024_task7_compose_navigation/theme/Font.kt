@@ -6,5 +6,5 @@ import androidx.compose.ui.text.font.FontWeight
 import com.example.profsoft_2024_task7_compose_navigation.R
 
 val RobotoFont = FontFamily(
-    Font(R.font.roboto_medium, FontWeight.Medium)
+    Font(R.font.roboto_regular, FontWeight.Normal),
 )
