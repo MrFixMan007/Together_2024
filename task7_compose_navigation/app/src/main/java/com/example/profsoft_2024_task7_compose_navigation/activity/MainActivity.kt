@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 @Composable
-fun SetMainPage(title: String, buttonText: String) {
+private fun SetMainPage(title: String, buttonText: String) {
     ComposeTheme {
         SetActionBar(title = title) {}
         Column(
@@ -53,7 +53,7 @@ fun SetMainPage(title: String, buttonText: String) {
 
 @Preview
 @Composable
-fun PreviewMainContent() {
+private fun PreviewMainContent() {
     SetMainPage(
         title = "Hello World!",
         buttonText = "Активити 2"
