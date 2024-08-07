@@ -4,9 +4,11 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -40,7 +42,7 @@ fun SetActionBar(
             Text(
                 text = title,
                 style = Typography.titleLarge,
-                modifier = Modifier.padding(start = 20.dp, top = 16.dp)
+                modifier = Modifier.padding(start = 20.dp, top = 16.dp, bottom = 16.dp).height(24.dp)
             )
         }
         DrawLine()
@@ -51,26 +53,31 @@ fun SetActionBar(
 fun ArrowWithText(title: String, backArrowPressed: () -> Unit) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 20.dp, top = 17.dp),
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        DrawArrow(
+        Box(
             modifier = Modifier
-                .size(14.dp, 14.dp),
-        ) { backArrowPressed() }
+                .size(56.dp)
+                .clickable { backArrowPressed() },
+            contentAlignment = Alignment.Center
+        ) {
+            DrawArrow(
+                modifier = Modifier
+                    .size(14.dp, 14.dp),
+            )
+        }
         Text(
             text = title,
             style = Typography.titleLarge,
-            modifier = Modifier.padding(start = 37.dp)
+            modifier = Modifier.padding(start = 15.dp)
         )
     }
 }
 
 @Composable
-fun DrawArrow(modifier: Modifier, backArrowPressed: () -> Unit) {
-    Canvas(modifier = modifier
-        .clickable { backArrowPressed() }) {
+fun DrawArrow(modifier: Modifier) {
+    Canvas(modifier = modifier) {
         val path = Path().apply {
             moveTo(size.width * 0.5f, 0f)
             lineTo(0f, size.height * 0.5f)
@@ -90,7 +97,6 @@ fun DrawArrow(modifier: Modifier, backArrowPressed: () -> Unit) {
 fun DrawLine(
     modifier: Modifier = Modifier
         .fillMaxWidth()
-        .padding(top = 16.dp)
 ) {
     Canvas(
         modifier = modifier
@@ -109,5 +115,5 @@ fun DrawLine(
 @Composable
 fun preview() {
 //    DrawArrow()
-    SetActionBar(title = "Title Head", haveBackArrow = true) {}
+    SetActionBar(title = "Title Head", haveBackArrow = false) {}
 }

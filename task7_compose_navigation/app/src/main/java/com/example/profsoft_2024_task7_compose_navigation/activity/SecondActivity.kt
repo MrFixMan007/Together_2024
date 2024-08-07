@@ -44,15 +44,15 @@ class SecondActivity : AppCompatActivity() {
 @Composable
 fun SetPage(buttonText: String) {
     ComposeTheme {
+        val context = LocalContext.current
         SetActionBar(title = "Пшеше", haveBackArrow = true) {
-            
+            Toast.makeText(context, "нажал", Toast.LENGTH_SHORT).show()
         }
         Column(
             modifier = Modifier
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            val context = LocalContext.current
 
             Box(
                 modifier = Modifier
