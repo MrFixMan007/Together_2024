@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,6 +34,11 @@ import com.example.profsoft_2024_task7_compose_navigation.theme.DarkGray
 import com.example.profsoft_2024_task7_compose_navigation.theme.LightGray
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
 
+private const val FIRST_NAME_KEY = "first_name_key"
+private const val LAST_NAME_KEY = "last_name_key"
+private const val PATRONYMIC_KEY = "patronymic_key"
+private const val BIRTHDAY_KEY = "birthday_key"
+
 @Composable
 fun SecondScreenContent(
     navController: NavController,
@@ -47,6 +53,19 @@ fun SecondScreenContent(
                 .fillMaxSize(),
         )
         {
+            val firstNameState = navController.currentBackStackEntry
+                ?.savedStateHandle
+                ?.getLiveData<String>(FIRST_NAME_KEY)?.observeAsState()
+            val lastNameState = navController.currentBackStackEntry
+                ?.savedStateHandle
+                ?.getLiveData<String>(LAST_NAME_KEY)?.observeAsState()
+            val patronymicState = navController.currentBackStackEntry
+                ?.savedStateHandle
+                ?.getLiveData<String>(PATRONYMIC_KEY)?.observeAsState()
+            val birthdayState = navController.currentBackStackEntry
+                ?.savedStateHandle
+                ?.getLiveData<String>(BIRTHDAY_KEY)?.observeAsState()
+
             Row(
                 modifier = Modifier
                     .height(120.dp)
@@ -78,15 +97,15 @@ fun SecondScreenContent(
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text(
-                                text = firstName,
+                                text = firstNameState?.value ?: firstName,
                                 style = Typography.bodyMedium
                             )
                             Text(
-                                text = lastName,
+                                text = lastNameState?.value ?: lastName,
                                 style = Typography.bodyMedium
                             )
                             Text(
-                                text = patronymic,
+                                text = patronymicState?.value ?: patronymic,
                                 style = Typography.bodyMedium
                             )
                         }
@@ -96,7 +115,7 @@ fun SecondScreenContent(
                                 style = Typography.bodyMedium
                             )
                             Text(
-                                text = birthday,
+                                text = birthdayState?.value ?: birthday,
                                 style = Typography.bodyMedium
                             )
                         }
@@ -134,10 +153,10 @@ fun SecondScreenContent(
                     buttonText = LocalContext.current.resources.getString(R.string.change_profile)
                 ) {
                     navController.navigateToThirdScreen(
-                        firstName = firstName,
-                        lastName = lastName,
-                        patronymic = patronymic,
-                        birthday = birthday
+                        firstName = firstNameState?.value ?: firstName,
+                        lastName = lastNameState?.value ?: lastName,
+                        patronymic = patronymicState?.value ?: patronymic,
+                        birthday = birthdayState?.value ?: birthday,
                     )
                 }
             }

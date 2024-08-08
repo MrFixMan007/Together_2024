@@ -2,13 +2,20 @@ package com.example.profsoft_2024_task7_compose_navigation.thirdscreen.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -17,6 +24,11 @@ import com.example.profsoft_2024_task7_compose_navigation.R
 import com.example.profsoft_2024_task7_compose_navigation.component.ButtonInCenter
 import com.example.profsoft_2024_task7_compose_navigation.theme.ComposeTheme
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
+
+private const val FIRST_NAME_KEY = "first_name_key"
+private const val LAST_NAME_KEY = "last_name_key"
+private const val PATRONYMIC_KEY = "patronymic_key"
+private const val BIRTHDAY_KEY = "birthday_key"
 
 @Composable
 fun ThirdScreenContent(
@@ -32,26 +44,49 @@ fun ThirdScreenContent(
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Top
         ) {
+            val firstNameState = remember { mutableStateOf(firstName) }
+            val lastNameState = remember { mutableStateOf(lastName) }
+            val patronymicState = remember { mutableStateOf(patronymic) }
+            val birthdayState = remember { mutableStateOf(birthday) }
+
             Column(
                 modifier = Modifier.padding(start = 16.dp, top = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text(
-                    text = "${stringResource(id = R.string.first_name)}: $firstName",
-                    style = Typography.titleMedium
-                )
-                Text(
-                    text = "${stringResource(id = R.string.last_name)}: $lastName",
-                    style = Typography.titleMedium
-                )
-                Text(
-                    text = "${stringResource(id = R.string.patronymic)}: $patronymic",
-                    style = Typography.titleMedium
-                )
-                Text(
-                    text = "${stringResource(id = R.string.date_of_birth)}: $birthday",
-                    style = Typography.titleMedium
-                )
+                Row {
+                    Text(
+                        text = "${stringResource(id = R.string.first_name)}: ",
+                        style = Typography.titleMedium
+                    )
+                    BasicTextFieldSample(
+                        textState = firstNameState
+                    )
+                }
+                Row {
+                    Text(
+                        text = "${stringResource(id = R.string.last_name)}: ",
+                        style = Typography.titleMedium
+                    )
+                    BasicTextFieldSample(
+                        textState = lastNameState
+                    )
+                }
+                Row {
+                    Text(
+                        text = "${stringResource(id = R.string.patronymic)}: ",
+                        style = Typography.titleMedium
+                    )
+                    BasicTextFieldSample(
+                        textState = patronymicState
+                    )
+                }
+                Row {
+                    Text(
+                        text = "${stringResource(id = R.string.date_of_birth)}: ",
+                        style = Typography.titleMedium
+                    )
+                    DateTextFieldSample(textState = birthdayState)
+                }
             }
             Column(
                 modifier = Modifier
@@ -60,11 +95,53 @@ fun ThirdScreenContent(
             ) {
                 ButtonInCenter(
                     buttonText = LocalContext.current.resources.getString(R.string.save),
-                    onClick = navController::popBackStack
+                    onClick = {
+                        navController.previousBackStackEntry?.savedStateHandle?.set(
+                            FIRST_NAME_KEY,
+                            firstNameState.value
+                        )
+                        navController.previousBackStackEntry?.savedStateHandle?.set(
+                            LAST_NAME_KEY,
+                            lastNameState.value
+                        )
+                        navController.previousBackStackEntry?.savedStateHandle?.set(
+                            PATRONYMIC_KEY,
+                            patronymicState.value
+                        )
+                        navController.previousBackStackEntry?.savedStateHandle?.set(
+                            BIRTHDAY_KEY,
+                            birthdayState.value
+                        )
+                        navController.popBackStack()
+                    }
                 )
             }
         }
     }
+}
+
+@Composable
+fun BasicTextFieldSample(textState: MutableState<String>) {
+    BasicTextField(
+        value = textState.value,
+        onValueChange = { textState.value = it },
+        textStyle = Typography.titleMedium,
+    )
+}
+
+@Composable
+fun DateTextFieldSample(textState: MutableState<String>) {
+    BasicTextField(
+        value = textState.value,
+        onValueChange = {
+            if (it.length <= 10) {
+                val filteredText = it.filter { char -> char.isDigit() || char == '.' }
+                textState.value = filteredText
+            }
+        },
+        textStyle = Typography.titleMedium,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+    )
 }
 
 @Preview
