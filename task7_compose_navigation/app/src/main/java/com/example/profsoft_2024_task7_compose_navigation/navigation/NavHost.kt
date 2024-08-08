@@ -17,5 +17,6 @@ fun NavHost(
     ) {
         mainScreen(navController)
         secondScreen(navController)
+        thirdScreen(navController)
     }
 }

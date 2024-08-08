@@ -18,18 +18,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.profsoft_2024_task7_compose_navigation.R
+import com.example.profsoft_2024_task7_compose_navigation.component.ButtonInCenter
+import com.example.profsoft_2024_task7_compose_navigation.navigation.navigateToThirdScreen
 import com.example.profsoft_2024_task7_compose_navigation.theme.ComposeTheme
 import com.example.profsoft_2024_task7_compose_navigation.theme.DarkGray
 import com.example.profsoft_2024_task7_compose_navigation.theme.LightGray
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
 
 @Composable
-fun SecondScreenContent() {
+fun SecondScreenContent(navController: NavController) {
     ComposeTheme {
         Column(
             modifier = Modifier
@@ -66,13 +71,28 @@ fun SecondScreenContent() {
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Text(text = stringResource(id = R.string.first_name_value), style = Typography.bodyMedium)
-                            Text(text = stringResource(id = R.string.last_name_value), style = Typography.bodyMedium)
-                            Text(text = stringResource(id = R.string.patronymic_value), style = Typography.bodyMedium)
+                            Text(
+                                text = stringResource(id = R.string.first_name_value),
+                                style = Typography.bodyMedium
+                            )
+                            Text(
+                                text = stringResource(id = R.string.last_name_value),
+                                style = Typography.bodyMedium
+                            )
+                            Text(
+                                text = stringResource(id = R.string.patronymic_value),
+                                style = Typography.bodyMedium
+                            )
                         }
                         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Text(text = "${stringResource(id = R.string.date_of_birth)}:", style = Typography.bodyMedium)
-                            Text(text = stringResource(id = R.string.date_of_birth_value), style = Typography.bodyMedium)
+                            Text(
+                                text = "${stringResource(id = R.string.date_of_birth)}:",
+                                style = Typography.bodyMedium
+                            )
+                            Text(
+                                text = stringResource(id = R.string.date_of_birth_value),
+                                style = Typography.bodyMedium
+                            )
                         }
                     }
                 }
@@ -99,6 +119,17 @@ fun SecondScreenContent() {
                 style = Typography.bodyLarge,
                 modifier = Modifier.padding(start = 16.dp, top = 8.dp)
             )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                ButtonInCenter(
+                    buttonText = LocalContext.current.resources.getString(R.string.change_profile)
+                ) {
+                    navController.navigateToThirdScreen()
+                }
+            }
         }
     }
 }
@@ -106,5 +137,5 @@ fun SecondScreenContent() {
 @Preview
 @Composable
 private fun PreviewSecondPage() {
-    SecondScreenContent()
+    SecondScreenContent(rememberNavController())
 }

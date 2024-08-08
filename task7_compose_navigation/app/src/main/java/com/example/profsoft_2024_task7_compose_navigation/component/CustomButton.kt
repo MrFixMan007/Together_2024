@@ -15,11 +15,11 @@ import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
 
 @Composable
-fun SetButton(
-    buttonText: String, modifier: Modifier = Modifier, func: () -> Unit
+fun CustomButton(
+    buttonText: String, modifier: Modifier = Modifier, onClick: () -> Unit
 ) {
     Button(
-        onClick = { func() },
+        onClick = onClick,
         shape = RoundedCornerShape(size = 12.dp),
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
@@ -31,20 +31,18 @@ fun SetButton(
 }
 
 @Composable
-fun SetButtonInCenter(
+fun ButtonInCenter(
     buttonText: String,
     modifier: Modifier = Modifier
         .fillMaxWidth()
         .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-        .height(56.dp), func: () -> Unit
+        .height(56.dp), onClick: () -> Unit
 ) {
-    SetButton(buttonText = buttonText, modifier = modifier) {
-        func()
-    }
+    CustomButton(buttonText = buttonText, modifier = modifier, onClick = onClick)
 }
 
 @Preview
 @Composable
-fun previewButton(){
-    SetButtonInCenter("Button"){}
+fun previewButton() {
+    ButtonInCenter("Button") {}
 }

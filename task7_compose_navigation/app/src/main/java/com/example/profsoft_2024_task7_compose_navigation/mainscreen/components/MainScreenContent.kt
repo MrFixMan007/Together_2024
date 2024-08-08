@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.profsoft_2024_task7_compose_navigation.R
-import com.example.profsoft_2024_task7_compose_navigation.component.SetButtonInCenter
+import com.example.profsoft_2024_task7_compose_navigation.component.ButtonInCenter
 import com.example.profsoft_2024_task7_compose_navigation.navigation.navigateToSecondScreen
 
 @Composable
@@ -20,7 +20,7 @@ fun MainScreenContent(navController: NavController) {
             .fillMaxSize(),
         verticalArrangement = Arrangement.Bottom
     ) {
-        SetButtonInCenter(
+        ButtonInCenter(
             buttonText = LocalContext.current.resources.getString(R.string.profile),
         ) {
             navController.navigateToSecondScreen()

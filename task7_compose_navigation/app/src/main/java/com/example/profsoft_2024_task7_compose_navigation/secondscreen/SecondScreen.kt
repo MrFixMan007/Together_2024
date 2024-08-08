@@ -19,6 +19,6 @@ fun SecondScreen(
             onBackClick = navController::popBackStack,
             containerColor = LightGray
         )
-        SecondScreenContent()
+        SecondScreenContent(navController)
     }
 }
