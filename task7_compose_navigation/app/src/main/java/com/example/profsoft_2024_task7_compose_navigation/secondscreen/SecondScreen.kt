@@ -11,7 +11,11 @@ import com.example.profsoft_2024_task7_compose_navigation.theme.LightGray
 
 @Composable
 fun SecondScreen(
-    navController: NavController
+    navController: NavController,
+    firstName: String,
+    lastName: String,
+    patronymic: String,
+    birthday: String,
 ) {
     Column {
         ActionBar(
@@ -19,6 +23,12 @@ fun SecondScreen(
             onBackClick = navController::popBackStack,
             containerColor = LightGray
         )
-        SecondScreenContent(navController)
+        SecondScreenContent(
+            navController,
+            firstName = firstName,
+            lastName = lastName,
+            patronymic = patronymic,
+            birthday = birthday
+        )
     }
 }

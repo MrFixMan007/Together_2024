@@ -34,7 +34,13 @@ import com.example.profsoft_2024_task7_compose_navigation.theme.LightGray
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
 
 @Composable
-fun SecondScreenContent(navController: NavController) {
+fun SecondScreenContent(
+    navController: NavController,
+    firstName: String,
+    lastName: String,
+    patronymic: String,
+    birthday: String,
+) {
     ComposeTheme {
         Column(
             modifier = Modifier
@@ -72,15 +78,15 @@ fun SecondScreenContent(navController: NavController) {
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             Text(
-                                text = stringResource(id = R.string.first_name_value),
+                                text = firstName,
                                 style = Typography.bodyMedium
                             )
                             Text(
-                                text = stringResource(id = R.string.last_name_value),
+                                text = lastName,
                                 style = Typography.bodyMedium
                             )
                             Text(
-                                text = stringResource(id = R.string.patronymic_value),
+                                text = patronymic,
                                 style = Typography.bodyMedium
                             )
                         }
@@ -90,7 +96,7 @@ fun SecondScreenContent(navController: NavController) {
                                 style = Typography.bodyMedium
                             )
                             Text(
-                                text = stringResource(id = R.string.date_of_birth_value),
+                                text = birthday,
                                 style = Typography.bodyMedium
                             )
                         }
@@ -137,5 +143,11 @@ fun SecondScreenContent(navController: NavController) {
 @Preview
 @Composable
 private fun PreviewSecondPage() {
-    SecondScreenContent(rememberNavController())
+    SecondScreenContent(
+        rememberNavController(),
+        firstName = "Иван",
+        lastName = "Иванов",
+        patronymic = "Иванович",
+        birthday = "01.01.2001"
+    )
 }

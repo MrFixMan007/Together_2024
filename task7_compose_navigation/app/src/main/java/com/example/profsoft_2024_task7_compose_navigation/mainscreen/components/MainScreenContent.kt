@@ -23,7 +23,12 @@ fun MainScreenContent(navController: NavController) {
         ButtonInCenter(
             buttonText = LocalContext.current.resources.getString(R.string.profile),
         ) {
-            navController.navigateToSecondScreen()
+            navController.navigateToSecondScreen(
+                firstName = "Ivan",
+                lastName = "Ivanov",
+                patronymic = "Ivanovich",
+                birthday = "01.01.2005"
+            )
         }
     }
 }
