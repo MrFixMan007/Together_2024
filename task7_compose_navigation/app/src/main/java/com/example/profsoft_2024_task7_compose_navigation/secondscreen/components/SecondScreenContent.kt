@@ -133,7 +133,12 @@ fun SecondScreenContent(
                 ButtonInCenter(
                     buttonText = LocalContext.current.resources.getString(R.string.change_profile)
                 ) {
-                    navController.navigateToThirdScreen()
+                    navController.navigateToThirdScreen(
+                        firstName = firstName,
+                        lastName = lastName,
+                        patronymic = patronymic,
+                        birthday = birthday
+                    )
                 }
             }
         }

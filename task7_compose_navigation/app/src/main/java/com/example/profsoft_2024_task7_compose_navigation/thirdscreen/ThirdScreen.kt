@@ -10,13 +10,23 @@ import com.example.profsoft_2024_task7_compose_navigation.thirdscreen.components
 
 @Composable
 fun ThirdScreen(
-    navController: NavController
+    navController: NavController,
+    firstName: String,
+    lastName: String,
+    patronymic: String,
+    birthday: String,
 ) {
     Column {
         ActionBar(
             title = LocalContext.current.resources.getString(R.string.changes_profile),
             onBackClick = navController::popBackStack
         )
-        ThirdScreenContent(navController)
+        ThirdScreenContent(
+            navController = navController,
+            firstName = firstName,
+            lastName = lastName,
+            patronymic = patronymic,
+            birthday = birthday
+        )
     }
 }

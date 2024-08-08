@@ -19,7 +19,13 @@ import com.example.profsoft_2024_task7_compose_navigation.theme.ComposeTheme
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
 
 @Composable
-fun ThirdScreenContent(navController: NavController) {
+fun ThirdScreenContent(
+    navController: NavController,
+    firstName: String,
+    lastName: String,
+    patronymic: String,
+    birthday: String,
+) {
     ComposeTheme {
         Column(
             modifier = Modifier
@@ -31,19 +37,19 @@ fun ThirdScreenContent(navController: NavController) {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = "${stringResource(id = R.string.first_name)}: ${stringResource(id = R.string.first_name_value)}",
+                    text = "${stringResource(id = R.string.first_name)}: $firstName",
                     style = Typography.titleMedium
                 )
                 Text(
-                    text = "${stringResource(id = R.string.last_name)}: ${stringResource(id = R.string.last_name_value)}",
+                    text = "${stringResource(id = R.string.last_name)}: $lastName",
                     style = Typography.titleMedium
                 )
                 Text(
-                    text = "${stringResource(id = R.string.patronymic)}: ${stringResource(id = R.string.patronymic_value)}",
+                    text = "${stringResource(id = R.string.patronymic)}: $patronymic",
                     style = Typography.titleMedium
                 )
                 Text(
-                    text = "${stringResource(id = R.string.date_of_birth)}: ${stringResource(id = R.string.date_of_birth_value)}",
+                    text = "${stringResource(id = R.string.date_of_birth)}: $birthday",
                     style = Typography.titleMedium
                 )
             }
@@ -64,5 +70,11 @@ fun ThirdScreenContent(navController: NavController) {
 @Preview
 @Composable
 private fun PreviewThirdContent() {
-    ThirdScreenContent(rememberNavController())
+    ThirdScreenContent(
+        navController = rememberNavController(),
+        firstName = "Ivanyz",
+        lastName = "Alexandrov",
+        patronymic = "Ivanovich",
+        birthday = "10.10.2010"
+    )
 }
