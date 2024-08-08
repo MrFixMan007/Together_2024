@@ -15,6 +15,7 @@ fun NavHost(
         navController = navController,
         startDestination = startDestination,
     ) {
+        mainScreen(navController)
         secondScreen(navController)
     }
 }
