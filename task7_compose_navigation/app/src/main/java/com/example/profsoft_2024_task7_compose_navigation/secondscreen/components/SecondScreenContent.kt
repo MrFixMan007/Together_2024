@@ -1,10 +1,5 @@
-package com.example.profsoft_2024_task7_compose_navigation.activity
+package com.example.profsoft_2024_task7_compose_navigation.secondscreen.components
 
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,42 +18,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_task7_compose_navigation.R
-import com.example.profsoft_2024_task7_compose_navigation.component.SetActionBar
 import com.example.profsoft_2024_task7_compose_navigation.theme.ComposeTheme
 import com.example.profsoft_2024_task7_compose_navigation.theme.DarkGray
 import com.example.profsoft_2024_task7_compose_navigation.theme.LightGray
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
 
-class SecondActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            SetSecondPage(
-                buttonText = resources.getString(R.string.profile)
-            )
-        }
-    }
-}
-
 @Composable
-private fun SetSecondPage(buttonText: String) {
+fun SecondScreenContent() {
     ComposeTheme {
-        val context = LocalContext.current
         Column(
             modifier = Modifier
                 .fillMaxSize(),
         )
         {
-            SetActionBar(title = buttonText, haveBackArrow = true, containerColor = LightGray) {
-                Toast.makeText(context, "нажал", Toast.LENGTH_SHORT).show()
-            }
             Row(
                 modifier = Modifier
                     .height(120.dp)
@@ -129,5 +106,5 @@ private fun SetSecondPage(buttonText: String) {
 @Preview
 @Composable
 private fun PreviewSecondPage() {
-    SetSecondPage("test")
+    SecondScreenContent()
 }

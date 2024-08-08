@@ -1,6 +1,5 @@
 package com.example.profsoft_2024_task7_compose_navigation.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -12,12 +11,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_task7_compose_navigation.R
-import com.example.profsoft_2024_task7_compose_navigation.component.SetActionBar
+import com.example.profsoft_2024_task7_compose_navigation.component.ActionBar
 import com.example.profsoft_2024_task7_compose_navigation.component.SetButtonInCenter
 import com.example.profsoft_2024_task7_compose_navigation.theme.ComposeTheme
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
@@ -44,7 +42,7 @@ private fun SetThirdPage(title: String, buttonText: String) {
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Top
         ) {
-            SetActionBar(title = title, haveBackArrow = true) {}
+            ActionBar(title = title) {}
             Column(
                 modifier = Modifier.padding(start = 16.dp, top = 20.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -72,12 +70,10 @@ private fun SetThirdPage(title: String, buttonText: String) {
                 .fillMaxSize(),
             verticalArrangement = Arrangement.Bottom
         ) {
-            val context = LocalContext.current
-            val intent = Intent(context, SecondActivity::class.java)
             SetButtonInCenter(
                 buttonText = buttonText
             ) {
-                context.startActivity(intent)
+                //TODO
             }
         }
     }

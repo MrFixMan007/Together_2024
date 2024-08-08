@@ -25,11 +25,10 @@ import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_task7_compose_navigation.theme.Typography
 
 @Composable
-fun SetActionBar(
+fun ActionBar(
     title: String,
-    haveBackArrow: Boolean = false,
     containerColor: Color = Color.White,
-    backArrowPressed: () -> Unit
+    onBackClick: (() -> Unit)? = null
 ) {
     Column(
         modifier = Modifier
@@ -37,7 +36,7 @@ fun SetActionBar(
             .background(color = containerColor),
         verticalArrangement = Arrangement.Top,
     ) {
-        if (haveBackArrow) ArrowWithText(title) { backArrowPressed() }
+        if (onBackClick != null) ArrowWithText(title) { onBackClick() }
         else {
             Text(
                 text = title,
@@ -50,7 +49,7 @@ fun SetActionBar(
 }
 
 @Composable
-fun ArrowWithText(title: String, backArrowPressed: () -> Unit) {
+private fun ArrowWithText(title: String, backArrowPressed: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
@@ -76,7 +75,7 @@ fun ArrowWithText(title: String, backArrowPressed: () -> Unit) {
 }
 
 @Composable
-fun DrawArrow(modifier: Modifier) {
+private fun DrawArrow(modifier: Modifier) {
     Canvas(modifier = modifier) {
         val path = Path().apply {
             moveTo(size.width * 0.5f, 0f)
@@ -94,7 +93,7 @@ fun DrawArrow(modifier: Modifier) {
 }
 
 @Composable
-fun DrawLine(
+private fun DrawLine(
     modifier: Modifier = Modifier
         .fillMaxWidth()
 ) {
@@ -115,5 +114,5 @@ fun DrawLine(
 @Composable
 fun preview() {
 //    DrawArrow()
-    SetActionBar(title = "Title Head", haveBackArrow = false) {}
+    ActionBar(title = "Title Head") {}
 }
