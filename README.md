@@ -9,3 +9,4 @@ You also need to register the key in the local.properties like in task3
 ## task5 - simple project with two recycler views and one view flipper
 You can click to view flipper for slide, add items to recycler views by button click, refresh page by swipe to down.
 ## task6 - simple project with features like in the task1-project but on compose
+## task7 - simple project with three screens. navigation between screens is done with arguments
