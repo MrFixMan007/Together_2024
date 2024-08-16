@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -14,7 +16,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.profsoft_2024_final_task.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -70,7 +73,23 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation (libs.androidx.navigation.compose)
-    implementation (libs.androidx.runtime.livedata)
-    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    api(libs.retrofit)
+    implementation(libs.moshiConverter)
+    implementation(libs.moshiKotlin)
+    implementation(libs.okhttpLoggerInterceptor)
+    implementation(libs.chucker)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    kaptTest(libs.hilt.compiler)
+    kaptAndroidTest(libs.hilt.compiler)
+    androidTestImplementation(libs.hilt.android.testing)
+
+    androidTestImplementation ("androidx.test:core:1.6.0")
+    androidTestImplementation ("androidx.test:runner:1.6.0")
 }
