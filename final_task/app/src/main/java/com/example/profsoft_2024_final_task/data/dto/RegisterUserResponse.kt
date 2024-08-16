@@ -1,9 +1,9 @@
 package com.example.profsoft_2024_final_task.data.dto
 
 data class RegisterUserResponse(
-    val data: DataResponse
+    val data: RegisterDataResponse
 )
 
-data class DataResponse(
+data class RegisterDataResponse(
     val token: String,
 )

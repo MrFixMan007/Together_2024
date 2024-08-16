@@ -2,7 +2,7 @@ package com.example.profsoft_2024_final_task.data
 
 import android.util.Log
 import com.example.profsoft_2024_final_task.data.api.UserApiService
-import com.example.profsoft_2024_final_task.data.dto.RegisterUserRequestBody
+import com.example.profsoft_2024_final_task.data.dto.AuthorizeUserRequestBody
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import junit.framework.TestCase.assertNotNull
@@ -25,15 +25,27 @@ class UserApiServiceTest {
         hiltRule.inject()
     }
 
+//    @Test
+//    fun testRegisterUser() = runTest {
+//        val response = apiService.registerUSer(
+//            RegisterUserRequestBody(
+//                phone = "79271231327",
+//                passwordHashed = "1bc29b36f623ba82aaf6724fd3b16719",
+//                name = "Name",
+//                surname = "surname",
+//                avatar = "string"
+//            )
+//        )
+//        Log.e("response", response.toString())
+//        assertNotNull(response)
+//    }
+
     @Test
-    fun testRegisterUser() = runTest {
-        val response = apiService.registerUSer(
-            RegisterUserRequestBody(
-                phone = "79271231327",
-                passwordHashed = "1bc29b36f623ba82aaf6724fd3b16719",
-                name = "Name",
-                surname = "surname",
-                avatar = "string"
+    fun testAuthorizeUser() = runTest {
+        val response = apiService.authorizeUSer(
+            AuthorizeUserRequestBody(
+                phone = "79271231234",
+                passwordHashed = "1bc29b36f623ba82aaf6724fd3b16718"
             )
         )
         Log.e("response", response.toString())

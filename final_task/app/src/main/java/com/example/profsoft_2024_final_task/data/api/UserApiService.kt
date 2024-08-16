@@ -1,5 +1,7 @@
 package com.example.profsoft_2024_final_task.data.api
 
+import com.example.profsoft_2024_final_task.data.dto.AuthorizeUserRequestBody
+import com.example.profsoft_2024_final_task.data.dto.AuthorizeUserResponse
 import com.example.profsoft_2024_final_task.data.dto.RegisterUserRequestBody
 import com.example.profsoft_2024_final_task.data.dto.RegisterUserResponse
 import retrofit2.http.Body
@@ -10,5 +12,8 @@ interface UserApiService {
 
     @POST("/api/register")
     suspend fun registerUSer(@Body body: RegisterUserRequestBody?): RegisterUserResponse?
+
+    @POST("/api/auth")
+    suspend fun authorizeUSer(@Body body: AuthorizeUserRequestBody?): AuthorizeUserResponse?
 
 }

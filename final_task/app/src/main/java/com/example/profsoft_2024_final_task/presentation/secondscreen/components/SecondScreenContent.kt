@@ -109,41 +109,9 @@ fun SecondScreenContent(
                                 style = Typography.bodyMedium
                             )
                         }
-                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Text(
-                                text = "${stringResource(id = R.string.date_of_birth)}:",
-                                style = Typography.bodyMedium
-                            )
-                            Text(
-                                text = birthdayState?.value ?: birthday,
-                                style = Typography.bodyMedium
-                            )
-                        }
                     }
                 }
             }
-            Text(
-                text = stringResource(id = R.string.city),
-                style = Typography.bodyLarge,
-                color = DarkGray,
-                modifier = Modifier.padding(start = 16.dp, top = 24.dp)
-            )
-            Text(
-                text = stringResource(id = R.string.city_value),
-                style = Typography.bodyLarge,
-                modifier = Modifier.padding(start = 16.dp, top = 8.dp)
-            )
-            Text(
-                text = stringResource(id = R.string.about_myself),
-                style = Typography.bodyLarge,
-                color = DarkGray,
-                modifier = Modifier.padding(start = 16.dp, top = 20.dp)
-            )
-            Text(
-                text = stringResource(id = R.string.about_myself_value),
-                style = Typography.bodyLarge,
-                modifier = Modifier.padding(start = 16.dp, top = 8.dp)
-            )
             Column(
                 modifier = Modifier
                     .fillMaxSize(),

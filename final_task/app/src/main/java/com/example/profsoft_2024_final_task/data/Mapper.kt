@@ -1,6 +1,8 @@
 package com.example.profsoft_2024_final_task.data
 
+import com.example.profsoft_2024_final_task.data.dto.AuthorizeUserRequestBody
 import com.example.profsoft_2024_final_task.data.dto.RegisterUserRequestBody
+import com.example.profsoft_2024_final_task.domain.model.AuthorizeUserParam
 import com.example.profsoft_2024_final_task.domain.model.RegisterUserParam
 
 fun mapToRegisterUserRequestBody(param: RegisterUserParam): RegisterUserRequestBody {
@@ -10,5 +12,12 @@ fun mapToRegisterUserRequestBody(param: RegisterUserParam): RegisterUserRequestB
         name = param.firstName,
         surname = param.lastName,
         avatar = null
+    )
+}
+
+fun mapToAuthorizeUserRequestBody(param: AuthorizeUserParam): AuthorizeUserRequestBody {
+    return AuthorizeUserRequestBody(
+        phone = param.phoneNumber,
+        passwordHashed = param.password
     )
 }

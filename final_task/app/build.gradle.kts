@@ -86,10 +86,6 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-    kaptTest(libs.hilt.compiler)
     kaptAndroidTest(libs.hilt.compiler)
     androidTestImplementation(libs.hilt.android.testing)
-
-    androidTestImplementation ("androidx.test:core:1.6.0")
-    androidTestImplementation ("androidx.test:runner:1.6.0")
 }

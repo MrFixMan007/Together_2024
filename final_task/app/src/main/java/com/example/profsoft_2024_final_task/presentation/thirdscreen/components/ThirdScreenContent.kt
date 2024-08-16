@@ -73,7 +73,7 @@ fun ThirdScreenContent(
                 }
                 Row {
                     Text(
-                        text = "${stringResource(id = R.string.patronymic)}: ",
+                        text = ": ",
                         style = Typography.titleMedium
                     )
                     BasicTextFieldSample(
@@ -82,7 +82,7 @@ fun ThirdScreenContent(
                 }
                 Row {
                     Text(
-                        text = "${stringResource(id = R.string.date_of_birth)}: ",
+                        text = ": ",
                         style = Typography.titleMedium
                     )
                     DateTextFieldSample(textState = birthdayState)
