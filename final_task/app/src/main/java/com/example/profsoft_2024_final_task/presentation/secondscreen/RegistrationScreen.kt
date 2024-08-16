@@ -6,11 +6,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.profsoft_2024_final_task.R
 import com.example.profsoft_2024_final_task.presentation.component.ActionBar
-import com.example.profsoft_2024_final_task.presentation.secondscreen.components.SecondScreenContent
+import com.example.profsoft_2024_final_task.presentation.secondscreen.components.RegistrationScreenContent
 import com.example.profsoft_2024_final_task.presentation.theme.LightGray
 
 @Composable
-fun SecondScreen(
+fun RegistrationScreen(
     navController: NavController,
     firstName: String,
     lastName: String,
@@ -23,7 +23,7 @@ fun SecondScreen(
             onBackClick = navController::popBackStack,
             containerColor = LightGray
         )
-        SecondScreenContent(
+        RegistrationScreenContent(
             navController,
             firstName = firstName,
             lastName = lastName,

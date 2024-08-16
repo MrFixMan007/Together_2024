@@ -8,7 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.profsoft_2024_final_task.presentation.secondscreen.SecondScreen
+import com.example.profsoft_2024_final_task.presentation.secondscreen.RegistrationScreen
 
 const val SECOND_SCREEN_ROUTE = "second_screen"
 private const val TRANSITION_DURATION = 300
@@ -59,7 +59,7 @@ fun NavGraphBuilder.secondScreen(
         val patronymicArgument = it.arguments?.getString(PATRONYMIC_KEY) ?: ""
         val birthdayArgument = it.arguments?.getString(BIRTHDAY_KEY) ?: ""
 
-        SecondScreen(
+        RegistrationScreen(
             navController,
             firstName = firstNameArgument,
             lastName = lastNameArgument,

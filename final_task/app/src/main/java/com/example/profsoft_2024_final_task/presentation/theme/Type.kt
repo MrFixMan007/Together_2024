@@ -2,27 +2,61 @@ package com.example.profsoft_2024_final_task.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 val Typography = Typography(
-    titleMedium = TextStyle(
+
+    labelSmall = TextStyle(
         fontFamily = RobotoFont,
-        fontSize = 20.sp,
+        fontWeight = FontWeight.W400,
+        fontSize = 10.sp,
         letterSpacing = 0.sp
     ),
-    bodyLarge = TextStyle(
+
+    bodySmall = TextStyle(
         fontFamily = RobotoFont,
-        fontSize = 14.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 12.sp,
         letterSpacing = 0.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = RobotoFont,
-        fontSize = 13.sp,
+        fontWeight = FontWeight.W400,
+        fontSize = 14.sp,
         letterSpacing = 0.sp
     ),
-    bodySmall = TextStyle(
+
+    titleMedium = TextStyle(
         fontFamily = RobotoFont,
-        fontSize = 10.sp,
+        fontWeight = FontWeight.W400,
+        fontSize = 16.sp,
+        letterSpacing = 0.sp
+    ),
+
+    headlineSmall = TextStyle(
+        fontFamily = RobotoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+        letterSpacing = 0.sp
+    ),
+    headlineMedium = TextStyle(
+        fontFamily = RobotoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
+        letterSpacing = 0.sp
+    ),
+    headlineLarge = TextStyle(
+        fontFamily = RobotoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp,
+        letterSpacing = 0.sp
+    ),
+
+    displayMedium = TextStyle(
+        fontFamily = RobotoFont,
+        fontWeight = FontWeight.Bold,
+        fontSize = 32.sp,
         letterSpacing = 0.sp
     )
 )

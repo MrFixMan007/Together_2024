@@ -30,7 +30,6 @@ import com.example.profsoft_2024_final_task.R
 import com.example.profsoft_2024_final_task.presentation.component.ButtonInCenter
 import com.example.profsoft_2024_final_task.presentation.navigation.navigateToThirdScreen
 import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
-import com.example.profsoft_2024_final_task.presentation.theme.DarkGray
 import com.example.profsoft_2024_final_task.presentation.theme.LightGray
 import com.example.profsoft_2024_final_task.presentation.theme.Typography
 
@@ -40,7 +39,7 @@ private const val PATRONYMIC_KEY = "patronymic_key"
 private const val BIRTHDAY_KEY = "birthday_key"
 
 @Composable
-fun SecondScreenContent(
+fun RegistrationScreenContent(
     navController: NavController,
     firstName: String,
     lastName: String,
@@ -135,7 +134,7 @@ fun SecondScreenContent(
 @Preview
 @Composable
 private fun PreviewSecondPage() {
-    SecondScreenContent(
+    RegistrationScreenContent(
         rememberNavController(),
         firstName = "Иван",
         lastName = "Иванов",
