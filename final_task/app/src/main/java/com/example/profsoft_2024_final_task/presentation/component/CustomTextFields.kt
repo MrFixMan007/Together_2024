@@ -126,6 +126,29 @@ fun CustomPasswordField(
     )
 }
 
+@Composable
+fun CustomNameField(
+    textState: MutableState<TextFieldValue>, placeholder: String,
+    modifier: Modifier = Modifier,
+    isValidState: MutableState<Boolean>
+) {
+    CustomTextField(
+        textState = textState,
+        placeholder = placeholder,
+        modifier = modifier.height(36.dp),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+        onValueChange = {
+            val nameRegexEn = "^[A-Za-z ]*$".toRegex()
+            val nameRegexRu = "^[А-Яа-я ]*$".toRegex()
+
+            if (it.text.matches(nameRegexEn) || it.text.matches(nameRegexRu)) {
+                textState.value = it
+            }
+            isValidState.value = it.text.isNotEmpty()
+        }
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {

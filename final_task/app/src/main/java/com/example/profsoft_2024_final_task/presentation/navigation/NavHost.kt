@@ -15,8 +15,8 @@ fun NavHost(
         navController = navController,
         startDestination = startDestination,
     ) {
-        mainScreen(navController)
-        secondScreen(navController)
+        authorizationScreen(navController)
+        registrationScreen(navController)
         thirdScreen(navController)
     }
 }

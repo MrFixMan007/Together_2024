@@ -5,8 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.compose.rememberNavController
-import com.example.profsoft_2024_final_task.R
-import com.example.profsoft_2024_final_task.presentation.navigation.MAIN_SCREEN_ROUTE
+import com.example.profsoft_2024_final_task.presentation.navigation.AUTHORIZATION_SCREEN_ROUTE
 import com.example.profsoft_2024_final_task.presentation.navigation.NavHost
 import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
 
@@ -19,9 +18,8 @@ class MainActivity : AppCompatActivity() {
             val navController = rememberNavController()
 
             ComposeTheme {
-                NavHost(navController = navController, startDestination = MAIN_SCREEN_ROUTE)
+                NavHost(navController = navController, startDestination = AUTHORIZATION_SCREEN_ROUTE)
             }
         }
-        window.navigationBarColor = getColor(R.color.yellow)
     }
 }
