@@ -3,4 +3,9 @@
     <style name="Theme.ProfSoft2024FinalTask" parent="Theme.MaterialComponents.Light.NoActionBar" >
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="Theme.MyApp.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/yellow</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 </resources>
