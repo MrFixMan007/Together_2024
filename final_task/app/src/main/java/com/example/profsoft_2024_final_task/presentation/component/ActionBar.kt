@@ -112,6 +112,6 @@ private fun DrawLine(
 
 @Preview
 @Composable
-fun preview() {
+private fun Preview() {
     ActionBar(title = "Title Head") {}
 }

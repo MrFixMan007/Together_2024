@@ -50,6 +50,7 @@ fun CustomButton(
 
 @Composable
 fun ButtonInCenter(
+    modifier: Modifier = Modifier,
     buttonText: String,
     sidePadding: Dp = 16.dp, topPadding: Dp = 0.dp, bottomPadding: Dp = 16.dp,
     height: Dp = 40.dp,
@@ -60,7 +61,7 @@ fun ButtonInCenter(
     onClick: () -> Unit
 ) {
     CustomButton(
-        buttonText = buttonText, modifier = Modifier
+        buttonText = buttonText, modifier = modifier
             .fillMaxWidth()
             .padding(
                 start = sidePadding,
@@ -75,8 +76,8 @@ fun ButtonInCenter(
 
 @Preview(showBackground = true)
 @Composable
-fun previewButton() {
+private fun Preview() {
     ComposeTheme {
-        ButtonInCenter("Button") {}
+        ButtonInCenter(buttonText = "Button") {}
     }
 }

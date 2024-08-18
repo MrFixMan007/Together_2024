@@ -6,7 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.profsoft_2024_final_task.presentation.mainscreen.AuthorizationScreen
+import com.example.profsoft_2024_final_task.presentation.authorization_screen.AuthorizationScreen
 
 const val MAIN_SCREEN_ROUTE = "main_screen"
 private const val TRANSITION_DURATION = 300

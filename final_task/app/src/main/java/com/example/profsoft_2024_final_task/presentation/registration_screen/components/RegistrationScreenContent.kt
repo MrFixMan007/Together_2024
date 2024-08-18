@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.presentation.secondscreen.components
+package com.example.profsoft_2024_final_task.presentation.registration_screen.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

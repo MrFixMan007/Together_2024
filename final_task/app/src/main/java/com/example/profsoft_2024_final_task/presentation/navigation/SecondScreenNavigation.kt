@@ -8,7 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.profsoft_2024_final_task.presentation.secondscreen.RegistrationScreen
+import com.example.profsoft_2024_final_task.presentation.registration_screen.RegistrationScreen
 
 const val SECOND_SCREEN_ROUTE = "second_screen"
 private const val TRANSITION_DURATION = 300
