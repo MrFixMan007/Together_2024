@@ -88,4 +88,8 @@ dependencies {
     kapt(libs.hilt.compiler)
     kaptAndroidTest(libs.hilt.compiler)
     androidTestImplementation(libs.hilt.android.testing)
+    implementation (libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.orbit.compose)
+    implementation(libs.orbit.viewmodel)
 }

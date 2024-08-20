@@ -1,6 +1,5 @@
 package com.example.profsoft_2024_final_task.presentation.component
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -10,9 +9,6 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -37,16 +33,15 @@ fun CustomButton(
     ),
     shape: Shape = RoundedCornerShape(size = 8.dp),
     textStyle: TextStyle = Typography.bodyMedium.copy(fontWeight = FontWeight.SemiBold),
-    isButtonEnabled: MutableState<Boolean>,
+    isButtonEnabled: Boolean = true,
     onClick: () -> Unit
 ) {
     Button(
-        onClick = { onClick()
-            Log.e("CustomButton: ", isButtonEnabled.value.toString())},
+        onClick = onClick,
         shape = shape,
         modifier = modifier,
         colors = colors,
-        enabled = isButtonEnabled.value
+        enabled = isButtonEnabled
     ) {
         Text(
             text = buttonText,
@@ -65,9 +60,7 @@ fun ButtonInCenter(
         contentColor = defaultContentColor,
         containerColor = defaultContainerColor
     ),
-    isButtonEnabled: MutableState<Boolean> = remember {
-        mutableStateOf(true)
-    },
+    isButtonEnabled: Boolean = true,
     onClick: () -> Unit
 ) {
     CustomButton(

@@ -8,7 +8,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.profsoft_2024_final_task.presentation.navigation.AUTHORIZATION_SCREEN_ROUTE
 import com.example.profsoft_2024_final_task.presentation.navigation.NavHost
 import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

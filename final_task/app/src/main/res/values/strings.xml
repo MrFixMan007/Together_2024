@@ -1,20 +1,25 @@
 <resources>
     <string name="app_name">Together</string>
-<!--    Entry Screen-->
+<!--    Authorization Screen-->
     <string name="entry">Вход</string>
     <string name="entry_description">Пожалуйста, войдите для продолжения</string>
     <string name="phone_number">Номер телефона</string>
+    <string name="incorrect_phone_number">Некорректный номер телефона</string>
     <string name="password">Пароль</string>
+    <string name="incorrect_password">Минимальная длина пароля 8 символов</string>
     <string name="enter">Войти</string>
     <string name="registration">Регистрация</string>
 
-    <!--    Entry Screen-->
+    <!--    Registration Screen-->
     <string name="registration_description">Пожалуйста,  введите данные для новой учетной записи</string>
     <string name="first_name">Имя</string>
+    <string name="enter_the_first_name">Введите имя</string>
     <string name="last_name">Фамилия</string>
+    <string name="enter_the_last_name">Введите фамилию</string>
     <string name="enter_with_account">Войти с учётной записью</string>
 
     <string name="content_description">Картинка</string>
+    <string name="incorrect_input_message">Пожалуйста, введите корректные данные</string>
     <string name="main_activity_title">Главная</string>
     <string name="profile">Профиль</string>
     <string name="change_profile">Редактировать профиль</string>

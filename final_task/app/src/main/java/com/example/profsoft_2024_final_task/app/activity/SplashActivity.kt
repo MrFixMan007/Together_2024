@@ -2,7 +2,6 @@ package com.example.profsoft_2024_final_task.app.activity
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,8 +23,10 @@ import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_final_task.R
 import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
 import com.example.profsoft_2024_final_task.presentation.theme.Yellow
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

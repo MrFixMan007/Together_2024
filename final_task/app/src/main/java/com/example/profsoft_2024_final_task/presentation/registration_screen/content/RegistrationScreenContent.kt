@@ -1,7 +1,6 @@
-package com.example.profsoft_2024_final_task.presentation.registration_screen.components
+package com.example.profsoft_2024_final_task.presentation.registration_screen.content
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,18 +14,15 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.profsoft_2024_final_task.R
@@ -34,36 +30,23 @@ import com.example.profsoft_2024_final_task.presentation.component.ButtonInCente
 import com.example.profsoft_2024_final_task.presentation.component.CustomNameField
 import com.example.profsoft_2024_final_task.presentation.component.CustomPasswordField
 import com.example.profsoft_2024_final_task.presentation.component.CustomPhoneField
+import com.example.profsoft_2024_final_task.presentation.registration_screen.state.RegistrationState
+import com.example.profsoft_2024_final_task.presentation.registration_screen.viewmodel.RegistrationViewModel
 import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
 import com.example.profsoft_2024_final_task.presentation.theme.Typography
 import com.example.profsoft_2024_final_task.presentation.theme.Yellow
-import kotlinx.coroutines.delay
+import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
 fun RegistrationScreenContent(
     navController: NavController,
 ) {
+    val viewModel: RegistrationViewModel = hiltViewModel()
+    val state = viewModel.collectAsState().value
     val context = LocalContext.current
-    val phoneTextState = remember { mutableStateOf(TextFieldValue("")) }
-    val passwordTextState = remember { mutableStateOf(TextFieldValue("")) }
-    val firstNameTextState = remember { mutableStateOf(TextFieldValue("")) }
-    val lastNameTextState = remember { mutableStateOf(TextFieldValue("")) }
-    val isValidPhoneState = remember { mutableStateOf(false) }
-    val isValidPasswordState = remember { mutableStateOf(false) }
-    val isValidFirstNameState = remember { mutableStateOf(false) }
-    val isValidLastNameState = remember { mutableStateOf(false) }
-
-    val isAuthorizeButtonEnabledState: MutableState<Boolean> = remember {
-        mutableStateOf(false)
-    }
-    val isRegisterButtonEnabledState: MutableState<Boolean> = remember {
-        mutableStateOf(false)
-    }
 
     LaunchedEffect(Unit) {
-        delay(300)
-        isAuthorizeButtonEnabledState.value = true
-        isRegisterButtonEnabledState.value = true
+        viewModel.activate()
     }
 
     Column(
@@ -74,22 +57,14 @@ fun RegistrationScreenContent(
         SetTopContent()
         SetCenterContent(
             context = context,
-            phoneTextState = phoneTextState,
-            passwordTextState = passwordTextState,
-            firstNameTextState = firstNameTextState,
-            lastNameTextState = lastNameTextState,
-            isValidPhoneState = isValidPhoneState,
-            isValidPasswordState = isValidPasswordState,
-            isValidFirstNameState = isValidFirstNameState,
-            isValidLastNameState = isValidLastNameState
+            state = state,
+            viewModel = viewModel
         )
         SetBottomContent(
             context = context,
             navController = navController,
-            isValidPhoneState = isValidPhoneState,
-            isValidPasswordState = isValidPasswordState,
-            isAuthorizeButtonEnabledState = isAuthorizeButtonEnabledState,
-            isRegisterButtonEnabledState = isRegisterButtonEnabledState
+            state = state,
+            viewModel = viewModel
         )
     }
 }
@@ -112,14 +87,8 @@ private fun SetTopContent() {
 @Composable
 private fun SetCenterContent(
     context: Context,
-    phoneTextState: MutableState<TextFieldValue>,
-    passwordTextState: MutableState<TextFieldValue>,
-    firstNameTextState: MutableState<TextFieldValue>,
-    lastNameTextState: MutableState<TextFieldValue>,
-    isValidPhoneState: MutableState<Boolean>,
-    isValidPasswordState: MutableState<Boolean>,
-    isValidFirstNameState: MutableState<Boolean>,
-    isValidLastNameState: MutableState<Boolean>,
+    state: RegistrationState,
+    viewModel: RegistrationViewModel
 ) {
     Column(modifier = Modifier.padding(top = 70.dp, start = 16.dp, end = 16.dp)) {
         val resources = context.resources
@@ -130,37 +99,80 @@ private fun SetCenterContent(
             modifier = Modifier.padding(top = 6.dp)
         )
         Column(
-            verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier.padding(top = 12.dp)
         ) {
             CustomNameField(
-                textState = firstNameTextState,
+                value = state.registerUserParam.firstName,
                 placeholder = resources.getString(R.string.first_name),
                 modifier = Modifier
-                    .fillMaxWidth(),
-                isValidState = isValidFirstNameState
+                    .fillMaxWidth()
+                    .padding(top = 12.dp),
+                onValueChange = {
+                    viewModel.onFirstNameChange(it)
+                }
             )
+            if (!state.isValidFirstName) {
+                Text(
+                    text = context.resources.getString(R.string.enter_the_first_name),
+                    color = Color.Red,
+                    style = Typography.bodySmall,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
             CustomNameField(
-                textState = lastNameTextState,
+                value = state.registerUserParam.lastName,
                 placeholder = resources.getString(R.string.last_name),
                 modifier = Modifier
-                    .fillMaxWidth(),
-                isValidState = isValidLastNameState
+                    .fillMaxWidth()
+                    .padding(top = 12.dp),
+                onValueChange = {
+                    viewModel.onLastNameChange(it)
+                }
             )
+            if (!state.isValidLastName) {
+                Text(
+                    text = context.resources.getString(R.string.enter_the_last_name),
+                    color = Color.Red,
+                    style = Typography.bodySmall,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
             CustomPhoneField(
-                textState = phoneTextState,
+                value = state.registerUserParam.phoneNumber,
                 placeholder = resources.getString(R.string.phone_number),
                 modifier = Modifier
-                    .fillMaxWidth(),
-                isValidState = isValidPhoneState
+                    .fillMaxWidth()
+                    .padding(top = 12.dp),
+                onValueChange = {
+                    viewModel.onPhoneChange(it)
+                }
             )
+            if (!state.isValidPhone) {
+                Text(
+                    text = context.resources.getString(R.string.incorrect_phone_number),
+                    color = Color.Red,
+                    style = Typography.bodySmall,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
             CustomPasswordField(
-                textState = passwordTextState,
+                value = state.registerUserParam.password,
                 placeholder = resources.getString(R.string.password),
                 modifier = Modifier
-                    .fillMaxWidth(),
-                isValidState = isValidPasswordState
+                    .fillMaxWidth()
+                    .padding(top = 12.dp),
+                onValueChange = {
+                    viewModel.onPasswordChange(it)
+                }
             )
+            if (!state.isValidPassword) {
+                Text(
+                    text = context.resources.getString(R.string.incorrect_password),
+                    color = Color.Red,
+                    style = Typography.bodySmall,
+                    modifier = Modifier.padding(top = 4.dp)
+                )
+            }
         }
 
     }
@@ -170,10 +182,8 @@ private fun SetCenterContent(
 private fun SetBottomContent(
     context: Context,
     navController: NavController,
-    isValidPhoneState: MutableState<Boolean>,
-    isValidPasswordState: MutableState<Boolean>,
-    isRegisterButtonEnabledState: MutableState<Boolean>,
-    isAuthorizeButtonEnabledState: MutableState<Boolean>
+    state: RegistrationState,
+    viewModel: RegistrationViewModel
 ) {
     Column(
         modifier = Modifier
@@ -184,27 +194,20 @@ private fun SetBottomContent(
             buttonText = context.resources.getString(R.string.registration),
             bottomPadding = 12.dp
         ) {
-            if (!isValidPhoneState.value) Toast.makeText(
-                context,
-                "Телефон!",
-                Toast.LENGTH_SHORT
-            ).show()
-            if (!isValidPasswordState.value) Toast.makeText(
-                context,
-                "Пароль!",
-                Toast.LENGTH_SHORT
-            ).show()
+            viewModel.register()
         }
         ButtonInCenter(
             modifier = Modifier.navigationBarsPadding(),
             buttonText = context.resources.getString(R.string.enter_with_account),
             colors = ButtonDefaults.buttonColors(
                 contentColor = Color.Black,
-                containerColor = Yellow
+                containerColor = Yellow,
+                disabledContentColor = Color.Black,
+                disabledContainerColor = Yellow
             ),
-            isButtonEnabled = isAuthorizeButtonEnabledState
+            isButtonEnabled = state.isEnabledAuthorizeNavigateButton
         ) {
-            isAuthorizeButtonEnabledState.value = false
+            viewModel.disactivate()
             navController.popBackStack()
         }
     }
