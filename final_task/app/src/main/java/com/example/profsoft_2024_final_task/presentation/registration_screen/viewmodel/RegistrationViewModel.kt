@@ -69,6 +69,10 @@ class RegistrationViewModel @Inject constructor(
             reduce {
                 state.copy(isLoadingRegistration = true)
             }
+            delay(3000)
+            reduce {
+                state.copy(isLoadingRegistration = false)
+            }
 //            authorizeUserUseCase.execute(authorizeUserParam = state.authorizeUserParam)
         }
     }
@@ -104,9 +108,15 @@ class RegistrationViewModel @Inject constructor(
         }
     }
 
-    fun disactivate() = intent {
+    fun deactivate() = intent {
         reduce {
             state.copy(isEnabledAuthorizeNavigateButton = false)
+        }
+        delay(2000)
+        if (!state.isEnabledAuthorizeNavigateButton) {
+            reduce {
+                state.copy(isEnabledAuthorizeNavigateButton = true)
+            }
         }
     }
 

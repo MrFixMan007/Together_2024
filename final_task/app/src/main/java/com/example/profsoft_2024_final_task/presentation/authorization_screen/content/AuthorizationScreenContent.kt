@@ -170,7 +170,7 @@ private fun SetBottomContent(
             ),
             isButtonEnabled = state.isEnabledRegisterNavigateButton
         ) {
-            viewModel.disactivate()
+            viewModel.deactivate()
             navController.navigateToRegistrationScreen()
         }
     }

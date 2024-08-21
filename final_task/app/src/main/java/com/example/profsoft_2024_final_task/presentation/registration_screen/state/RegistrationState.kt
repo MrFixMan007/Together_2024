@@ -13,5 +13,6 @@ data class RegistrationState(
 )
 
 sealed class RegistrationSideEffect {
-    data object Load : RegistrationSideEffect()
+    data class Failed(val message: String) : RegistrationSideEffect()
+    data object Completed : RegistrationSideEffect()
 }

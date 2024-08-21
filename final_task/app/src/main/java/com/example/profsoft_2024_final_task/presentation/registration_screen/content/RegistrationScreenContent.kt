@@ -1,6 +1,7 @@
 package com.example.profsoft_2024_final_task.presentation.registration_screen.content
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,15 +28,19 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.profsoft_2024_final_task.R
 import com.example.profsoft_2024_final_task.presentation.component.ButtonInCenter
+import com.example.profsoft_2024_final_task.presentation.component.ButtonInCenterWithCircleLoader
 import com.example.profsoft_2024_final_task.presentation.component.CustomNameField
 import com.example.profsoft_2024_final_task.presentation.component.CustomPasswordField
 import com.example.profsoft_2024_final_task.presentation.component.CustomPhoneField
+import com.example.profsoft_2024_final_task.presentation.navigation.navigateToAuthorizationScreen
+import com.example.profsoft_2024_final_task.presentation.registration_screen.state.RegistrationSideEffect
 import com.example.profsoft_2024_final_task.presentation.registration_screen.state.RegistrationState
 import com.example.profsoft_2024_final_task.presentation.registration_screen.viewmodel.RegistrationViewModel
 import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
 import com.example.profsoft_2024_final_task.presentation.theme.Typography
 import com.example.profsoft_2024_final_task.presentation.theme.Yellow
 import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun RegistrationScreenContent(
@@ -47,6 +52,18 @@ fun RegistrationScreenContent(
 
     LaunchedEffect(Unit) {
         viewModel.activate()
+    }
+
+    viewModel.collectSideEffect {
+        when (it) {
+            is RegistrationSideEffect.Failed -> {
+                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+            }
+
+            is RegistrationSideEffect.Completed -> {
+                Toast.makeText(context, "good :)", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     Column(
@@ -190,7 +207,8 @@ private fun SetBottomContent(
             .fillMaxHeight(),
         verticalArrangement = Arrangement.Bottom,
     ) {
-        ButtonInCenter(
+        ButtonInCenterWithCircleLoader(
+            isLoading = state.isLoadingRegistration,
             buttonText = context.resources.getString(R.string.registration),
             bottomPadding = 12.dp
         ) {
@@ -207,8 +225,8 @@ private fun SetBottomContent(
             ),
             isButtonEnabled = state.isEnabledAuthorizeNavigateButton
         ) {
-            viewModel.disactivate()
-            navController.popBackStack()
+            viewModel.deactivate()
+            navController.navigateToAuthorizationScreen()
         }
     }
 }

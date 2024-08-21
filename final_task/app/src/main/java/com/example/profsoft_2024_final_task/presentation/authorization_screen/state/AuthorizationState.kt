@@ -2,7 +2,6 @@ package com.example.profsoft_2024_final_task.presentation.authorization_screen.s
 
 import com.example.profsoft_2024_final_task.domain.model.AuthorizeUserParam
 
-
 data class AuthorizationState(
     val authorizeUserParam: AuthorizeUserParam = AuthorizeUserParam("",""),
     val isValidPhone: Boolean = true,
@@ -12,5 +11,6 @@ data class AuthorizationState(
 )
 
 sealed class AuthorizationSideEffect {
-    data object Load : AuthorizationSideEffect()
+    data class Failed(val message: String) : AuthorizationSideEffect()
+    data object Completed : AuthorizationSideEffect()
 }

@@ -66,10 +66,17 @@ class AuthorizationViewModel @Inject constructor(
         }
     }
 
-    fun disactivate() = intent {
+    fun deactivate() = intent {
         reduce {
             state.copy(isEnabledRegisterNavigateButton = false)
         }
+        delay(2000)
+        if (!state.isEnabledRegisterNavigateButton) {
+            reduce {
+                state.copy(isEnabledRegisterNavigateButton = true)
+            }
+        }
+
     }
 
     fun activate() = intent {

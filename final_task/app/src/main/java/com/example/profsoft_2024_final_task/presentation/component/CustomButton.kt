@@ -1,8 +1,12 @@
 package com.example.profsoft_2024_final_task.presentation.component
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -20,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
 import com.example.profsoft_2024_final_task.presentation.theme.DarkGray
 import com.example.profsoft_2024_final_task.presentation.theme.Typography
+import com.example.profsoft_2024_final_task.presentation.theme.Yellow
 
 private val defaultContentColor = Color.White
 private val defaultContainerColor = DarkGray
@@ -78,10 +83,53 @@ fun ButtonInCenter(
     )
 }
 
+@Composable
+fun ButtonInCenterWithCircleLoader(
+    modifier: Modifier = Modifier,
+    loaderModifier: Modifier = Modifier
+        .size(32.dp)
+        .padding(top = 4.dp),
+    buttonText: String,
+    sidePadding: Dp = 16.dp, topPadding: Dp = 0.dp, bottomPadding: Dp = 16.dp,
+    height: Dp = 40.dp,
+    buttonColors: ButtonColors = ButtonDefaults.buttonColors(
+        contentColor = defaultContentColor,
+        disabledContentColor = defaultContainerColor,
+        containerColor = defaultContainerColor,
+        disabledContainerColor = defaultContainerColor
+    ),
+    loaderColor: Color = defaultContainerColor, loaderTrackColor: Color = Yellow,
+    isLoading: Boolean = false,
+    onClick: () -> Unit
+) {
+    Box{
+        ButtonInCenter(
+            modifier = modifier,
+            buttonText = buttonText,
+            sidePadding = sidePadding,
+            topPadding = topPadding,
+            bottomPadding = bottomPadding,
+            height = height,
+            colors = buttonColors,
+            isButtonEnabled = !isLoading,
+            onClick = onClick
+        )
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+            IndeterminateCircularIndicator(
+                modifier = loaderModifier,
+                loadingState = isLoading,
+                color = loaderColor,
+                trackColor = loaderTrackColor
+            )
+        }
+    }
+
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
     ComposeTheme {
-        ButtonInCenter(buttonText = "Button") {}
+        ButtonInCenterWithCircleLoader(buttonText = "Button", isLoading = true) {}
     }
 }

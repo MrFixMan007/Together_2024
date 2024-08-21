@@ -12,13 +12,7 @@ const val AUTHORIZATION_SCREEN_ROUTE = "authorization_screen"
 private const val TRANSITION_DURATION = 300
 
 fun NavController.navigateToAuthorizationScreen() {
-    this.navigate(AUTHORIZATION_SCREEN_ROUTE) {
-        popUpTo(AUTHORIZATION_SCREEN_ROUTE) {
-            saveState = true
-        }
-        launchSingleTop = true
-        restoreState = true
-    }
+    this.navigate(AUTHORIZATION_SCREEN_ROUTE)
 }
 
 fun NavGraphBuilder.authorizationScreen(
