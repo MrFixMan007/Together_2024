@@ -1,6 +1,7 @@
 package com.example.profsoft_2024_final_task.presentation.authorization_screen.content
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,9 +27,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.profsoft_2024_final_task.R
+import com.example.profsoft_2024_final_task.presentation.authorization_screen.state.AuthorizationSideEffect
 import com.example.profsoft_2024_final_task.presentation.authorization_screen.state.AuthorizationState
 import com.example.profsoft_2024_final_task.presentation.authorization_screen.viewmodel.AuthorizationViewModel
 import com.example.profsoft_2024_final_task.presentation.component.ButtonInCenter
+import com.example.profsoft_2024_final_task.presentation.component.ButtonInCenterWithCircleLoader
 import com.example.profsoft_2024_final_task.presentation.component.CustomPasswordField
 import com.example.profsoft_2024_final_task.presentation.component.CustomPhoneField
 import com.example.profsoft_2024_final_task.presentation.navigation.navigateToRegistrationScreen
@@ -36,6 +39,7 @@ import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
 import com.example.profsoft_2024_final_task.presentation.theme.Typography
 import com.example.profsoft_2024_final_task.presentation.theme.Yellow
 import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun AuthorizationScreenContent(
@@ -47,6 +51,18 @@ fun AuthorizationScreenContent(
 
     LaunchedEffect(Unit) {
         viewModel.activate()
+    }
+
+    viewModel.collectSideEffect {
+        when (it) {
+            is AuthorizationSideEffect.Failed -> {
+                Toast.makeText(context, context.resources.getString(R.string.invalid_phone_or_password), Toast.LENGTH_SHORT).show()
+            }
+
+            is AuthorizationSideEffect.Completed -> {
+                Toast.makeText(context, "good :)", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     Column(
@@ -153,7 +169,8 @@ private fun SetBottomContent(
             .fillMaxHeight(),
         verticalArrangement = Arrangement.Bottom,
     ) {
-        ButtonInCenter(
+        ButtonInCenterWithCircleLoader(
+            isLoading = state.isLoadingAuthorization,
             buttonText = context.resources.getString(R.string.enter),
             bottomPadding = 12.dp
         ) {

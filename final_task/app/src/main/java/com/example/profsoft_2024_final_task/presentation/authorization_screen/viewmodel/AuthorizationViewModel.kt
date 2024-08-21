@@ -1,5 +1,6 @@
 package com.example.profsoft_2024_final_task.presentation.authorization_screen.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.profsoft_2024_final_task.domain.usecase.AuthorizeUserUseCase
 import com.example.profsoft_2024_final_task.domain.utils.isCorrectPhoneSymbolsAndLength
@@ -48,7 +49,21 @@ class AuthorizationViewModel @Inject constructor(
             reduce {
                 state.copy(isLoadingAuthorization = true)
             }
-//            authorizeUserUseCase.execute(authorizeUserParam = state.authorizeUserParam)
+            delay(500)
+            Log.e("authorize param", state.authorizeUserParam.toString())
+            val result = authorizeUserUseCase.execute(
+                authorizeUserParam = state.authorizeUserParam
+            )
+
+            if (result.isSuccess) {
+                postSideEffect(AuthorizationSideEffect.Completed)
+            } else {
+                postSideEffect(AuthorizationSideEffect.Failed)
+            }
+
+            reduce {
+                state.copy(isLoadingAuthorization = false)
+            }
         }
     }
 

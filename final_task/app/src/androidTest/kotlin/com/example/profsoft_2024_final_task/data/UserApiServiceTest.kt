@@ -42,7 +42,7 @@ class UserApiServiceTest {
 
     @Test
     fun testAuthorizeUser() = runTest {
-        val response = apiService.authorizeUSer(
+        val response = apiService.authorizeUser(
             AuthorizeUserRequestBody(
                 phone = "79271231234",
                 passwordHashed = "1bc29b36f623ba82aaf6724fd3b16718"

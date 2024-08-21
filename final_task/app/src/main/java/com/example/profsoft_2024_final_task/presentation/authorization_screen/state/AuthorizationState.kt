@@ -11,6 +11,6 @@ data class AuthorizationState(
 )
 
 sealed class AuthorizationSideEffect {
-    data class Failed(val message: String) : AuthorizationSideEffect()
+    data object Failed : AuthorizationSideEffect()
     data object Completed : AuthorizationSideEffect()
 }

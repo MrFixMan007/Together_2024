@@ -11,9 +11,9 @@ import retrofit2.http.POST
 interface UserApiService {
 
     @POST("/api/register")
-    suspend fun registerUSer(@Body body: RegisterUserRequestBody?): RegisterUserResponse?
+    suspend fun registerUser(@Body body: RegisterUserRequestBody?): RegisterUserResponse?
 
     @POST("/api/auth")
-    suspend fun authorizeUSer(@Body body: AuthorizeUserRequestBody?): AuthorizeUserResponse?
+    suspend fun authorizeUser(@Body body: AuthorizeUserRequestBody?): AuthorizeUserResponse?
 
 }
