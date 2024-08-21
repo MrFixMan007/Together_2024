@@ -57,7 +57,7 @@ fun RegistrationScreenContent(
     viewModel.collectSideEffect {
         when (it) {
             is RegistrationSideEffect.Failed -> {
-                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.resources.getString(R.string.user_is_exist), Toast.LENGTH_SHORT).show()
             }
 
             is RegistrationSideEffect.Completed -> {
@@ -212,7 +212,7 @@ private fun SetBottomContent(
             buttonText = context.resources.getString(R.string.registration),
             bottomPadding = 12.dp
         ) {
-            viewModel.register()
+            viewModel.onRegister()
         }
         ButtonInCenter(
             modifier = Modifier.navigationBarsPadding(),

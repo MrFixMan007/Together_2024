@@ -23,7 +23,7 @@ class RegistrationViewModel @Inject constructor(
         RegistrationState()
     )
 
-    fun register() = intent {
+    fun onRegister() = intent {
 
         if (!state.registerUserParam.password.isValidPassword()) {
             reduce {
@@ -69,11 +69,24 @@ class RegistrationViewModel @Inject constructor(
             reduce {
                 state.copy(isLoadingRegistration = true)
             }
-            delay(3000)
+            delay(500)
+
+            var phoneParam = if (state.registerUserParam.phoneNumber[0] != '+') state.registerUserParam.phoneNumber else state.registerUserParam.phoneNumber.substring(1)
+            if (phoneParam[0] == '8') phoneParam = "7${phoneParam.substring(1)}"
+
+            val result = registerUseCase.execute(
+                registerUserParam = state.registerUserParam.copy(phoneNumber = phoneParam)
+            )
+
+            if (result.isSuccess) {
+                postSideEffect(RegistrationSideEffect.Completed)
+            } else {
+                postSideEffect(RegistrationSideEffect.Failed)
+            }
+
             reduce {
                 state.copy(isLoadingRegistration = false)
             }
-//            authorizeUserUseCase.execute(authorizeUserParam = state.authorizeUserParam)
         }
     }
 

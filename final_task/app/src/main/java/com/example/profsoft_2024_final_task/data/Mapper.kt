@@ -3,8 +3,10 @@ package com.example.profsoft_2024_final_task.data
 import com.example.profsoft_2024_final_task.data.dto.AuthorizeUserRequestBody
 import com.example.profsoft_2024_final_task.data.dto.AuthorizeUserResponse
 import com.example.profsoft_2024_final_task.data.dto.RegisterUserRequestBody
+import com.example.profsoft_2024_final_task.data.dto.RegisterUserResponse
 import com.example.profsoft_2024_final_task.domain.model.AuthorizeResult
 import com.example.profsoft_2024_final_task.domain.model.AuthorizeUserParam
+import com.example.profsoft_2024_final_task.domain.model.RegisterResult
 import com.example.profsoft_2024_final_task.domain.model.RegisterUserParam
 
 fun mapToRegisterUserRequestBody(param: RegisterUserParam): RegisterUserRequestBody {
@@ -13,7 +15,7 @@ fun mapToRegisterUserRequestBody(param: RegisterUserParam): RegisterUserRequestB
         passwordHashed = param.password,
         name = param.firstName,
         surname = param.lastName,
-        avatar = null
+        avatar = "string"
     )
 }
 
@@ -38,5 +40,25 @@ fun mapToAuthorizeResult(authorizeUserResponse: AuthorizeUserResponse?): Authori
     return AuthorizeResult(
         isSuccess = true,
         token = authorizeUserResponse.data.token
+    )
+}
+
+fun mapToRegisterResult(registrationResponse: RegisterUserResponse?): RegisterResult {
+    if (registrationResponse == null) return RegisterResult(
+        isSuccess = false,
+        message = null,
+        token = null
+    )
+    else if (registrationResponse.data == null) {
+        return RegisterResult(
+            isSuccess = false,
+            message = null,
+            token = null
+        )
+    }
+    return RegisterResult(
+        isSuccess = true,
+        message = registrationResponse.message,
+        token = registrationResponse.data.token
     )
 }

@@ -18,6 +18,7 @@
     <string name="last_name">Фамилия</string>
     <string name="enter_the_last_name">Введите фамилию</string>
     <string name="enter_with_account">Войти с учётной записью</string>
+    <string name="user_is_exist">Пользователь с таким номером уже существует</string>
 
     <string name="content_description">Картинка</string>
     <string name="incorrect_input_message">Пожалуйста, введите корректные данные</string>
