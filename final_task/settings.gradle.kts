@@ -21,4 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "Profsoft-2024-Final-Task"
 include(":app")
- 
+include(":core:utils")
+include(":core:common")
+include(":core:ui")
+include(":network")
+include(":feature_login")

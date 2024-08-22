@@ -92,4 +92,10 @@ dependencies {
 
     implementation(libs.orbit.compose)
     implementation(libs.orbit.viewmodel)
+
+    implementation(project(":core:common"))
+    implementation(project(":core:utils"))
+    implementation(project(":core:ui"))
+    implementation(project(":network"))
+    implementation(project(":feature_login"))
 }

@@ -1,8 +1,8 @@
 package com.example.profsoft_2024_final_task.data
 
 import android.util.Log
-import com.example.profsoft_2024_final_task.data.api.UserApiService
-import com.example.profsoft_2024_final_task.data.dto.AuthorizeUserRequestBody
+import com.example.network.api.UserApiService
+import com.example.network.dto.AuthorizeUserRequestBody
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import junit.framework.TestCase.assertNotNull

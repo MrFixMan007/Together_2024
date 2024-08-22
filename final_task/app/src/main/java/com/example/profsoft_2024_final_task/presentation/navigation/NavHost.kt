@@ -3,6 +3,8 @@ package com.example.profsoft_2024_final_task.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import com.example.feature_login.navigation.authorizationScreen
+import com.example.feature_login.navigation.registrationScreen
 
 @Composable
 fun NavHost(
@@ -17,6 +19,5 @@ fun NavHost(
     ) {
         authorizationScreen(navController)
         registrationScreen(navController)
-        thirdScreen(navController)
     }
 }

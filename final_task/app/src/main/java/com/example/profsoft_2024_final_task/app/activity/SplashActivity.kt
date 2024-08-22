@@ -20,9 +20,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.profsoft_2024_final_task.R
-import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
-import com.example.profsoft_2024_final_task.presentation.theme.Yellow
+import com.example.ui.R
+import com.example.ui.theme.ComposeTheme
+import com.example.ui.theme.Yellow
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 

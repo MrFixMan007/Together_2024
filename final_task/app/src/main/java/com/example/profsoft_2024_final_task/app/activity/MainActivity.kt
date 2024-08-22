@@ -5,9 +5,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.compose.rememberNavController
-import com.example.profsoft_2024_final_task.presentation.navigation.AUTHORIZATION_SCREEN_ROUTE
+import com.example.feature_login.navigation.AUTHORIZATION_SCREEN_ROUTE
 import com.example.profsoft_2024_final_task.presentation.navigation.NavHost
-import com.example.profsoft_2024_final_task.presentation.theme.ComposeTheme
+import com.example.ui.theme.ComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
