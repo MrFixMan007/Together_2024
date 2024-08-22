@@ -1,4 +1,4 @@
-package com.example.feature_login.authorization_screen
+package com.example.feature_login.screens.authorization_screen
 
 import androidx.lifecycle.ViewModel
 import com.example.common.domain.usecase.AuthorizeUserUseCase

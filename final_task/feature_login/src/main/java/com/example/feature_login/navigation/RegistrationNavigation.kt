@@ -6,7 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.feature_login.registration_screen.RegistrationScreen
+import com.example.feature_login.screens.registration_screen.RegistrationScreen
 
 const val REGISTRATION_SCREEN_ROUTE = "registration_screen"
 private const val TRANSITION_DURATION = 300

@@ -1,14 +1,16 @@
-package com.example.feature_login.authorization_screen
+package com.example.feature_login.screens.registration_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
 @Composable
-fun AuthorizationScreen(
+fun RegistrationScreen(
     navController: NavController
 ) {
     Column {
-        AuthorizationScreenContent(navController)
+        RegistrationScreenContent(
+            navController,
+        )
     }
 }

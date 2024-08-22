@@ -1,4 +1,4 @@
-package com.example.feature_login.registration_screen
+package com.example.feature_login.screens.registration_screen
 
 import com.example.common.domain.model.RegisterUserParam
 

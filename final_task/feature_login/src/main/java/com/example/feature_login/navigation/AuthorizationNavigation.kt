@@ -6,7 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.feature_login.authorization_screen.AuthorizationScreen
+import com.example.feature_login.screens.authorization_screen.AuthorizationScreen
 
 const val AUTHORIZATION_SCREEN_ROUTE = "authorization_screen"
 private const val TRANSITION_DURATION = 300
