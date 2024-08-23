@@ -1,12 +1,16 @@
 package com.example.feature_login.screens.registration_screen
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import com.example.common.domain.usecase.RegisterUserUseCase
-import com.example.utils.isCorrectPhoneSymbolsAndLength
-import com.example.utils.isValidName
-import com.example.utils.isValidPassword
-import com.example.utils.isValidPhone
+import com.example.utils.shared_prefs.TOKEN_NAME
+import com.example.utils.shared_prefs.TOKEN_SHARED_PREFS
+import com.example.utils.validation.isCorrectPhoneSymbolsAndLength
+import com.example.utils.validation.isValidName
+import com.example.utils.validation.isValidPassword
+import com.example.utils.validation.isValidPhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import org.orbitmvi.orbit.ContainerHost
@@ -22,7 +26,7 @@ class RegistrationViewModel @Inject constructor(
         RegistrationState()
     )
 
-    fun onRegister() = intent {
+    fun onRegister(context: Context) = intent {
 
         if (!state.registerUserParam.password.isValidPassword()) {
             reduce {
@@ -78,6 +82,10 @@ class RegistrationViewModel @Inject constructor(
             )
 
             if (result.isSuccess) {
+                val sharedPreferences: SharedPreferences = context.getSharedPreferences(
+                    TOKEN_SHARED_PREFS, Context.MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putString(TOKEN_NAME, result.token)
                 postSideEffect(RegistrationSideEffect.Completed)
             } else {
                 postSideEffect(RegistrationSideEffect.Failed)

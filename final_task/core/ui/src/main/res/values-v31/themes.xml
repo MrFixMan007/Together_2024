@@ -5,9 +5,7 @@
     </style>
 
     <style name="Theme.MyApp.Starting" parent="Theme.SplashScreen">
-        <item name="android:windowBackground">@color/yellow</item>
         <item name="android:windowSplashScreenBackground">@color/yellow</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo</item>
         <item name="android:windowSplashScreenBrandingImage">@drawable/ic_splashscreen_branding_centered</item>
         <item name="postSplashScreenTheme">@style/Theme.ProfSoft2024FinalTask</item>
     </style>

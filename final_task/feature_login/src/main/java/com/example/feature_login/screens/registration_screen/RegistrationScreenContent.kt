@@ -210,7 +210,7 @@ private fun SetBottomContent(
             buttonText = context.resources.getString(R.string.registration),
             bottomPadding = 12.dp
         ) {
-            viewModel.onRegister()
+            viewModel.onRegister(context = context)
         }
         ButtonInCenter(
             modifier = Modifier.navigationBarsPadding(),

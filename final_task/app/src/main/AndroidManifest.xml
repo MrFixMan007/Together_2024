@@ -15,11 +15,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ProfSoft2024FinalTask"
         tools:targetApi="31">
         <activity
-            android:name=".app.activity.SplashActivity"
-            android:theme="@style/Theme.MyApp.Splash"
+            android:name=".app.activity.MainActivity"
+            android:theme="@style/Theme.MyApp.Starting"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,9 +26,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".app.activity.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ProfSoft2024FinalTask" />
     </application>
 </manifest>

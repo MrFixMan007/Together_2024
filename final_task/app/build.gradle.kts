@@ -93,6 +93,8 @@ dependencies {
     implementation(libs.orbit.compose)
     implementation(libs.orbit.viewmodel)
 
+    implementation(libs.androidx.core.splashscreen)
+
     implementation(project(":core:common"))
     implementation(project(":core:utils"))
     implementation(project(":core:ui"))

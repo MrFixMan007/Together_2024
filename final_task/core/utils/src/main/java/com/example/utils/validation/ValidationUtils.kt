@@ -1,4 +1,4 @@
-package com.example.utils
+package com.example.utils.validation
 
 private const val minPasswordLength = 8
 
