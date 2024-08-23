@@ -26,6 +26,8 @@ import com.example.ui.theme.Yellow
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
+const val EXTRA_TOKEN = "extra_token"
+
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
@@ -35,7 +37,10 @@ class SplashActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContent {
             SplashScreenContent {
-                startActivity(Intent(this, MainActivity::class.java))
+                val intent = Intent(this, MainActivity::class.java).apply {
+                    putExtra(EXTRA_TOKEN, "lol")
+                }
+                startActivity(intent)
                 finish()
             }
         }
@@ -55,7 +60,6 @@ private fun SplashScreenContent(onTimeout: () -> Unit) {
         modifier = Modifier
             .fillMaxSize()
             .background(Yellow)
-
     ) {
         Image(
             painter = painterResource(id = R.drawable.logo),
