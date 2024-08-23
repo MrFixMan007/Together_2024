@@ -6,10 +6,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.feature_login.navigation.AUTHORIZATION_SCREEN_ROUTE
+import com.example.feature_login.navigation.OutNavigator
 import com.example.profsoft_2024_final_task.bottom_bar.BottomBar
 import com.example.profsoft_2024_final_task.presentation.navigation.BottomNavGraph
 import com.example.profsoft_2024_final_task.presentation.navigation.NavHost
@@ -19,7 +22,8 @@ import com.example.utils.shared_prefs.TOKEN_SHARED_PREFS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OutNavigator {
+    private lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
@@ -30,23 +34,35 @@ class MainActivity : AppCompatActivity() {
 
         enableEdgeToEdge()
         setContent {
-            val navController = rememberNavController()
+            navController = rememberNavController()
 
             ComposeTheme {
                 if (myToken.isEmpty()) {
                     NavHost(
                         navController = navController,
-                        startDestination = AUTHORIZATION_SCREEN_ROUTE
+                        startDestination = AUTHORIZATION_SCREEN_ROUTE,
+                        outNavigator = this
                     )
                 } else {
-                    Scaffold(bottomBar = { BottomBar(navController = navController) }) { paddingValues ->
-                        BottomNavGraph(
-                            navController = navController,
-                            modifier = Modifier.padding(paddingValues)
-                        )
-                    }
+                    MainScreenContent()
                 }
             }
+        }
+    }
+
+    override fun navigateToMainScreen() {
+        setContent {
+            MainScreenContent()
+        }
+    }
+
+    @Composable
+    private fun MainScreenContent() {
+        Scaffold(bottomBar = { BottomBar(navController = navController) }) { paddingValues ->
+            BottomNavGraph(
+                navController = navController,
+                modifier = Modifier.padding(paddingValues)
+            )
         }
     }
 }

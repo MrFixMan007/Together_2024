@@ -17,7 +17,8 @@ fun NavController.navigateToRegistrationScreen(
 }
 
 fun NavGraphBuilder.registrationScreen(
-    navController: NavController
+    navController: NavController,
+    outNavigator: OutNavigator
 ) {
     composable(
         route = REGISTRATION_SCREEN_ROUTE,
@@ -27,7 +28,8 @@ fun NavGraphBuilder.registrationScreen(
         popEnterTransition = { fadeIn(tween(TRANSITION_DURATION)) },
     ) {
         RegistrationScreen(
-            navController
+            navController = navController,
+            outNavigator = outNavigator
         )
     }
 }

@@ -22,18 +22,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.ui.R
 import com.example.feature_login.components.ButtonInCenterWithCircleLoader
 import com.example.feature_login.components.CustomPasswordField
 import com.example.feature_login.components.CustomPhoneField
+import com.example.feature_login.navigation.OutNavigator
 import com.example.feature_login.navigation.navigateToRegistrationScreen
 import com.example.ui.components.ButtonInCenter
-import com.example.ui.theme.ComposeTheme
 import com.example.ui.theme.Yellow
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -41,7 +39,8 @@ import com.example.ui.theme.Typography
 
 @Composable
 fun AuthorizationScreenContent(
-    navController: NavController
+    navController: NavController,
+    outNavigator: OutNavigator
 ) {
     val viewModel: AuthorizationViewModel = hiltViewModel()
     val state = viewModel.collectAsState().value
@@ -58,7 +57,7 @@ fun AuthorizationScreenContent(
             }
 
             is AuthorizationSideEffect.Completed -> {
-                Toast.makeText(context, "good :)", Toast.LENGTH_SHORT).show()
+                outNavigator.navigateToMainScreen()
             }
         }
     }
@@ -191,10 +190,10 @@ private fun SetBottomContent(
     }
 }
 
-@Preview
-@Composable
-private fun PreviewMainContent() {
-    ComposeTheme {
-        AuthorizationScreenContent(rememberNavController())
-    }
-}
+//@Preview
+//@Composable
+//private fun PreviewMainContent() {
+//    ComposeTheme {
+//        AuthorizationScreenContent(rememberNavController())
+//    }
+//}

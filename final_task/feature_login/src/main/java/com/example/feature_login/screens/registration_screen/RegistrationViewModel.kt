@@ -86,6 +86,7 @@ class RegistrationViewModel @Inject constructor(
                     TOKEN_SHARED_PREFS, Context.MODE_PRIVATE)
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putString(TOKEN_NAME, result.token)
+                editor.apply()
                 postSideEffect(RegistrationSideEffect.Completed)
             } else {
                 postSideEffect(RegistrationSideEffect.Failed)

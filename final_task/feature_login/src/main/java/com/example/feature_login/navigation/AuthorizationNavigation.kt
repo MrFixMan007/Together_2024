@@ -16,7 +16,8 @@ fun NavController.navigateToAuthorizationScreen() {
 }
 
 fun NavGraphBuilder.authorizationScreen(
-    navController: NavController
+    navController: NavController,
+    outNavigator: OutNavigator
 ) {
     composable(
         route = AUTHORIZATION_SCREEN_ROUTE,
@@ -26,7 +27,8 @@ fun NavGraphBuilder.authorizationScreen(
         popEnterTransition = { fadeIn(tween(TRANSITION_DURATION)) },
     ) {
         AuthorizationScreen(
-            navController
+            navController = navController,
+            outNavigator = outNavigator
         )
     }
 }
