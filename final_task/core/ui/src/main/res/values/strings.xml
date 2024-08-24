@@ -28,4 +28,10 @@
     <string name="change_profile">Редактировать профиль</string>
     <string name="changes_profile">Редактирование профиля</string>
     <string name="save">Сохранить</string>
+
+    <!--    Notes-->
+    <string name="all">Все</string>
+    <string name="yours_courses">Ваши курсы</string>
+    <string name="yours_notes">Ваши заметки</string>
+    <string name="community_notes">Заметки сообщества</string>
 </resources>
