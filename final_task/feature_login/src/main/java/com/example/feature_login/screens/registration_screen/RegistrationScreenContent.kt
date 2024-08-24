@@ -22,43 +22,43 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import com.example.feature_login.navigation.navigateToAuthorizationScreen
 import com.example.feature_login.components.ButtonInCenterWithCircleLoader
 import com.example.feature_login.components.CustomNameField
 import com.example.feature_login.components.CustomPasswordField
 import com.example.feature_login.components.CustomPhoneField
-import com.example.feature_login.navigation.OutNavigator
+import com.example.feature_login.screens.registration_screen.model.RegistrationAction
+import com.example.feature_login.screens.registration_screen.model.RegistrationSideEffect
+import com.example.feature_login.screens.registration_screen.model.RegistrationState
 import com.example.ui.R
 import com.example.ui.components.ButtonInCenter
-import org.orbitmvi.orbit.compose.collectAsState
-import org.orbitmvi.orbit.compose.collectSideEffect
+import com.example.ui.theme.ComposeTheme
 import com.example.ui.theme.Typography
 import com.example.ui.theme.Yellow
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun RegistrationScreenContent(
-    navController: NavController,
-    outNavigator: OutNavigator
+    state: RegistrationState,
+    sideEffects: Flow<RegistrationSideEffect>,
+    onAction: (RegistrationAction) -> Unit
 ) {
-    val viewModel: RegistrationViewModel = hiltViewModel()
-    val state = viewModel.collectAsState().value
     val context = LocalContext.current
 
-    LaunchedEffect(Unit) {
-        viewModel.activate()
-    }
+    LaunchedEffect(sideEffects) {
+        sideEffects.collect { sideEffect ->
+            when (sideEffect) {
+                is RegistrationSideEffect.Failed -> {
+                    Toast.makeText(
+                        context,
+                        context.resources.getString(R.string.user_is_exist),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
-    viewModel.collectSideEffect {
-        when (it) {
-            is RegistrationSideEffect.Failed -> {
-                Toast.makeText(context, context.resources.getString(R.string.user_is_exist), Toast.LENGTH_SHORT).show()
-            }
-
-            is RegistrationSideEffect.Completed -> {
-                outNavigator.navigateToMainScreen()
+                else -> Unit
             }
         }
     }
@@ -72,13 +72,12 @@ fun RegistrationScreenContent(
         SetCenterContent(
             context = context,
             state = state,
-            viewModel = viewModel
+            onAction = onAction
         )
         SetBottomContent(
             context = context,
-            navController = navController,
             state = state,
-            viewModel = viewModel
+            onAction = onAction
         )
     }
 }
@@ -102,7 +101,7 @@ private fun SetTopContent() {
 private fun SetCenterContent(
     context: Context,
     state: RegistrationState,
-    viewModel: RegistrationViewModel
+    onAction: (RegistrationAction) -> Unit
 ) {
     Column(modifier = Modifier.padding(top = 70.dp, start = 16.dp, end = 16.dp)) {
         val resources = context.resources
@@ -122,7 +121,7 @@ private fun SetCenterContent(
                     .fillMaxWidth()
                     .padding(top = 12.dp),
                 onValueChange = {
-                    viewModel.onFirstNameChange(it)
+                    onAction(RegistrationAction.FirstNameChange(it))
                 }
             )
             if (!state.isValidFirstName) {
@@ -140,7 +139,7 @@ private fun SetCenterContent(
                     .fillMaxWidth()
                     .padding(top = 12.dp),
                 onValueChange = {
-                    viewModel.onLastNameChange(it)
+                    onAction(RegistrationAction.LastNameChange(it))
                 }
             )
             if (!state.isValidLastName) {
@@ -158,7 +157,7 @@ private fun SetCenterContent(
                     .fillMaxWidth()
                     .padding(top = 12.dp),
                 onValueChange = {
-                    viewModel.onPhoneChange(it)
+                    onAction(RegistrationAction.PhoneChange(it))
                 }
             )
             if (!state.isValidPhone) {
@@ -176,7 +175,7 @@ private fun SetCenterContent(
                     .fillMaxWidth()
                     .padding(top = 12.dp),
                 onValueChange = {
-                    viewModel.onPasswordChange(it)
+                    onAction(RegistrationAction.PasswordChange(it))
                 }
             )
             if (!state.isValidPassword) {
@@ -195,9 +194,8 @@ private fun SetCenterContent(
 @Composable
 private fun SetBottomContent(
     context: Context,
-    navController: NavController,
     state: RegistrationState,
-    viewModel: RegistrationViewModel
+    onAction: (RegistrationAction) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -209,7 +207,7 @@ private fun SetBottomContent(
             buttonText = context.resources.getString(R.string.registration),
             bottomPadding = 12.dp
         ) {
-            viewModel.onRegister(context = context)
+            onAction(RegistrationAction.Register(context = context))
         }
         ButtonInCenter(
             modifier = Modifier.navigationBarsPadding(),
@@ -222,16 +220,21 @@ private fun SetBottomContent(
             ),
             isButtonEnabled = state.isEnabledAuthorizeNavigateButton
         ) {
-            viewModel.deactivate()
-            navController.navigateToAuthorizationScreen()
+            onAction(RegistrationAction.NavigateToAuthorization)
         }
     }
 }
 
-//@Preview
-//@Composable
-//private fun PreviewMainContent() {
-//    ComposeTheme {
-//        RegistrationScreenContent(rememberNavController())
-//    }
-//}
+@Preview
+@Composable
+private fun PreviewMainContent() {
+    val fakeSideEffects: Flow<RegistrationSideEffect> = flowOf()
+    val fakeOnAction: (RegistrationAction) -> Unit = { }
+    ComposeTheme {
+        RegistrationScreenContent(
+            state = RegistrationState(),
+            sideEffects = fakeSideEffects,
+            onAction = fakeOnAction
+        )
+    }
+}

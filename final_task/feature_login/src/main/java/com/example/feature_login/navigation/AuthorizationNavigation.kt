@@ -6,7 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.feature_login.screens.authorization_screen.AuthorizationScreen
+import com.example.feature_login.screens.authorization_screen.AuthorizationScreenRoot
 
 const val AUTHORIZATION_SCREEN_ROUTE = "authorization_screen"
 private const val TRANSITION_DURATION = 300
@@ -26,7 +26,7 @@ fun NavGraphBuilder.authorizationScreen(
         popExitTransition = { fadeOut(tween(TRANSITION_DURATION)) },
         popEnterTransition = { fadeIn(tween(TRANSITION_DURATION)) },
     ) {
-        AuthorizationScreen(
+        AuthorizationScreenRoot(
             navController = navController,
             outNavigator = outNavigator
         )

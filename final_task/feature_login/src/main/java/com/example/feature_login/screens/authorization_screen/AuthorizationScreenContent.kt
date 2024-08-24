@@ -1,6 +1,5 @@
 package com.example.feature_login.screens.authorization_screen
 
-
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
@@ -22,42 +21,42 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.example.ui.R
 import com.example.feature_login.components.ButtonInCenterWithCircleLoader
 import com.example.feature_login.components.CustomPasswordField
 import com.example.feature_login.components.CustomPhoneField
-import com.example.feature_login.navigation.OutNavigator
-import com.example.feature_login.navigation.navigateToRegistrationScreen
+import com.example.feature_login.screens.authorization_screen.model.AuthorizationAction
+import com.example.feature_login.screens.authorization_screen.model.AuthorizationSideEffect
+import com.example.feature_login.screens.authorization_screen.model.AuthorizationState
 import com.example.ui.components.ButtonInCenter
+import com.example.ui.theme.ComposeTheme
 import com.example.ui.theme.Yellow
-import org.orbitmvi.orbit.compose.collectAsState
-import org.orbitmvi.orbit.compose.collectSideEffect
 import com.example.ui.theme.Typography
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun AuthorizationScreenContent(
-    navController: NavController,
-    outNavigator: OutNavigator
+    state: AuthorizationState,
+    sideEffects: Flow<AuthorizationSideEffect>,
+    onAction: (AuthorizationAction) -> Unit
 ) {
-    val viewModel: AuthorizationViewModel = hiltViewModel()
-    val state = viewModel.collectAsState().value
     val context = LocalContext.current
 
-    LaunchedEffect(Unit) {
-        viewModel.activate()
-    }
+    LaunchedEffect(sideEffects) {
+        sideEffects.collect { sideEffect ->
+            when (sideEffect) {
+                is AuthorizationSideEffect.Failed -> {
+                    Toast.makeText(
+                        context,
+                        context.resources.getString(R.string.invalid_phone_or_password),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
 
-    viewModel.collectSideEffect {
-        when (it) {
-            is AuthorizationSideEffect.Failed -> {
-                Toast.makeText(context, context.resources.getString(R.string.invalid_phone_or_password), Toast.LENGTH_SHORT).show()
-            }
-
-            is AuthorizationSideEffect.Completed -> {
-                outNavigator.navigateToMainScreen()
+                else -> Unit
             }
         }
     }
@@ -69,15 +68,10 @@ fun AuthorizationScreenContent(
     ) {
         SetTopContent()
         SetCenterContent(
-            context = context,
-            state = state,
-            viewModel = viewModel
+            context = context, state = state, onAction = onAction
         )
         SetBottomContent(
-            context = context,
-            navController = navController,
-            state = state,
-            viewModel = viewModel
+            context = context, state = state, onAction = onAction
         )
     }
 }
@@ -99,9 +93,7 @@ private fun SetTopContent() {
 
 @Composable
 private fun SetCenterContent(
-    context: Context,
-    state: AuthorizationState,
-    viewModel: AuthorizationViewModel
+    context: Context, state: AuthorizationState, onAction: (AuthorizationAction) -> Unit
 ) {
     Column(modifier = Modifier.padding(top = 70.dp, start = 16.dp, end = 16.dp)) {
         val resources = context.resources
@@ -114,16 +106,14 @@ private fun SetCenterContent(
         Column(
             modifier = Modifier.padding(top = 12.dp)
         ) {
-            CustomPhoneField(
-                value = state.authorizeUserParam.phoneNumber,
+            CustomPhoneField(value = state.authorizeUserParam.phoneNumber,
                 placeholder = resources.getString(R.string.phone_number),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 12.dp),
                 onValueChange = {
-                    viewModel.onPhoneChange(it)
-                }
-            )
+                    onAction(AuthorizationAction.PhoneChange(it))
+                })
             if (!state.isValidPhone) {
                 Text(
                     text = context.resources.getString(R.string.incorrect_phone_number),
@@ -132,16 +122,14 @@ private fun SetCenterContent(
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
-            CustomPasswordField(
-                value = state.authorizeUserParam.password,
+            CustomPasswordField(value = state.authorizeUserParam.password,
                 placeholder = resources.getString(R.string.password),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 12.dp),
                 onValueChange = {
-                    viewModel.onPasswordChange(it)
-                }
-            )
+                    onAction(AuthorizationAction.PasswordChange(it))
+                })
             if (!state.isValidPassword) {
                 Text(
                     text = context.resources.getString(R.string.incorrect_password),
@@ -156,14 +144,10 @@ private fun SetCenterContent(
 
 @Composable
 private fun SetBottomContent(
-    context: Context,
-    navController: NavController,
-    state: AuthorizationState,
-    viewModel: AuthorizationViewModel
+    context: Context, state: AuthorizationState, onAction: (AuthorizationAction) -> Unit
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxHeight(),
+        modifier = Modifier.fillMaxHeight(),
         verticalArrangement = Arrangement.Bottom,
     ) {
         ButtonInCenterWithCircleLoader(
@@ -171,7 +155,7 @@ private fun SetBottomContent(
             buttonText = context.resources.getString(R.string.enter),
             bottomPadding = 12.dp
         ) {
-            viewModel.onAuthorize(context = context)
+            onAction(AuthorizationAction.Authorize(context = context))
         }
         ButtonInCenter(
             modifier = Modifier.navigationBarsPadding(),
@@ -184,16 +168,21 @@ private fun SetBottomContent(
             ),
             isButtonEnabled = state.isEnabledRegisterNavigateButton
         ) {
-            viewModel.deactivate()
-            navController.navigateToRegistrationScreen()
+            onAction(AuthorizationAction.NavigateToRegistration)
         }
     }
 }
 
-//@Preview
-//@Composable
-//private fun PreviewMainContent() {
-//    ComposeTheme {
-//        AuthorizationScreenContent(rememberNavController())
-//    }
-//}
+@Preview
+@Composable
+private fun PreviewMainContent() {
+    val fakeSideEffects: Flow<AuthorizationSideEffect> = flowOf()
+    val fakeOnAction: (AuthorizationAction) -> Unit = { }
+    ComposeTheme {
+        AuthorizationScreenContent(
+            state = AuthorizationState(),
+            sideEffects = fakeSideEffects,
+            onAction = fakeOnAction
+        )
+    }
+}

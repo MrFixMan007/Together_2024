@@ -1,4 +1,4 @@
-package com.example.feature_login.screens.registration_screen
+package com.example.feature_login.screens.registration_screen.model
 
 import com.example.common.domain.model.RegisterUserParam
 
@@ -8,11 +8,6 @@ data class RegistrationState(
     val isValidPassword: Boolean = true,
     val isValidFirstName: Boolean = true,
     val isValidLastName: Boolean = true,
-    val isEnabledAuthorizeNavigateButton: Boolean = false,
+    val isEnabledAuthorizeNavigateButton: Boolean = true,
     val isLoadingRegistration: Boolean = false
 )
-
-sealed class RegistrationSideEffect {
-    data object Failed : RegistrationSideEffect()
-    data object Completed : RegistrationSideEffect()
-}
