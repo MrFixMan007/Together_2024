@@ -1,7 +1,7 @@
 package com.example.feature_login.di
 
-import com.example.common.domain.usecase.AuthorizeUserUseCase
-import com.example.common.domain.usecase.RegisterUserUseCase
+import com.example.common.domain.usecase.unauthenticated.AuthorizeUserUseCase
+import com.example.common.domain.usecase.unauthenticated.RegisterUserUseCase
 import com.example.feature_login.screens.authorization_screen.viewmodel.AuthorizationViewModel
 import com.example.feature_login.screens.registration_screen.viewmodel.RegistrationViewModel
 import dagger.Module

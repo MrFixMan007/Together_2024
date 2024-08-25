@@ -1,4 +1,4 @@
-package com.example.common.domain.model
+package com.example.common.domain.model.unauthenticated
 
 data class AuthorizeUserParam(
     val phoneNumber: String,

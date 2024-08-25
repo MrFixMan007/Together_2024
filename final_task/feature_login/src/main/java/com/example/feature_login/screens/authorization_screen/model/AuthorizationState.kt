@@ -1,6 +1,6 @@
 package com.example.feature_login.screens.authorization_screen.model
 
-import com.example.common.domain.model.AuthorizeUserParam
+import com.example.common.domain.model.unauthenticated.AuthorizeUserParam
 
 
 data class AuthorizationState(

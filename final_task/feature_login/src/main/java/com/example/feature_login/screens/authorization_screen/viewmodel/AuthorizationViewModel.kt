@@ -3,7 +3,7 @@ package com.example.feature_login.screens.authorization_screen.viewmodel
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
-import com.example.common.domain.usecase.AuthorizeUserUseCase
+import com.example.common.domain.usecase.unauthenticated.AuthorizeUserUseCase
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationAction
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationSideEffect
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationState

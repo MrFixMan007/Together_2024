@@ -1,6 +1,6 @@
 package com.example.feature_login.screens.registration_screen.model
 
-import com.example.common.domain.model.RegisterUserParam
+import com.example.common.domain.model.unauthenticated.RegisterUserParam
 
 data class RegistrationState(
     val registerUserParam: RegisterUserParam = RegisterUserParam("", "", "", ""),

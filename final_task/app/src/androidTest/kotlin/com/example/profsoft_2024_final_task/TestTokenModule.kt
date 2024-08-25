@@ -1,7 +1,6 @@
-package com.example.profsoft_2024_final_task.app.di
+package com.example.profsoft_2024_final_task
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.UnauthenticatedApiRepository
@@ -11,25 +10,28 @@ import com.example.network.api.AuthenticatedApiRepositoryImpl
 import com.example.network.api.CourseApiService
 import com.example.network.api.UnauthenticatedApiRepositoryImpl
 import com.example.network.api.UserApiService
-import com.example.utils.shared_prefs.TOKEN_NAME
-import com.example.utils.shared_prefs.TOKEN_SHARED_PREFS
+import com.example.profsoft_2024_final_task.app.di.AuthenticatedRetrofitClient
+import com.example.profsoft_2024_final_task.app.di.NetworkModule
+import com.example.profsoft_2024_final_task.app.di.UnauthenticatedRetrofitClient
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-class NetworkModule {
+@TestInstallIn(
+    components = [SingletonComponent::class],
+    replaces = [NetworkModule::class]
+)
+class TestTokenModule {
 
     companion object {
         private const val READ_TIMEOUT_IN_SECONDS = 5L
@@ -78,19 +80,6 @@ class NetworkModule {
         return UnauthenticatedApiRepositoryImpl(retrofit = retrofit)
     }
 
-    @Provides
-    @Singleton
-    fun provideTokenProvider(@ApplicationContext context: Context): TokenProvider{
-        return object : TokenProvider{
-            val sharedPreferences = context.getSharedPreferences(TOKEN_SHARED_PREFS, MODE_PRIVATE)
-            val myToken = sharedPreferences.getString(TOKEN_NAME, "").toString()
-
-            override fun getToken(): String {
-                return myToken
-            }
-        }
-    }
-
     @AuthenticatedRetrofitClient
     @Provides
     @Singleton
@@ -125,12 +114,14 @@ class NetworkModule {
     fun provideAuthenticatedApiRepository(@AuthenticatedRetrofitClient retrofit: Retrofit): AuthenticatedApiRepository {
         return AuthenticatedApiRepositoryImpl(retrofit = retrofit)
     }
+
+    @Provides
+    @Singleton
+    fun provideTestTokenProvider(): TokenProvider {
+        return object : TokenProvider {
+            override fun getToken(): String {
+                return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdWQiLCJpc3MiOiJpc3N1ZXIiLCJpZCI6IjY2YzYzYTIxZTk0OTNmMWY0NjBkZmQ2OCIsInBob25lIjoiNzkyNzYwNTEyMzEiLCJwYXNzd29yZE1EIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIiLCJleHAiOjE3MjQ2NzA4NzV9._mqToaUfLgPwU7Xc54Xac2RIel1i569SSEknYaNHH2o" // Тестовый токен
+            }
+        }
+    }
 }
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class AuthenticatedRetrofitClient
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class UnauthenticatedRetrofitClient

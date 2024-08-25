@@ -1,4 +1,4 @@
-package com.example.network.dto
+package com.example.network.dto.unauthenticated
 
 data class RegisterUserResponse(
     val status: Int,

@@ -4,7 +4,7 @@ package com.example.feature_login.screens.registration_screen.viewmodel
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
-import com.example.common.domain.usecase.RegisterUserUseCase
+import com.example.common.domain.usecase.unauthenticated.RegisterUserUseCase
 import com.example.feature_login.screens.registration_screen.model.RegistrationAction
 import com.example.feature_login.screens.registration_screen.model.RegistrationSideEffect
 import com.example.feature_login.screens.registration_screen.model.RegistrationState

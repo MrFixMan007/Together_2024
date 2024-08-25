@@ -1,13 +1,17 @@
 package com.example.network
 
-import com.example.common.domain.model.AuthorizeResult
-import com.example.common.domain.model.AuthorizeUserParam
-import com.example.common.domain.model.RegisterResult
-import com.example.common.domain.model.RegisterUserParam
-import com.example.network.dto.AuthorizeUserRequestBody
-import com.example.network.dto.AuthorizeUserResponse
-import com.example.network.dto.RegisterUserRequestBody
-import com.example.network.dto.RegisterUserResponse
+import com.example.common.domain.model.authenticated.Course
+import com.example.common.domain.model.authenticated.Text
+import com.example.common.domain.model.unauthenticated.AuthorizeResult
+import com.example.common.domain.model.unauthenticated.AuthorizeUserParam
+import com.example.common.domain.model.unauthenticated.RegisterResult
+import com.example.common.domain.model.unauthenticated.RegisterUserParam
+import com.example.network.dto.authenticated.CourseResponse
+import com.example.network.dto.authenticated.TextDto
+import com.example.network.dto.unauthenticated.AuthorizeUserRequestBody
+import com.example.network.dto.unauthenticated.AuthorizeUserResponse
+import com.example.network.dto.unauthenticated.RegisterUserRequestBody
+import com.example.network.dto.unauthenticated.RegisterUserResponse
 
 fun mapToRegisterUserRequestBody(param: RegisterUserParam): RegisterUserRequestBody {
     return RegisterUserRequestBody(
@@ -27,16 +31,11 @@ fun mapToAuthorizeUserRequestBody(param: AuthorizeUserParam): AuthorizeUserReque
 }
 
 fun mapToAuthorizeResult(authorizeUserResponse: AuthorizeUserResponse?): AuthorizeResult {
-    if (authorizeUserResponse == null) return AuthorizeResult(
+    if (authorizeUserResponse?.data == null) return AuthorizeResult(
         isSuccess = false,
         token = null
     )
-    else if (authorizeUserResponse.data == null) {
-        return AuthorizeResult(
-            isSuccess = false,
-            token = null
-        )
-    }
+
     return AuthorizeResult(
         isSuccess = true,
         token = authorizeUserResponse.data.token
@@ -44,21 +43,37 @@ fun mapToAuthorizeResult(authorizeUserResponse: AuthorizeUserResponse?): Authori
 }
 
 fun mapToRegisterResult(registrationResponse: RegisterUserResponse?): RegisterResult {
-    if (registrationResponse == null) return RegisterResult(
+    if (registrationResponse?.data == null) return RegisterResult(
         isSuccess = false,
         message = null,
         token = null
     )
-    else if (registrationResponse.data == null) {
-        return RegisterResult(
-            isSuccess = false,
-            message = null,
-            token = null
-        )
-    }
+
     return RegisterResult(
         isSuccess = true,
         message = registrationResponse.message,
         token = registrationResponse.data.token
     )
+}
+
+fun mapToCourse(courseResponse: CourseResponse?): Course {
+    if (courseResponse?.data == null) return Course(
+        isSuccess = false,
+        id = "",
+        title = "",
+        description = "",
+    )
+
+    return Course(
+        isSuccess = true,
+        id = courseResponse.data.id,
+        title = courseResponse.data.title,
+        description = courseResponse.data.description,
+        tags = courseResponse.data.tags,
+        text = courseResponse.data.text.map { mapToText(it) }
+    )
+}
+
+fun mapToText(textDto: TextDto): Text {
+    return Text(text = textDto.text, imageUrl = textDto.image)
 }

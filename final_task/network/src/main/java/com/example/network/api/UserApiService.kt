@@ -1,9 +1,9 @@
 package com.example.network.api
 
-import com.example.network.dto.AuthorizeUserRequestBody
-import com.example.network.dto.AuthorizeUserResponse
-import com.example.network.dto.RegisterUserRequestBody
-import com.example.network.dto.RegisterUserResponse
+import com.example.network.dto.unauthenticated.AuthorizeUserRequestBody
+import com.example.network.dto.unauthenticated.AuthorizeUserResponse
+import com.example.network.dto.unauthenticated.RegisterUserRequestBody
+import com.example.network.dto.unauthenticated.RegisterUserResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -14,5 +14,4 @@ interface UserApiService {
 
     @POST("/api/auth")
     suspend fun authorizeUser(@Body body: AuthorizeUserRequestBody?): AuthorizeUserResponse?
-
 }
