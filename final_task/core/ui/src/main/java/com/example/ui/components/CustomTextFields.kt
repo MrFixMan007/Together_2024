@@ -18,11 +18,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ui.theme.ComposeTheme
-import com.example.ui.theme.DarkGray
+import com.example.ui.theme.Gray51
 import com.example.ui.theme.Typography
 
-val defaultTextFieldContentColor = DarkGray
-val defaultTextFieldContainerColor = DarkGray.copy(alpha = 0.2f)
+val defaultTextFieldContentColor = Gray51
+val defaultTextFieldContainerColor = Gray51.copy(alpha = 0.2f)
 
 @Composable
 fun CustomTextField(

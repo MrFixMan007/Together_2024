@@ -13,7 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.feature_login.navigation.AUTHORIZATION_SCREEN_ROUTE
 import com.example.feature_login.navigation.OutNavigator
-import com.example.profsoft_2024_final_task.bottom_bar.BottomBar
+import com.example.ui.components.bottom_bar.BottomBar
 import com.example.profsoft_2024_final_task.presentation.navigation.BottomNavGraph
 import com.example.profsoft_2024_final_task.presentation.navigation.NavHost
 import com.example.ui.theme.ComposeTheme

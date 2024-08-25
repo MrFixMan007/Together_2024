@@ -18,11 +18,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.ui.theme.ComposeTheme
-import com.example.ui.theme.DarkGray
+import com.example.ui.theme.Gray51
 import com.example.ui.theme.Typography
 
 val defaultButtonContentColor = Color.White
-val defaultButtonContainerColor = DarkGray
+val defaultButtonContainerColor = Gray51
 
 @Composable
 fun CustomButton(

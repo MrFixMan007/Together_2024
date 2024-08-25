@@ -1,4 +1,4 @@
-package com.example.ui.components
+package com.example.ui.components.custom_cards
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ui.components.model.NoteCommonInfo
 import com.example.ui.theme.ComposeTheme
-import com.example.ui.theme.DarkGray
+import com.example.ui.theme.Gray51
 import com.example.ui.theme.LightBrown
 import com.example.ui.theme.Typography
 import com.example.ui.theme.Yellow
@@ -72,7 +72,7 @@ fun CustomSimpleNote(
             modifier = Modifier
                 .height(30.dp)
                 .align(Alignment.TopEnd)
-                .background(DarkGray, RoundedCornerShape(8.dp))
+                .background(Gray51, RoundedCornerShape(8.dp))
                 .padding(horizontal = 12.dp), contentAlignment = Alignment.Center
         ) {
             Text(

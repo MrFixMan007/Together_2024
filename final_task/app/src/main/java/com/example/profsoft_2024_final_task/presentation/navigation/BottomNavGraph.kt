@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import com.example.profsoft_2024_final_task.bottom_bar.BottomBarScreen
+import com.example.ui.components.bottom_bar.BottomBarScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController, modifier: Modifier) {

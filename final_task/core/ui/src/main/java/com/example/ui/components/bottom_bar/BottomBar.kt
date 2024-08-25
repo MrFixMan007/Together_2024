@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.bottom_bar
+package com.example.ui.components.bottom_bar
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
@@ -26,7 +26,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.ui.theme.ComposeTheme
-import com.example.ui.theme.LightGray
+import com.example.ui.theme.Gray215
 
 @Composable
 fun BottomBar(navController: NavHostController) {
@@ -41,7 +41,7 @@ fun BottomBar(navController: NavHostController) {
     val currentDestination = navBackStackEntry?.destination
 
     Column {
-        HorizontalDivider(thickness = 1.dp, color = LightGray)
+        HorizontalDivider(thickness = 1.dp, color = Gray215)
         NavigationBar(
             containerColor = Color.White,
             contentColor = Color.Black
@@ -76,7 +76,7 @@ fun RowScope.AddItem(
             it.route == screen.route
         } == true,
         colors = NavigationBarItemDefaults.colors()
-            .copy(selectedIndicatorColor = LightGray.copy(alpha = 0.5f)),
+            .copy(selectedIndicatorColor = Gray215.copy(alpha = 0.5f)),
         onClick = {
             navController.navigate(screen.route) {
                 popUpTo(navController.graph.findStartDestination().id)

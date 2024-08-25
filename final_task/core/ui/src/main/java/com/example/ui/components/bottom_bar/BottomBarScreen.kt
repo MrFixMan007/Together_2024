@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.bottom_bar
+package com.example.ui.components.bottom_bar
 
 import androidx.annotation.DrawableRes
 import com.example.ui.R
