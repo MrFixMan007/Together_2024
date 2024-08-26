@@ -3,30 +3,28 @@ package com.example.profsoft_2024_final_task.presentation.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
-import com.example.ui.components.bottom_bar.BottomBarScreen
+import com.example.feature_main_screen.navigation.mainScreen
+import com.example.ui.components.bottom_bar.BottomBarRoot
 
 @Composable
 fun BottomNavGraph(navController: NavHostController, modifier: Modifier) {
     androidx.navigation.compose.NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = BottomBarScreen.Home.route
+        startDestination = BottomBarRoot.Home.route
     ) {
-        composable(route = BottomBarScreen.Home.route) {
-//            HomeScreen()
-        }
-        composable(route = BottomBarScreen.Favourites.route) {
-//            ProfileScreen()
-        }
-        composable(route = BottomBarScreen.Add.route) {
-//            ProfileScreen()
-        }
-        composable(route = BottomBarScreen.Message.route) {
-//            ProfileScreen()
-        }
-        composable(route = BottomBarScreen.Profile.route) {
-//            ProfileScreen()
-        }
+        mainScreen(navController = navController)
+//        composable(route = BottomBarRoot.Favourites.route) {
+////            ProfileScreen()
+//        }
+//        composable(route = BottomBarRoot.Add.route) {
+////            ProfileScreen()
+//        }
+//        composable(route = BottomBarRoot.Message.route) {
+////            ProfileScreen()
+//        }
+//        composable(route = BottomBarRoot.Profile.route) {
+////            ProfileScreen()
+//        }
     }
 }

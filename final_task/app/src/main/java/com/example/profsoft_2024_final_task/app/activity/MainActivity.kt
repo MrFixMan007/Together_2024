@@ -13,7 +13,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.feature_login.navigation.AUTHORIZATION_SCREEN_ROUTE
 import com.example.feature_login.navigation.OutNavigator
-import com.example.ui.components.bottom_bar.BottomBar
+import com.example.ui.components.bottom_bar.BottomBarScreen
 import com.example.profsoft_2024_final_task.presentation.navigation.BottomNavGraph
 import com.example.profsoft_2024_final_task.presentation.navigation.NavHost
 import com.example.ui.theme.ComposeTheme
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), OutNavigator {
 
     @Composable
     private fun MainScreenContent() {
-        Scaffold(bottomBar = { BottomBar(navController = navController) }) { paddingValues ->
+        Scaffold(bottomBar = { BottomBarScreen(navController = navController) }) { paddingValues ->
             BottomNavGraph(
                 navController = navController,
                 modifier = Modifier.padding(paddingValues)

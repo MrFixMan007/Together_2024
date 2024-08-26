@@ -1,6 +1,8 @@
 package com.example.profsoft_2024_final_task.app.di
 
+import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.UnauthenticatedApiRepository
+import com.example.common.domain.usecase.authenticated.GetCourseByIdUseCase
 import com.example.common.domain.usecase.unauthenticated.AuthorizeUserUseCase
 import com.example.common.domain.usecase.unauthenticated.RegisterUserUseCase
 import dagger.Module
@@ -23,6 +25,12 @@ class DomainModule {
     @Singleton
     fun provideAuthorizeUserUseCase(apiRepository: UnauthenticatedApiRepository): AuthorizeUserUseCase {
         return AuthorizeUserUseCase(apiRepository = apiRepository)
+    }
+    
+    @Provides
+    @Singleton
+    fun provideGetCourseByIdUseCase(apiRepository: AuthenticatedApiRepository): GetCourseByIdUseCase{
+        return GetCourseByIdUseCase(apiRepository = apiRepository)
     }
 
 }

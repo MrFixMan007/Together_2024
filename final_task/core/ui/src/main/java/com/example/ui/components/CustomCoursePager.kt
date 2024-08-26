@@ -37,24 +37,26 @@ fun CustomCoursePager(coursesInfo: List<CourseInfo>, modifier: Modifier) {
                 modifier = Modifier.height(160.dp)
             )
         }
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-        ) {
-            repeat(pagerState.pageCount) { iteration ->
-                val color =
-                    if (pagerState.currentPage == iteration) Gray51 else Gray217
-                if (iteration > 0) {
-                    Spacer(modifier = Modifier.width(2.dp))
+        if (coursesInfo.size > 1) {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+            ) {
+                repeat(pagerState.pageCount) { iteration ->
+                    val color =
+                        if (pagerState.currentPage == iteration) Gray51 else Gray217
+                    if (iteration > 0) {
+                        Spacer(modifier = Modifier.width(2.dp))
+                    }
+                    Box(
+                        modifier = Modifier
+                            .background(color)
+                            .weight(1f)
+                            .height(2.dp)
+                    )
                 }
-                Box(
-                    modifier = Modifier
-                        .background(color)
-                        .weight(1f)
-                        .height(2.dp)
-                )
             }
         }
     }

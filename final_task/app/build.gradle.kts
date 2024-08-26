@@ -100,4 +100,5 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":network"))
     implementation(project(":feature_login"))
+    implementation(project(":feature_main_screen"))
 }
