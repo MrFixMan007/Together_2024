@@ -1,4 +1,4 @@
-package com.example.ui.components.model
+package com.example.ui.model
 
 data class NoteCommonInfo(
     val title: String,

@@ -2,7 +2,7 @@ package com.example.feature_main_screen.screen.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.common.domain.usecase.authenticated.GetCourseByIdUseCase
+import com.example.common.domain.usecase.authenticated.GetAllCoursesUseCase
 import com.example.feature_main_screen.screen.model.MainAction
 import com.example.feature_main_screen.screen.model.MainSideEffect
 import com.example.feature_main_screen.screen.model.MainSideNavigate
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getCourseByIdUseCase: GetCourseByIdUseCase,
+    private val getAllCourses: GetAllCoursesUseCase,
 ) : ContainerHost<MainState, MainSideEffect>, ViewModel() {
 
     override val container = container<MainState, MainSideEffect>(
@@ -31,15 +31,16 @@ class MainViewModel @Inject constructor(
     }
 
     private fun init() = intent {
-        val resp = getCourseByIdUseCase.execute("66c641bde9493f1f460dfd69")
+        val resp = getAllCourses.execute()
         Log.e("response", "$resp")
         reduce {
-            state.copy(courses = listOf(resp))
+            state.copy(courses = resp)
         }
+
     }
 
     fun onAction(action: MainAction) = intent {
-        when(action){
+        when (action) {
             is MainAction.OpenSearch -> {}
             is MainAction.CloseSearch -> {}
             is MainAction.SearchTextChange -> {}
@@ -47,9 +48,11 @@ class MainViewModel @Inject constructor(
             is MainAction.AllCoursesClick -> {
                 _sideNavigate.emit(MainSideNavigate.NavigateToAllCourses)
             }
+
             is MainAction.AllLocalNotesClick -> {
                 _sideNavigate.emit(MainSideNavigate.NavigateToAllLocalNotes)
             }
+
             is MainAction.AllCommunityNotesClick -> {
                 _sideNavigate.emit(MainSideNavigate.NavigateToAllCommunityNotes)
             }

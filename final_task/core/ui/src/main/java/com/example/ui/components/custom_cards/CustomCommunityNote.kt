@@ -28,8 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.ui.R
-import com.example.ui.components.model.NoteCommonInfo
-import com.example.ui.components.model.NoteCommunityInfo
+import com.example.ui.model.NoteCommonInfo
+import com.example.ui.model.NoteCommunityInfo
 import com.example.ui.theme.ComposeTheme
 import com.example.ui.theme.Gray51
 import com.example.ui.theme.Typography

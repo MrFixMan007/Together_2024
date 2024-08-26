@@ -1,7 +1,7 @@
 package com.example.network.dto.authenticated
 
-data class CourseResponse(
+data class CoursesResponse(
     val status: Int,
     val message: String?,
-    val data: CourseDto?
+    val data: List<CourseDto>?
 )

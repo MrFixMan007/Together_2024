@@ -18,13 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ui.components.custom_cards.CustomCourse
-import com.example.ui.components.model.CourseInfo
+import com.example.ui.model.CourseInfo
 import com.example.ui.theme.Gray51
 import com.example.ui.theme.Gray217
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CustomCoursePager(coursesInfo: List<CourseInfo>, modifier: Modifier) {
+fun CustomCoursePager(coursesInfo: List<CourseInfo>, modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(pageCount = {
         coursesInfo.size
     })

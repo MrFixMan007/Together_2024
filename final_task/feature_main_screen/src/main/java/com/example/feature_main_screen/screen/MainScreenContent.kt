@@ -2,11 +2,13 @@ package com.example.feature_main_screen.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.common.domain.model.authenticated.Course
 import com.example.feature_main_screen.mapToCourseInfo
 import com.example.feature_main_screen.screen.model.MainAction
@@ -40,11 +42,14 @@ fun MainScreenContent(
         }
     }
 
-    Column {
-        CustomCoursePager(
-            coursesInfo = state.courses.map { mapToCourseInfo(it) },
-            modifier = Modifier
-        )
+    Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+        if (state.courses.isNotEmpty()) {
+            CustomCoursePager(
+                coursesInfo = state.courses.filter { it.title.isNotEmpty() }
+                    .map { mapToCourseInfo(it) }
+            )
+        }
+
     }
 }
 
