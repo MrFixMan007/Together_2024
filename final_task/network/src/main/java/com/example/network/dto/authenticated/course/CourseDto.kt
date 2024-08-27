@@ -1,4 +1,6 @@
-package com.example.network.dto.authenticated
+package com.example.network.dto.authenticated.course
+
+import com.example.network.dto.authenticated.TextDto
 
 data class CourseDto(
     val id: String,

@@ -1,4 +1,4 @@
-package com.example.network.dto.authenticated
+package com.example.network.dto.authenticated.course
 
 data class CoursesResponse(
     val status: Int,

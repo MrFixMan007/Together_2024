@@ -1,7 +1,7 @@
 package com.example.network.api
 
-import com.example.network.dto.authenticated.CourseResponse
-import com.example.network.dto.authenticated.CoursesResponse
+import com.example.network.dto.authenticated.course.CourseResponse
+import com.example.network.dto.authenticated.course.CoursesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -6,7 +6,7 @@ import com.example.common.domain.model.unauthenticated.AuthorizeResult
 import com.example.common.domain.model.unauthenticated.AuthorizeUserParam
 import com.example.common.domain.model.unauthenticated.RegisterResult
 import com.example.common.domain.model.unauthenticated.RegisterUserParam
-import com.example.network.dto.authenticated.CourseDto
+import com.example.network.dto.authenticated.course.CourseDto
 import com.example.network.dto.authenticated.TextDto
 import com.example.network.dto.unauthenticated.AuthorizeUserRequestBody
 import com.example.network.dto.unauthenticated.AuthorizeUserResponse

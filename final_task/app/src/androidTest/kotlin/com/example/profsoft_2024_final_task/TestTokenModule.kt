@@ -8,6 +8,7 @@ import com.example.network.AuthInterceptor
 import com.example.network.TokenProvider
 import com.example.network.api.AuthenticatedApiRepositoryImpl
 import com.example.network.api.CourseApiService
+import com.example.network.api.NoteApiService
 import com.example.network.api.UnauthenticatedApiRepositoryImpl
 import com.example.network.api.UserApiService
 import com.example.profsoft_2024_final_task.app.di.AuthenticatedRetrofitClient
@@ -111,6 +112,12 @@ class TestTokenModule {
 
     @Provides
     @Singleton
+    fun provideNoteApiService(@AuthenticatedRetrofitClient retrofit: Retrofit): NoteApiService {
+        return retrofit.create(NoteApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideAuthenticatedApiRepository(@AuthenticatedRetrofitClient retrofit: Retrofit): AuthenticatedApiRepository {
         return AuthenticatedApiRepositoryImpl(retrofit = retrofit)
     }
@@ -120,7 +127,7 @@ class TestTokenModule {
     fun provideTestTokenProvider(): TokenProvider {
         return object : TokenProvider {
             override fun getToken(): String {
-                return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdWQiLCJpc3MiOiJpc3N1ZXIiLCJpZCI6IjY2YzYzYTIxZTk0OTNmMWY0NjBkZmQ2OCIsInBob25lIjoiNzkyNzYwNTEyMzEiLCJwYXNzd29yZE1EIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIiLCJleHAiOjE3MjQ2NzA4NzV9._mqToaUfLgPwU7Xc54Xac2RIel1i569SSEknYaNHH2o" // Тестовый токен
+                return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdWQiLCJpc3MiOiJpc3N1ZXIiLCJpZCI6IjY2YzYzYTIxZTk0OTNmMWY0NjBkZmQ2OCIsInBob25lIjoiNzkyNzYwNTEyMzEiLCJwYXNzd29yZE1EIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIiLCJleHAiOjE3MjQ4MTc5NjZ9.DlXEnXvNAeY_lA52on41x5eLEXs_sPeiX-DBJs7R5_k"
             }
         }
     }
