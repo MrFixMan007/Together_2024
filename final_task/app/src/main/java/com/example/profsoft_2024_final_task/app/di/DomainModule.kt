@@ -4,6 +4,7 @@ import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.UnauthenticatedApiRepository
 import com.example.common.domain.usecase.authenticated.GetAllCoursesUseCase
 import com.example.common.domain.usecase.authenticated.GetCourseByIdUseCase
+import com.example.common.domain.usecase.authenticated.GetLastCommunityNoteUseCase
 import com.example.common.domain.usecase.unauthenticated.AuthorizeUserUseCase
 import com.example.common.domain.usecase.unauthenticated.RegisterUserUseCase
 import dagger.Module
@@ -36,8 +37,14 @@ class DomainModule {
 
     @Provides
     @Singleton
-    fun provideGetAllCourses(apiRepository: AuthenticatedApiRepository): GetAllCoursesUseCase{
+    fun provideGetAllCoursesUseCase(apiRepository: AuthenticatedApiRepository): GetAllCoursesUseCase{
         return GetAllCoursesUseCase(apiRepository = apiRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetLastCommunityNoteUseCase(apiRepository: AuthenticatedApiRepository): GetLastCommunityNoteUseCase {
+        return GetLastCommunityNoteUseCase(apiRepository = apiRepository)
     }
 
 }

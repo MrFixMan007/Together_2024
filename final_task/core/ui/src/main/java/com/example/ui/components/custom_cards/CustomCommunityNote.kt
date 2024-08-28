@@ -36,11 +36,11 @@ import com.example.ui.theme.Typography
 
 @Composable
 fun CustomCommunityNote(
-    modifier: Modifier,
-    textModifier: Modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 24.dp),
+    modifier: Modifier = Modifier,
+    textModifier: Modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 24.dp, bottom = 12.dp),
     noteInfo: NoteCommunityInfo
 ) {
-    Box(modifier = modifier) {
+    Box(modifier = modifier.fillMaxWidth()) {
         CustomSimpleNote(
             noteInfo = noteInfo.noteCommonInfo,
             modifier = Modifier,
@@ -108,7 +108,6 @@ private fun Preview() {
         CustomCommunityNote(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(124.dp)
                 .padding(horizontal = 16.dp),
             noteInfo = noteInfo
         )

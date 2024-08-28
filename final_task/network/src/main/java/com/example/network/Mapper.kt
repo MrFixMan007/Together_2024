@@ -1,13 +1,17 @@
 package com.example.network
 
+import com.example.common.domain.model.authenticated.Author
+import com.example.common.domain.model.authenticated.CommunityNotePreview
 import com.example.common.domain.model.authenticated.Course
 import com.example.common.domain.model.authenticated.Text
 import com.example.common.domain.model.unauthenticated.AuthorizeResult
 import com.example.common.domain.model.unauthenticated.AuthorizeUserParam
 import com.example.common.domain.model.unauthenticated.RegisterResult
 import com.example.common.domain.model.unauthenticated.RegisterUserParam
+import com.example.network.dto.authenticated.AuthorDto
 import com.example.network.dto.authenticated.course.CourseDto
 import com.example.network.dto.authenticated.TextDto
+import com.example.network.dto.authenticated.note.NoteDto
 import com.example.network.dto.unauthenticated.AuthorizeUserRequestBody
 import com.example.network.dto.unauthenticated.AuthorizeUserResponse
 import com.example.network.dto.unauthenticated.RegisterUserRequestBody
@@ -63,4 +67,24 @@ fun mapToCourse(courseDto: CourseDto): Course {
 
 fun mapToText(textDto: TextDto): Text {
     return Text(text = textDto.text, imageUrl = textDto.image)
+}
+
+fun mapToCommunityNotePreview(noteDto: NoteDto): CommunityNotePreview {
+    return CommunityNotePreview(
+        id = noteDto.id,
+        title = noteDto.title,
+        description = noteDto.content.first().text,
+        date = noteDto.date,
+        author = mapToAuthor(noteDto.author)
+    )
+}
+
+fun mapToAuthor(authorDto: AuthorDto): Author {
+    return Author(
+        id = authorDto.id,
+        name = authorDto.name,
+        surname = authorDto.surname,
+        avatarUrl = authorDto.avatar,
+        role = authorDto.role
+    )
 }

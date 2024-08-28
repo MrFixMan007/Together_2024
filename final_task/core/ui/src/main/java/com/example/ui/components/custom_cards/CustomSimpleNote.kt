@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,7 +28,7 @@ import com.example.ui.theme.Yellow
 
 @Composable
 fun CustomSimpleNote(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     textModifier: Modifier = Modifier.padding(12.dp),
     noteInfo: NoteCommonInfo,
 ) {
@@ -39,8 +38,7 @@ fun CustomSimpleNote(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 12.dp)
-                .fillMaxHeight(),
+                .padding(top = 12.dp),
             colors = CardDefaults.cardColors(containerColor = Yellow),
             shape = RoundedCornerShape(
                 topStart = 8.dp,
@@ -90,8 +88,7 @@ private fun Preview() {
     ComposeTheme {
         CustomSimpleNote(
             modifier = Modifier
-                .fillMaxWidth()
-                .height(112.dp),
+                .fillMaxWidth(),
             noteInfo = NoteCommonInfo(
                 title = "Для создания новой Activity. Тест для нескольких строк",
                 description = "Нужно лишь применить старый дедовский визард. Да",

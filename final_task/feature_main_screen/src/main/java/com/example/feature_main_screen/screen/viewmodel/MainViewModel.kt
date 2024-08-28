@@ -2,7 +2,9 @@ package com.example.feature_main_screen.screen.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.common.domain.model.authenticated.LocalNotePreview
 import com.example.common.domain.usecase.authenticated.GetAllCoursesUseCase
+import com.example.common.domain.usecase.authenticated.GetLastCommunityNoteUseCase
 import com.example.feature_main_screen.screen.model.MainAction
 import com.example.feature_main_screen.screen.model.MainSideEffect
 import com.example.feature_main_screen.screen.model.MainSideNavigate
@@ -17,10 +19,18 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getAllCourses: GetAllCoursesUseCase,
+    private val getLastCommunityNote: GetLastCommunityNoteUseCase
 ) : ContainerHost<MainState, MainSideEffect>, ViewModel() {
 
     override val container = container<MainState, MainSideEffect>(
-        MainState()
+        MainState(
+            lastLocalNote = LocalNotePreview(
+                id = "test",
+                title = "Эта заметка пока не берется с БД",
+                date = "28 августа",
+                description = "Чтобы просто увидеть как выглядит"
+            )
+        )
     )
 
     private val _sideNavigate = MutableSharedFlow<MainSideNavigate>()
@@ -31,12 +41,18 @@ class MainViewModel @Inject constructor(
     }
 
     private fun init() = intent {
-        val resp = getAllCourses.execute()
-        Log.e("response", "$resp")
+        val respCourses = getAllCourses.execute()
+        Log.e("response", "$respCourses")
         reduce {
-            state.copy(courses = resp)
+            state.copy(courses = respCourses)
         }
-
+        val respNote = getLastCommunityNote.execute()
+        Log.e("response", "$respNote")
+        if (respNote.author.id.isNotEmpty()) {
+            reduce {
+                state.copy(lastCommunityNote = respNote)
+            }
+        }
     }
 
     fun onAction(action: MainAction) = intent {
