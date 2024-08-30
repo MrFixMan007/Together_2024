@@ -26,6 +26,7 @@ import com.example.ui.components.CustomCoursePager
 import com.example.ui.components.CustomHeader
 import com.example.ui.components.custom_cards.CustomCommunityNote
 import com.example.ui.components.custom_cards.CustomSimpleNote
+import com.example.ui.time_formating.formatUtcToLocalDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -86,8 +87,9 @@ fun MainScreenContent(
                 clickText = context.getString(R.string.all),
                 onClick = {})
             Spacer(modifier = Modifier.height(12.dp))
+            val noteInfo = mapToCommunityNoteInfo(state.lastCommunityNote)
             CustomCommunityNote(
-                noteInfo = mapToCommunityNoteInfo(state.lastCommunityNote)
+                noteInfo = noteInfo.copy(noteCommonInfo = noteInfo.noteCommonInfo.copy(date = formatUtcToLocalDate(noteInfo.noteCommonInfo.date, context)))
             )
         }
 
@@ -136,7 +138,7 @@ private fun Preview() {
                     surname = "Гамалкин",
                     avatarUrl = "https://nastroyvse.ru/wp-content/uploads/2017/01/drugaya-versiya-android.jpg"
                 ),
-                date = "01.11.12"
+                date = "2024-08-30T19:28:04Z"
             ),
             lastLocalNote = LocalNotePreview(
                 id = "",

@@ -34,4 +34,60 @@
     <string name="yours_courses">Ваши курсы</string>
     <string name="yours_notes">Ваши заметки</string>
     <string name="community_notes">Заметки сообщества</string>
+
+    <!--    Months-->
+    <string-array name="months">
+        <item>@string/january</item>
+        <item>@string/february</item>
+        <item>@string/march</item>
+        <item>@string/april</item>
+        <item>@string/may</item>
+        <item>@string/june</item>
+        <item>@string/july</item>
+        <item>@string/august</item>
+        <item>@string/september</item>
+        <item>@string/october</item>
+        <item>@string/november</item>
+        <item>@string/december</item>
+    </string-array>
+    <string name="january">Январь</string>
+    <string name="february">Февраль</string>
+    <string name="march">Март</string>
+    <string name="april">Апрель</string>
+    <string name="may">Май</string>
+    <string name="june">Июнь</string>
+    <string name="july">Июль</string>
+    <string name="august">Август</string>
+    <string name="september">Сентябрь</string>
+    <string name="october">Октябрь</string>
+    <string name="november">Ноябрь</string>
+    <string name="december">Декабрь</string>
+
+    <!--    Of Months-->
+    <string-array name="of_months">
+        <item>@string/of_january</item>
+        <item>@string/of_february</item>
+        <item>@string/of_march</item>
+        <item>@string/of_april</item>
+        <item>@string/of_may</item>
+        <item>@string/of_june</item>
+        <item>@string/of_july</item>
+        <item>@string/of_august</item>
+        <item>@string/of_september</item>
+        <item>@string/of_october</item>
+        <item>@string/of_november</item>
+        <item>@string/of_december</item>
+    </string-array>
+    <string name="of_january">января</string>
+    <string name="of_february">февраля</string>
+    <string name="of_march">марта</string>
+    <string name="of_april">апреля</string>
+    <string name="of_may">мая</string>
+    <string name="of_june">июня</string>
+    <string name="of_july">июля</string>
+    <string name="of_august">августа</string>
+    <string name="of_september">сентября</string>
+    <string name="of_october">октября</string>
+    <string name="of_november">ноября</string>
+    <string name="of_december">декабря</string>
 </resources>

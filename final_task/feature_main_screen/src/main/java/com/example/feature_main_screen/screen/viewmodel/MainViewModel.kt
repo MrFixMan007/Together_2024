@@ -42,12 +42,10 @@ class MainViewModel @Inject constructor(
 
     private fun init() = intent {
         val respCourses = getAllCourses.execute()
-        Log.e("response", "$respCourses")
         reduce {
             state.copy(courses = respCourses)
         }
         val respNote = getLastCommunityNote.execute()
-        Log.e("response", "$respNote")
         if (respNote.author.id.isNotEmpty()) {
             reduce {
                 state.copy(lastCommunityNote = respNote)
