@@ -5,16 +5,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.feature_login.navigation.OutNavigator
 import com.example.feature_login.navigation.navigateToRegistrationScreen
 import com.example.feature_login.screens.authorization_screen.viewmodel.AuthorizationViewModel
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationSideEffect
+import com.example.navigation_authenticated.navigateToMainScreen
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
 fun AuthorizationScreenRoot(
-    navController: NavController,
-    outNavigator: OutNavigator,
+    navController: NavController
 ) {
     val viewModel: AuthorizationViewModel = hiltViewModel()
     val sideEffects = viewModel.sideEffects
@@ -22,7 +21,7 @@ fun AuthorizationScreenRoot(
     LaunchedEffect(sideEffects) {
         sideEffects.collect { sideEffect ->
             when(sideEffect) {
-                is AuthorizationSideEffect.Completed -> outNavigator.navigateToMainScreen()
+                is AuthorizationSideEffect.Completed -> navController.navigateToMainScreen()
                 is AuthorizationSideEffect.NavigateToRegistration -> navController.navigateToRegistrationScreen()
                 else -> Unit
             }

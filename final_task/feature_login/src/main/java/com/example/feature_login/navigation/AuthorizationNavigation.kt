@@ -7,8 +7,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.feature_login.screens.authorization_screen.AuthorizationScreenRoot
+import com.example.navigation_unauthenticated.UnauthenticatedNavigation
 
-const val AUTHORIZATION_SCREEN_ROUTE = "authorization_screen"
+private val AUTHORIZATION_SCREEN_ROUTE = UnauthenticatedNavigation.Authorization.route
 private const val TRANSITION_DURATION = 300
 
 fun NavController.navigateToAuthorizationScreen() {
@@ -16,8 +17,7 @@ fun NavController.navigateToAuthorizationScreen() {
 }
 
 fun NavGraphBuilder.authorizationScreen(
-    navController: NavController,
-    outNavigator: OutNavigator
+    navController: NavController
 ) {
     composable(
         route = AUTHORIZATION_SCREEN_ROUTE,
@@ -27,8 +27,7 @@ fun NavGraphBuilder.authorizationScreen(
         popEnterTransition = { fadeIn(tween(TRANSITION_DURATION)) },
     ) {
         AuthorizationScreenRoot(
-            navController = navController,
-            outNavigator = outNavigator
+            navController = navController
         )
     }
 }

@@ -88,7 +88,7 @@ dependencies {
     kapt(libs.hilt.compiler)
     kaptAndroidTest(libs.hilt.compiler)
     androidTestImplementation(libs.hilt.android.testing)
-    implementation (libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.orbit.compose)
     implementation(libs.orbit.viewmodel)
@@ -100,5 +100,7 @@ dependencies {
     implementation(project(":core:ui"))
     implementation(project(":network"))
     implementation(project(":feature_login"))
-    implementation(project(":feature_main_screen"))
+    implementation(project(":feature_home_screen"))
+    implementation(project(":core:navigation:unauthenticated"))
+    implementation(project(":core:navigation:authenticated"))
 }

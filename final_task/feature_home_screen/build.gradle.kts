@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace = "com.example.ui"
+    namespace = "com.example.feature_home_screen"
     compileSdk = 34
 
     defaultConfig {
@@ -56,8 +58,23 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.core.splashscreen)
-    implementation (libs.coil.compose)
+
     implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.orbit.compose)
+    implementation(libs.orbit.viewmodel)
+
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    kaptAndroidTest(libs.hilt.compiler)
+    androidTestImplementation(libs.hilt.android.testing)
+    implementation (libs.androidx.hilt.navigation.compose)
+
+    implementation(project(":core:common"))
+    implementation(project(":core:ui"))
+    implementation(project(":core:utils"))
     implementation(project(":core:navigation:authenticated"))
 }

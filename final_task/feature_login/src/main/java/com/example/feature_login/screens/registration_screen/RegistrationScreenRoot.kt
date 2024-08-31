@@ -5,16 +5,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.feature_login.navigation.OutNavigator
 import com.example.feature_login.navigation.navigateToAuthorizationScreen
 import com.example.feature_login.screens.registration_screen.model.RegistrationSideEffect
 import com.example.feature_login.screens.registration_screen.viewmodel.RegistrationViewModel
+import com.example.navigation_authenticated.navigateToMainScreen
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
 fun RegistrationScreenRoot(
-    navController: NavController,
-    outNavigator: OutNavigator
+    navController: NavController
 ) {
     val viewModel: RegistrationViewModel = hiltViewModel()
     val sideEffects = viewModel.sideEffects
@@ -22,7 +21,7 @@ fun RegistrationScreenRoot(
     LaunchedEffect(sideEffects) {
         sideEffects.collect { sideEffect ->
             when (sideEffect) {
-                is RegistrationSideEffect.Completed -> outNavigator.navigateToMainScreen()
+                is RegistrationSideEffect.Completed -> navController.navigateToMainScreen()
                 is RegistrationSideEffect.NavigateToAuthorization -> navController.navigateToAuthorizationScreen()
                 else -> Unit
             }

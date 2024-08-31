@@ -76,4 +76,6 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:ui"))
     implementation(project(":core:utils"))
+    implementation(project(":core:navigation:unauthenticated"))
+    implementation(project(":core:navigation:authenticated"))
 }
