@@ -1,6 +1,5 @@
 package com.example.feature_main_screen.screen.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.common.domain.model.authenticated.LocalNotePreview
 import com.example.common.domain.usecase.authenticated.GetAllCoursesUseCase
@@ -50,6 +49,9 @@ class MainViewModel @Inject constructor(
             reduce {
                 state.copy(lastCommunityNote = respNote)
             }
+        }
+        reduce {
+            state.copy(isLoading = false)
         }
     }
 

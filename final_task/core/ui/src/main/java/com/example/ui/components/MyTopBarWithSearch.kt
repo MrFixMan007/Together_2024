@@ -24,7 +24,7 @@ import com.example.ui.theme.Yellow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopBar(title: String, onSearchClick: () -> Unit) {
+fun MyTopBarWithSearch(title: String, onSearchClick: () -> Unit) {
     TopAppBar(
         title = {
             Text(text = title, style = Typography.headlineSmall, color = Color.Black)
@@ -55,5 +55,5 @@ fun MyTopBar(title: String, onSearchClick: () -> Unit) {
 @Composable
 @Preview
 private fun Preview() {
-    MyTopBar(title = "Главная", onSearchClick = {})
+    MyTopBarWithSearch(title = "Главная", onSearchClick = {})
 }

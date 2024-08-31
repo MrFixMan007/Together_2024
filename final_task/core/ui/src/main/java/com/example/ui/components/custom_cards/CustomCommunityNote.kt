@@ -69,7 +69,7 @@ fun CustomCommunityNote(
                         )
                     } else {
                         Icon(
-                            painter = painterResource(id = R.drawable.round_person_14),
+                            painter = painterResource(id = R.drawable.profile_icon),
                             tint = Color.White,
                             modifier = Modifier.size(14.dp),
                             contentDescription = "Avatar"
