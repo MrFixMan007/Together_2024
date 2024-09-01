@@ -1,9 +1,7 @@
 package com.example.profsoft_2024_final_task.data
 
 import android.util.Log
-import com.example.network.TokenProvider
 import com.example.network.api.CourseApiService
-import dagger.Provides
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import junit.framework.TestCase.assertNotNull
@@ -12,10 +10,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @HiltAndroidTest
-class CourseApiServiceTest {
+class CoursesPreviewResultApiServiceTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 

@@ -7,11 +7,13 @@ import com.example.common.domain.usecase.unauthenticated.AuthorizeUserUseCase
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationAction
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationSideEffect
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationState
-import com.example.utils.shared_prefs.TOKEN_NAME
-import com.example.utils.shared_prefs.TOKEN_SHARED_PREFS
-import com.example.utils.validation.isCorrectPhoneSymbolsAndLength
-import com.example.utils.validation.isValidPassword
-import com.example.utils.validation.isValidPhone
+import com.example.utils.PASSWORD_SHARED_PREFS
+import com.example.utils.PHONE_SHARED_PREFS
+import com.example.utils.TOKEN_NAME
+import com.example.utils.TOKEN_SHARED_PREFS
+import com.example.utils.isCorrectPhoneSymbolsAndLength
+import com.example.utils.isValidPassword
+import com.example.utils.isValidPhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -78,6 +80,8 @@ class AuthorizationViewModel @Inject constructor(
                             )
                         val editor: SharedPreferences.Editor = sharedPreferences.edit()
                         editor.putString(TOKEN_NAME, result.token)
+                        editor.putString(PHONE_SHARED_PREFS, state.authorizeUserParam.phoneNumber)
+                        editor.putString(PASSWORD_SHARED_PREFS, state.authorizeUserParam.password)
                         editor.apply()
                         _sideEffects.emit(AuthorizationSideEffect.Completed)
                     } else {

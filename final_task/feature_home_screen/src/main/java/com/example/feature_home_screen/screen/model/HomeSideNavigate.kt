@@ -4,4 +4,5 @@ sealed class HomeSideNavigate {
     data object NavigateToAllCourses : HomeSideNavigate()
     data object NavigateToAllLocalNotes : HomeSideNavigate()
     data object NavigateToAllCommunityNotes : HomeSideNavigate()
+    data object NavigateToAuthorize : HomeSideNavigate()
 }

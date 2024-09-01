@@ -9,19 +9,13 @@ import androidx.navigation.compose.composable
 import com.example.feature_login.screens.registration_screen.RegistrationScreenRoot
 import com.example.navigation_unauthenticated.UnauthenticatedNavigation
 
-private val REGISTRATION_SCREEN_ROUTE = UnauthenticatedNavigation.Registration.route
 private const val TRANSITION_DURATION = 300
-
-fun NavController.navigateToRegistrationScreen(
-) {
-    this.navigate(REGISTRATION_SCREEN_ROUTE)
-}
 
 fun NavGraphBuilder.registrationScreen(
     navController: NavController
 ) {
     composable(
-        route = REGISTRATION_SCREEN_ROUTE,
+        route = UnauthenticatedNavigation.REGISTRATION_ROUTE,
         enterTransition = { fadeIn(tween(TRANSITION_DURATION)) },
         exitTransition = { fadeOut(tween(TRANSITION_DURATION)) },
         popExitTransition = { fadeOut(tween(TRANSITION_DURATION)) },

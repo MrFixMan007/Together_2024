@@ -11,15 +11,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.common.domain.model.authenticated.Author
 import com.example.common.domain.model.authenticated.CommunityNotePreview
-import com.example.common.domain.model.authenticated.Course
+import com.example.common.domain.model.authenticated.CommunityNotePreviewResult
+import com.example.common.domain.model.authenticated.CoursesPreviewResult
 import com.example.common.domain.model.authenticated.LocalNotePreview
 import com.example.ui.R
 import com.example.feature_home_screen.mapToCourseInfo
@@ -42,9 +47,14 @@ import kotlinx.coroutines.flow.flowOf
 fun HomeScreenContent(
     state: HomeState,
     sideEffects: Flow<HomeSideEffect>,
+    stack: State<NavBackStackEntry?>,
     onAction: (HomeAction) -> Unit,
 ) {
     val context = LocalContext.current
+
+    LaunchedEffect(stack.value?.destination?.route) {
+        onAction(HomeAction.GetInfo)
+    }
 
     LaunchedEffect(sideEffects) {
         sideEffects.collect { sideEffect ->
@@ -56,8 +66,6 @@ fun HomeScreenContent(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
-                else -> Unit
             }
         }
     }
@@ -111,17 +119,19 @@ fun HomeScreenContent(
                 clickText = context.getString(R.string.all),
                 onClick = {})
             Spacer(modifier = Modifier.height(12.dp))
-            val noteInfo = mapToCommunityNoteInfo(state.lastCommunityNote)
-            CustomCommunityNote(
-                noteInfo = noteInfo.copy(
-                    noteCommonInfo = noteInfo.noteCommonInfo.copy(
-                        date = formatUtcToLocalDate(
-                            noteInfo.noteCommonInfo.date,
-                            context
+            if (state.lastCommunityNote.data != null) {
+                val noteInfo = mapToCommunityNoteInfo(state.lastCommunityNote)
+                CustomCommunityNote(
+                    noteInfo = noteInfo.copy(
+                        noteCommonInfo = noteInfo.noteCommonInfo.copy(
+                            date = formatUtcToLocalDate(
+                                noteInfo.noteCommonInfo.date,
+                                context
+                            )
                         )
                     )
                 )
-            )
+            }
         }
 
     }
@@ -136,7 +146,7 @@ private fun Preview() {
         state = HomeState(
             isLoading = false,
             courses = listOf(
-                Course(
+                CoursesPreviewResult(
                     id = "",
                     title = "Основы Андроида",
                     description = "blum",
@@ -148,7 +158,7 @@ private fun Preview() {
                         "Manifest"
                     )
                 ),
-                Course(
+                CoursesPreviewResult(
                     id = "",
                     title = "Основы",
                     description = "blum",
@@ -159,17 +169,19 @@ private fun Preview() {
                     )
                 ),
             ),
-            lastCommunityNote = CommunityNotePreview(
-                id = "",
-                title = "Каго\nчо?",
-                description = "Что у кого что",
-                author = Author(
+            lastCommunityNote = CommunityNotePreviewResult(
+                data = CommunityNotePreview(
                     id = "",
-                    name = "Данил",
-                    surname = "Гамалкин",
-                    avatarUrl = ""
+                    title = "Каго\nчо?",
+                    description = "Что у кого что",
+                    author = Author(
+                        id = "",
+                        name = "Данил",
+                        surname = "Гамалкин",
+                        avatarUrl = ""
+                    ),
+                    date = "2024-08-30T19:28:04Z"
                 ),
-                date = "2024-08-30T19:28:04Z"
             ),
             lastLocalNote = LocalNotePreview(
                 id = "",
@@ -180,5 +192,6 @@ private fun Preview() {
         ),
         sideEffects = fakeSideEffects,
         onAction = fakeOnAction,
+        stack = rememberNavController().currentBackStackEntryAsState()
     )
 }

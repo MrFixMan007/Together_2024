@@ -8,12 +8,14 @@ import com.example.common.domain.usecase.unauthenticated.RegisterUserUseCase
 import com.example.feature_login.screens.registration_screen.model.RegistrationAction
 import com.example.feature_login.screens.registration_screen.model.RegistrationSideEffect
 import com.example.feature_login.screens.registration_screen.model.RegistrationState
-import com.example.utils.shared_prefs.TOKEN_NAME
-import com.example.utils.shared_prefs.TOKEN_SHARED_PREFS
-import com.example.utils.validation.isCorrectPhoneSymbolsAndLength
-import com.example.utils.validation.isValidName
-import com.example.utils.validation.isValidPassword
-import com.example.utils.validation.isValidPhone
+import com.example.utils.PASSWORD_SHARED_PREFS
+import com.example.utils.PHONE_SHARED_PREFS
+import com.example.utils.TOKEN_NAME
+import com.example.utils.TOKEN_SHARED_PREFS
+import com.example.utils.isCorrectPhoneSymbolsAndLength
+import com.example.utils.isValidName
+import com.example.utils.isValidPassword
+import com.example.utils.isValidPhone
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -100,6 +102,8 @@ class RegistrationViewModel @Inject constructor(
                             )
                         val editor: SharedPreferences.Editor = sharedPreferences.edit()
                         editor.putString(TOKEN_NAME, result.token)
+                        editor.putString(PHONE_SHARED_PREFS, state.registerUserParam.phoneNumber)
+                        editor.putString(PASSWORD_SHARED_PREFS, state.registerUserParam.password)
                         editor.apply()
                         _sideEffects.emit(RegistrationSideEffect.Completed)
                     } else {

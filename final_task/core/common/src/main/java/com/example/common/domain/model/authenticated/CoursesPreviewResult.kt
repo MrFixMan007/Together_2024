@@ -1,6 +1,6 @@
 package com.example.common.domain.model.authenticated
 
-data class Course(
+data class CoursesPreviewResult(
     val id: String,
     val title: String,
     val description: String,

@@ -1,18 +1,22 @@
-package com.example.profsoft_2024_final_task.app.di
+package com.example.profsoft_2024_final_task.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.UnauthenticatedApiRepository
 import com.example.network.AuthInterceptor
 import com.example.network.TokenProvider
+import com.example.network.UserProvider
 import com.example.network.api.AuthenticatedApiRepositoryImpl
 import com.example.network.api.CourseApiService
 import com.example.network.api.UnauthenticatedApiRepositoryImpl
 import com.example.network.api.UserApiService
-import com.example.utils.shared_prefs.TOKEN_NAME
-import com.example.utils.shared_prefs.TOKEN_SHARED_PREFS
+import com.example.utils.PASSWORD_SHARED_PREFS
+import com.example.utils.PHONE_SHARED_PREFS
+import com.example.utils.TOKEN_NAME
+import com.example.utils.TOKEN_SHARED_PREFS
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -58,7 +62,10 @@ class NetworkModule {
     @UnauthenticatedRetrofitClient
     @Provides
     @Singleton
-    fun provideUnauthenticatedRetrofit(@UnauthenticatedRetrofitClient okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
+    fun provideUnauthenticatedRetrofit(
+        @UnauthenticatedRetrofitClient okHttpClient: OkHttpClient,
+        moshi: Moshi
+    ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(DEV_BASE_URL)
@@ -80,13 +87,36 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideTokenProvider(@ApplicationContext context: Context): TokenProvider{
-        return object : TokenProvider{
-            val sharedPreferences = context.getSharedPreferences(TOKEN_SHARED_PREFS, MODE_PRIVATE)
-            val myToken = sharedPreferences.getString(TOKEN_NAME, "").toString()
-
+    fun provideTokenProvider(@ApplicationContext context: Context): TokenProvider {
+        return object : TokenProvider {
             override fun getToken(): String {
-                return myToken
+                val sharedPreferences = context.getSharedPreferences(TOKEN_SHARED_PREFS, MODE_PRIVATE)
+                return sharedPreferences.getString(TOKEN_NAME, "").toString()
+            }
+
+            override fun setToken(newToken: String) {
+                val sharedPreferences = context.getSharedPreferences(TOKEN_SHARED_PREFS, MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putString(TOKEN_NAME, newToken)
+                editor.apply()
+            }
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserProvider(@ApplicationContext context: Context): UserProvider {
+        return object : UserProvider {
+            val sharedPreferences = context.getSharedPreferences(TOKEN_SHARED_PREFS, MODE_PRIVATE)
+            val myPhone = sharedPreferences.getString(PHONE_SHARED_PREFS, "").toString()
+            val myPassword = sharedPreferences.getString(PASSWORD_SHARED_PREFS, "").toString()
+
+            override fun getPhone(): String {
+                return myPhone
+            }
+
+            override fun getPassword(): String {
+                return myPassword
             }
         }
     }
@@ -94,19 +124,33 @@ class NetworkModule {
     @AuthenticatedRetrofitClient
     @Provides
     @Singleton
-    fun provideAuthenticatedOkHttpClient(@ApplicationContext context: Context, tokenProvider: TokenProvider): OkHttpClient {
+    fun provideAuthenticatedOkHttpClient(
+        @ApplicationContext context: Context,
+        tokenProvider: TokenProvider,
+        userApiService: UserApiService,
+        userProvider: UserProvider,
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .readTimeout(READ_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
             .connectTimeout(CONNECTION_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
             .addInterceptor(ChuckerInterceptor(context = context))
-            .addInterceptor(AuthInterceptor(tokenProvider = tokenProvider))
+            .addInterceptor(
+                AuthInterceptor(
+                    tokenProvider = tokenProvider,
+                    userApiService = userApiService,
+                    userProvider = userProvider
+                )
+            )
             .build()
     }
 
     @AuthenticatedRetrofitClient
     @Provides
     @Singleton
-    fun provideAuthenticatedRetrofit(@AuthenticatedRetrofitClient okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
+    fun provideAuthenticatedRetrofit(
+        @AuthenticatedRetrofitClient okHttpClient: OkHttpClient,
+        moshi: Moshi
+    ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(DEV_BASE_URL)

@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.app.di
+package com.example.profsoft_2024_final_task.di
 
 import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.UnauthenticatedApiRepository

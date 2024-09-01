@@ -9,18 +9,13 @@ import androidx.navigation.compose.composable
 import com.example.feature_login.screens.authorization_screen.AuthorizationScreenRoot
 import com.example.navigation_unauthenticated.UnauthenticatedNavigation
 
-private val AUTHORIZATION_SCREEN_ROUTE = UnauthenticatedNavigation.Authorization.route
 private const val TRANSITION_DURATION = 300
-
-fun NavController.navigateToAuthorizationScreen() {
-    this.navigate(AUTHORIZATION_SCREEN_ROUTE)
-}
 
 fun NavGraphBuilder.authorizationScreen(
     navController: NavController
 ) {
     composable(
-        route = AUTHORIZATION_SCREEN_ROUTE,
+        route = UnauthenticatedNavigation.AUTHORIZATION_ROUTE,
         enterTransition = { fadeIn(tween(TRANSITION_DURATION)) },
         exitTransition = { fadeOut(tween(TRANSITION_DURATION)) },
         popExitTransition = { fadeOut(tween(TRANSITION_DURATION)) },

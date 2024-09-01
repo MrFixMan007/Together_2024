@@ -1,16 +1,17 @@
 package com.example.network.api
 
 import com.example.common.data.AuthenticatedApiRepository
-import com.example.common.domain.model.authenticated.Author
-import com.example.common.domain.model.authenticated.CommunityNotePreview
-import com.example.common.domain.model.authenticated.Course
+import com.example.common.domain.model.authenticated.CommunityNotePreviewResult
+import com.example.common.domain.model.authenticated.CoursesPreviewResult
+import com.example.common.domain.model.authenticated.ResultMark
 import com.example.network.mapToCommunityNotePreview
 import com.example.network.mapToCourse
+import retrofit2.HttpException
 import retrofit2.Retrofit
 
 class AuthenticatedApiRepositoryImpl(private val retrofit: Retrofit) : AuthenticatedApiRepository {
 
-    override suspend fun getCourseById(id: String): Course? {
+    override suspend fun getCourseById(id: String): CoursesPreviewResult? {
         val response = kotlin.runCatching {
             retrofit.create(CourseApiService::class.java).getCourseById(id)
         }
@@ -22,7 +23,7 @@ class AuthenticatedApiRepositoryImpl(private val retrofit: Retrofit) : Authentic
         } ?: return null
     }
 
-    override suspend fun getAllCourses(): List<Course> {
+    override suspend fun getAllCourses(): List<CoursesPreviewResult> {
         val response = kotlin.runCatching {
             retrofit.create(CourseApiService::class.java).getCourses()
         }
@@ -34,28 +35,27 @@ class AuthenticatedApiRepositoryImpl(private val retrofit: Retrofit) : Authentic
         } ?: return listOf()
     }
 
-    override suspend fun getLastCommunityNote(): CommunityNotePreview {
+    override suspend fun getLastCommunityNote(): CommunityNotePreviewResult {
         val response = kotlin.runCatching {
             retrofit.create(NoteApiService::class.java).getNotes()
         }
-        response.onFailure {
-            return CommunityNotePreview(
-                id = "",
-                title = "",
-                description = "",
-                date = "",
-                author = Author(id = "", name = "", surname = "", avatarUrl = "")
+        response.onFailure { throwable  ->
+            if (throwable is HttpException) {
+                if (throwable.code() == 401){
+                    return CommunityNotePreviewResult(
+                        resultMark = ResultMark.TokenIsNotValid
+                    )
+                }
+            }
+            return CommunityNotePreviewResult(
+                resultMark = ResultMark.Error
             )
         }
 
         response.getOrNull()?.data?.let {
             return mapToCommunityNotePreview(response.getOrNull()!!.data.last())
-        } ?: return CommunityNotePreview(
-            id = "",
-            title = "",
-            description = "",
-            date = "",
-            author = Author(id = "", name = "", surname = "", avatarUrl = "")
+        } ?: return CommunityNotePreviewResult(
+            resultMark = ResultMark.Error
         )
     }
 }

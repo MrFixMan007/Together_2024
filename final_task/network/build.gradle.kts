@@ -10,5 +10,8 @@ java {
 
 dependencies {
     implementation(project(mapOf("path" to ":core:common")))
+    implementation(project(mapOf("path" to ":core:utils")))
     api(libs.retrofit)
+
+    implementation (libs.kotlinx.coroutines.core)
 }

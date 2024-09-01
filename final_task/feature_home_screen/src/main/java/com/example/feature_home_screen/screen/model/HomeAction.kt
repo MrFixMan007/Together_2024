@@ -12,4 +12,6 @@ sealed class HomeAction {
     data object CourseClick : HomeAction()
     data object LocalNoteClick : HomeAction()
     data object CommunityNoteClick : HomeAction()
+
+    data object GetInfo : HomeAction()
 }

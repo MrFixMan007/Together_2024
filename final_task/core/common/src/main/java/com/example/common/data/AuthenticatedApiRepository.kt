@@ -1,12 +1,12 @@
 package com.example.common.data
 
-import com.example.common.domain.model.authenticated.CommunityNotePreview
-import com.example.common.domain.model.authenticated.Course
+import com.example.common.domain.model.authenticated.CommunityNotePreviewResult
+import com.example.common.domain.model.authenticated.CoursesPreviewResult
 
 interface AuthenticatedApiRepository {
-    suspend fun getCourseById(id: String): Course?
-    suspend fun getAllCourses(): List<Course>
-    suspend fun getLastCommunityNote(): CommunityNotePreview
+    suspend fun getCourseById(id: String): CoursesPreviewResult?
+    suspend fun getAllCourses(): List<CoursesPreviewResult>
+    suspend fun getLastCommunityNote(): CommunityNotePreviewResult
 //    suspend fun getAllCommunityNotes(): List<CommunityNotePreview>
 //    suspend fun getCommunityNoteById(id: String): CommunityNote
 }

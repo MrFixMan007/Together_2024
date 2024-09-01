@@ -9,8 +9,8 @@ import com.example.network.mapToAuthorizeResult
 import com.example.network.mapToAuthorizeUserRequestBody
 import com.example.network.mapToRegisterResult
 import com.example.network.mapToRegisterUserRequestBody
+import com.example.utils.hashPasswordMD5
 import retrofit2.Retrofit
-import java.security.MessageDigest
 
 class UnauthenticatedApiRepositoryImpl(private val retrofit: Retrofit) : UnauthenticatedApiRepository {
     override suspend fun userRegister(registerUserParam: RegisterUserParam): RegisterResult {
@@ -42,8 +42,6 @@ class UnauthenticatedApiRepositoryImpl(private val retrofit: Retrofit) : Unauthe
     }
 
     override fun hashPassword(password: String): String {
-        val md = MessageDigest.getInstance("MD5")
-        val digest = md.digest(password.toByteArray())
-        return digest.joinToString("") { "%02x".format(it) }
+        return hashPasswordMD5(password = password)
     }
 }

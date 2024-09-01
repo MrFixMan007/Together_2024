@@ -1,19 +1,24 @@
 package com.example.profsoft_2024_final_task
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.UnauthenticatedApiRepository
 import com.example.network.AuthInterceptor
 import com.example.network.TokenProvider
+import com.example.network.UserProvider
 import com.example.network.api.AuthenticatedApiRepositoryImpl
 import com.example.network.api.CourseApiService
 import com.example.network.api.NoteApiService
 import com.example.network.api.UnauthenticatedApiRepositoryImpl
 import com.example.network.api.UserApiService
-import com.example.profsoft_2024_final_task.app.di.AuthenticatedRetrofitClient
-import com.example.profsoft_2024_final_task.app.di.NetworkModule
-import com.example.profsoft_2024_final_task.app.di.UnauthenticatedRetrofitClient
+import com.example.profsoft_2024_final_task.di.AuthenticatedRetrofitClient
+import com.example.profsoft_2024_final_task.di.NetworkModule
+import com.example.profsoft_2024_final_task.di.UnauthenticatedRetrofitClient
+import com.example.utils.PASSWORD_SHARED_PREFS
+import com.example.utils.PHONE_SHARED_PREFS
+import com.example.utils.TOKEN_SHARED_PREFS
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -61,7 +66,10 @@ class TestTokenModule {
     @UnauthenticatedRetrofitClient
     @Provides
     @Singleton
-    fun provideUnauthenticatedRetrofit(@UnauthenticatedRetrofitClient okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
+    fun provideUnauthenticatedRetrofit(
+        @UnauthenticatedRetrofitClient okHttpClient: OkHttpClient,
+        moshi: Moshi
+    ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(DEV_BASE_URL)
@@ -81,22 +89,54 @@ class TestTokenModule {
         return UnauthenticatedApiRepositoryImpl(retrofit = retrofit)
     }
 
+    @Provides
+    @Singleton
+    fun provideUserProvider(@ApplicationContext context: Context): UserProvider {
+        return object : UserProvider {
+            val sharedPreferences = context.getSharedPreferences(TOKEN_SHARED_PREFS, MODE_PRIVATE)
+            val myPhone = sharedPreferences.getString(PHONE_SHARED_PREFS, "").toString()
+            val myPassword = sharedPreferences.getString(PASSWORD_SHARED_PREFS, "").toString()
+
+            override fun getPhone(): String {
+                return myPhone
+            }
+
+            override fun getPassword(): String {
+                return myPassword
+            }
+        }
+    }
+
     @AuthenticatedRetrofitClient
     @Provides
     @Singleton
-    fun provideAuthenticatedOkHttpClient(@ApplicationContext context: Context, tokenProvider: TokenProvider): OkHttpClient {
+    fun provideAuthenticatedOkHttpClient(
+        @ApplicationContext context: Context,
+        tokenProvider: TokenProvider,
+        userApiService: UserApiService,
+        userProvider: UserProvider,
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .readTimeout(READ_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
             .connectTimeout(CONNECTION_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
             .addInterceptor(ChuckerInterceptor(context = context))
-            .addInterceptor(AuthInterceptor(tokenProvider = tokenProvider))
+            .addInterceptor(
+                AuthInterceptor(
+                    tokenProvider = tokenProvider,
+                    userApiService = userApiService,
+                    userProvider = userProvider
+                )
+            )
             .build()
     }
 
     @AuthenticatedRetrofitClient
     @Provides
     @Singleton
-    fun provideAuthenticatedRetrofit(@AuthenticatedRetrofitClient okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
+    fun provideAuthenticatedRetrofit(
+        @AuthenticatedRetrofitClient okHttpClient: OkHttpClient,
+        moshi: Moshi
+    ): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(DEV_BASE_URL)
@@ -128,6 +168,10 @@ class TestTokenModule {
         return object : TokenProvider {
             override fun getToken(): String {
                 return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdWQiLCJpc3MiOiJpc3N1ZXIiLCJpZCI6IjY2YzYzYTIxZTk0OTNmMWY0NjBkZmQ2OCIsInBob25lIjoiNzkyNzYwNTEyMzEiLCJwYXNzd29yZE1EIjoiMjVmOWU3OTQzMjNiNDUzODg1ZjUxODFmMWI2MjRkMGIiLCJleHAiOjE3MjQ4MTc5NjZ9.DlXEnXvNAeY_lA52on41x5eLEXs_sPeiX-DBJs7R5_k"
+            }
+
+            override fun setToken(newToken: String) {
+                return
             }
         }
     }

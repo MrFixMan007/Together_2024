@@ -11,8 +11,8 @@ import com.example.navigation_authenticated.MAIN_SCREEN_ROUTE
 import com.example.navigation_unauthenticated.UnauthenticatedNavigation
 import com.example.profsoft_2024_final_task.presentation.navigation.MyNavHost
 import com.example.ui.theme.ComposeTheme
-import com.example.utils.shared_prefs.TOKEN_NAME
-import com.example.utils.shared_prefs.TOKEN_SHARED_PREFS
+import com.example.utils.TOKEN_NAME
+import com.example.utils.TOKEN_SHARED_PREFS
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences(TOKEN_SHARED_PREFS, MODE_PRIVATE)
         val myToken = sharedPreferences.getString(TOKEN_NAME, "").toString()
         val startDestination =
-            if (myToken.isEmpty()) UnauthenticatedNavigation.Authorization.route else MAIN_SCREEN_ROUTE
+            if (myToken.isEmpty()) UnauthenticatedNavigation.AUTHORIZATION_ROUTE else MAIN_SCREEN_ROUTE
 
         enableEdgeToEdge()
         setContent {

@@ -2,7 +2,8 @@ package com.example.network
 
 import com.example.common.domain.model.authenticated.Author
 import com.example.common.domain.model.authenticated.CommunityNotePreview
-import com.example.common.domain.model.authenticated.Course
+import com.example.common.domain.model.authenticated.CommunityNotePreviewResult
+import com.example.common.domain.model.authenticated.CoursesPreviewResult
 import com.example.common.domain.model.authenticated.Text
 import com.example.common.domain.model.unauthenticated.AuthorizeResult
 import com.example.common.domain.model.unauthenticated.AuthorizeUserParam
@@ -55,8 +56,8 @@ fun mapToRegisterResult(registrationResponse: RegisterUserResponse?): RegisterRe
     )
 }
 
-fun mapToCourse(courseDto: CourseDto): Course {
-    return Course(
+fun mapToCourse(courseDto: CourseDto): CoursesPreviewResult {
+    return CoursesPreviewResult(
         id = courseDto.id,
         title = courseDto.title,
         description = courseDto.description,
@@ -69,13 +70,15 @@ fun mapToText(textDto: TextDto): Text {
     return Text(text = textDto.text, imageUrl = textDto.image)
 }
 
-fun mapToCommunityNotePreview(noteDto: NoteDto): CommunityNotePreview {
-    return CommunityNotePreview(
-        id = noteDto.id,
-        title = noteDto.title,
-        description = noteDto.content.first().text,
-        date = noteDto.date,
-        author = mapToAuthor(noteDto.author)
+fun mapToCommunityNotePreview(noteDto: NoteDto): CommunityNotePreviewResult {
+    return CommunityNotePreviewResult(
+        data = CommunityNotePreview(
+            id = noteDto.id,
+            title = noteDto.title,
+            description = noteDto.content.first().text,
+            date = noteDto.date,
+            author = mapToAuthor(noteDto.author)
+        ),
     )
 }
 

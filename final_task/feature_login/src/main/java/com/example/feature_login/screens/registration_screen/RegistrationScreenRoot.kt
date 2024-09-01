@@ -5,10 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.feature_login.navigation.navigateToAuthorizationScreen
 import com.example.feature_login.screens.registration_screen.model.RegistrationSideEffect
 import com.example.feature_login.screens.registration_screen.viewmodel.RegistrationViewModel
 import com.example.navigation_authenticated.navigateToMainScreen
+import com.example.navigation_unauthenticated.navigateToAuthorizationScreen
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable
