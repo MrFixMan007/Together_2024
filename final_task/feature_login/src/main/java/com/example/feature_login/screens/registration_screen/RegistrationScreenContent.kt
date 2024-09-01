@@ -57,8 +57,6 @@ fun RegistrationScreenContent(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
-                else -> Unit
             }
         }
     }

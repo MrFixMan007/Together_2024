@@ -55,8 +55,6 @@ fun AuthorizationScreenContent(
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-
-                else -> Unit
             }
         }
     }

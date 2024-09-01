@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.common.domain.usecase.unauthenticated.AuthorizeUserUseCase
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationAction
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationSideEffect
+import com.example.feature_login.screens.authorization_screen.model.AuthorizationSideNavigate
 import com.example.feature_login.screens.authorization_screen.model.AuthorizationState
 import com.example.utils.PASSWORD_SHARED_PREFS
 import com.example.utils.PHONE_SHARED_PREFS
@@ -31,8 +32,8 @@ class AuthorizationViewModel @Inject constructor(
         AuthorizationState()
     )
 
-    private val _sideEffects = MutableSharedFlow<AuthorizationSideEffect>()
-    val sideEffects = _sideEffects.asSharedFlow()
+    private val _sideNavigate = MutableSharedFlow<AuthorizationSideNavigate>()
+    val sideNavigate = _sideNavigate.asSharedFlow()
 
     fun onAction(action: AuthorizationAction) = intent {
         when (action) {
@@ -80,12 +81,12 @@ class AuthorizationViewModel @Inject constructor(
                             )
                         val editor: SharedPreferences.Editor = sharedPreferences.edit()
                         editor.putString(TOKEN_NAME, result.token)
-                        editor.putString(PHONE_SHARED_PREFS, state.authorizeUserParam.phoneNumber)
+                        editor.putString(PHONE_SHARED_PREFS, phoneParam)
                         editor.putString(PASSWORD_SHARED_PREFS, state.authorizeUserParam.password)
                         editor.apply()
-                        _sideEffects.emit(AuthorizationSideEffect.Completed)
+                        _sideNavigate.emit(AuthorizationSideNavigate.Completed)
                     } else {
-                        _sideEffects.emit(AuthorizationSideEffect.Failed)
+                        postSideEffect(AuthorizationSideEffect.Failed)
                     }
 
                     reduce {
@@ -112,7 +113,7 @@ class AuthorizationViewModel @Inject constructor(
                 reduce {
                     state.copy(isEnabledRegisterNavigateButton = false)
                 }
-                _sideEffects.emit(AuthorizationSideEffect.NavigateToRegistration)
+                _sideNavigate.emit(AuthorizationSideNavigate.NavigateToRegistration)
 
                 delay(2000)
                 if (!state.isEnabledRegisterNavigateButton) {

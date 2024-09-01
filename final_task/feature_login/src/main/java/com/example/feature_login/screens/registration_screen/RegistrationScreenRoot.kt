@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.feature_login.screens.registration_screen.model.RegistrationSideEffect
+import com.example.feature_login.screens.registration_screen.model.RegistrationSideNavigate
 import com.example.feature_login.screens.registration_screen.viewmodel.RegistrationViewModel
 import com.example.navigation_authenticated.navigateToMainScreen
 import com.example.navigation_unauthenticated.navigateToAuthorizationScreen
@@ -16,14 +16,13 @@ fun RegistrationScreenRoot(
     navController: NavController
 ) {
     val viewModel: RegistrationViewModel = hiltViewModel()
-    val sideEffects = viewModel.sideEffects
+    val sideEffects = viewModel.sideNavigate
 
     LaunchedEffect(sideEffects) {
         sideEffects.collect { sideEffect ->
             when (sideEffect) {
-                is RegistrationSideEffect.Completed -> navController.navigateToMainScreen()
-                is RegistrationSideEffect.NavigateToAuthorization -> navController.navigateToAuthorizationScreen()
-                else -> Unit
+                is RegistrationSideNavigate.Completed -> navController.navigateToMainScreen()
+                is RegistrationSideNavigate.NavigateToAuthorization -> navController.navigateToAuthorizationScreen()
             }
         }
     }
@@ -31,7 +30,7 @@ fun RegistrationScreenRoot(
     Column {
         RegistrationScreenContent(
             state = viewModel.collectAsState().value,
-            sideEffects = sideEffects,
+            sideEffects = viewModel.container.sideEffectFlow,
             onAction = { action -> viewModel.onAction(action) })
     }
 }
