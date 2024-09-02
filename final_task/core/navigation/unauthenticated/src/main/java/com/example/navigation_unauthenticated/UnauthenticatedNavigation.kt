@@ -8,7 +8,14 @@ object UnauthenticatedNavigation{
 }
 
 fun NavController.navigateToAuthorizationScreen() {
-    this.navigate(UnauthenticatedNavigation.AUTHORIZATION_ROUTE)
+    this.navigate(UnauthenticatedNavigation.AUTHORIZATION_ROUTE){
+        popUpTo(UnauthenticatedNavigation.REGISTRATION_ROUTE){
+            saveState = true
+            inclusive = true
+        }
+        launchSingleTop = true
+        restoreState = true
+    }
 }
 
 fun NavController.navigateToRegistrationScreen(

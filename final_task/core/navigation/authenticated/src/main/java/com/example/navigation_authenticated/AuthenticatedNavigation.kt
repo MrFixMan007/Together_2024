@@ -31,6 +31,8 @@ sealed class AuthenticatedNavigation(
 fun NavController.navigateToMainScreen(
 ) {
     this.navigate(MAIN_SCREEN_ROUTE) {
-        popUpToRoute
+        popUpTo(0){
+            inclusive = true
+        }
     }
 }

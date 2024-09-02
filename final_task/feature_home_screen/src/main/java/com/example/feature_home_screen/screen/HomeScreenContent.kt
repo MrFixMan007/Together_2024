@@ -53,7 +53,9 @@ fun HomeScreenContent(
     val context = LocalContext.current
 
     LaunchedEffect(stack.value?.destination?.route) {
-        onAction(HomeAction.GetInfo)
+        if (!state.isLoading){
+            onAction(HomeAction.GetInfo)
+        }
     }
 
     LaunchedEffect(sideEffects) {

@@ -25,9 +25,7 @@ fun HomeScreenRoot(
                 is HomeSideNavigate.NavigateToAllCommunityNotes -> {}
                 is HomeSideNavigate.NavigateToAuthorize -> navController.navigate(
                     UnauthenticatedNavigation.AUTHORIZATION_ROUTE
-                ) {
-                    popUpToRoute
-                }
+                )
             }
         }
     }

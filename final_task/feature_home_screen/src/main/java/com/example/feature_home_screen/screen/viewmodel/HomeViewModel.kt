@@ -34,10 +34,14 @@ class HomeViewModel @Inject constructor(
         )
     )
 
+    init {
+        getInfo()
+    }
+
     private val _sideNavigate = MutableSharedFlow<HomeSideNavigate>()
     val sideNavigate = _sideNavigate.asSharedFlow()
 
-    private fun init() = intent {
+    private fun getInfo() = intent {
         reduce {
             state.copy(isLoading = true)
         }
@@ -83,7 +87,7 @@ class HomeViewModel @Inject constructor(
             is HomeAction.CommunityNoteClick -> {}
 
             is HomeAction.GetInfo -> {
-                init()
+                getInfo()
             }
         }
     }
