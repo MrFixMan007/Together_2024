@@ -1,6 +1,6 @@
 package com.example.network.dto.authenticated
 
-data class Comment(
+data class CommentDto(
     val id: String,
     val author: AuthorDto,
     val text: String

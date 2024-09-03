@@ -1,6 +1,8 @@
 package com.example.network
 
 import com.example.common.domain.model.authenticated.Author
+import com.example.common.domain.model.authenticated.Comment
+import com.example.common.domain.model.authenticated.CommunityNote
 import com.example.common.domain.model.authenticated.CommunityNotePreview
 import com.example.common.domain.model.authenticated.CommunityNotePreviewResult
 import com.example.common.domain.model.authenticated.CoursesPreviewResult
@@ -10,6 +12,7 @@ import com.example.common.domain.model.unauthenticated.AuthorizeUserParam
 import com.example.common.domain.model.unauthenticated.RegisterResult
 import com.example.common.domain.model.unauthenticated.RegisterUserParam
 import com.example.network.dto.authenticated.AuthorDto
+import com.example.network.dto.authenticated.CommentDto
 import com.example.network.dto.authenticated.course.CourseDto
 import com.example.network.dto.authenticated.TextDto
 import com.example.network.dto.authenticated.note.NoteDto
@@ -79,6 +82,25 @@ fun mapToCommunityNotePreview(noteDto: NoteDto): CommunityNotePreviewResult {
             date = noteDto.date,
             author = mapToAuthor(noteDto.author)
         ),
+    )
+}
+
+fun mapToCommunityNote(noteDto: NoteDto): CommunityNote {
+    return CommunityNote(
+        id = noteDto.id,
+        title = noteDto.title,
+        text = noteDto.content.map { mapToText(it) },
+        date = noteDto.date,
+        author = mapToAuthor(noteDto.author),
+        comments = noteDto.comments.map { mapToComment(it) }
+    )
+}
+
+fun mapToComment(commentDto: CommentDto): Comment {
+    return Comment(
+        id = commentDto.id,
+        author = mapToAuthor(commentDto.author),
+        text = commentDto.text
     )
 }
 

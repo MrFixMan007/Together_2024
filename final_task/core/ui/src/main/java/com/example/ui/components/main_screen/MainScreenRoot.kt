@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.navigation_authenticated.AuthenticatedNavigation
+import com.example.navigation_authenticated.DETAILS_SCREEN_ROUTE
 import com.example.navigation_authenticated.MAIN_SCREEN_ROUTE
 import com.example.ui.components.MyTopBarWithSearch
 import com.example.ui.components.bottom_bar.BottomBarRoot
@@ -25,6 +26,7 @@ fun NavGraphBuilder.mainScreen(
     addScreenContent: @Composable () -> Unit,
     messageScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit,
+    communityNoteScreenContent: @Composable () -> Unit,
 ) {
     composable(
         route = MAIN_SCREEN_ROUTE,
@@ -53,6 +55,7 @@ fun NavGraphBuilder.mainScreen(
             )
         }
     }
+    composable(DETAILS_SCREEN_ROUTE) { communityNoteScreenContent() }
 }
 
 @Composable

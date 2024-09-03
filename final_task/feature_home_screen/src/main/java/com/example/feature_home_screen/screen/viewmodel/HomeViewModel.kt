@@ -86,7 +86,9 @@ class HomeViewModel @Inject constructor(
 
             is HomeAction.CourseClick -> {}
             is HomeAction.LocalNoteClick -> {}
-            is HomeAction.CommunityNoteClick -> {}
+            is HomeAction.CommunityNoteClick -> {
+                _sideNavigate.emit(HomeSideNavigate.NavigateToCommunityNote)
+            }
 
             is HomeAction.GetInfo -> {
                 getInfo()

@@ -1,9 +1,11 @@
 package com.example.network.api
 
 import com.example.common.data.AuthenticatedApiRepository
+import com.example.common.domain.model.authenticated.CommunityNote
 import com.example.common.domain.model.authenticated.CommunityNotePreviewResult
 import com.example.common.domain.model.authenticated.CoursesPreviewResult
 import com.example.common.domain.model.authenticated.ResultMark
+import com.example.network.mapToCommunityNote
 import com.example.network.mapToCommunityNotePreview
 import com.example.network.mapToCourse
 import retrofit2.HttpException
@@ -57,5 +59,17 @@ class AuthenticatedApiRepositoryImpl(private val retrofit: Retrofit) : Authentic
         } ?: return CommunityNotePreviewResult(
             resultMark = ResultMark.Error
         )
+    }
+
+    override suspend fun getCommunityNoteById(id: String): CommunityNote? {
+        val response = kotlin.runCatching {
+            retrofit.create(NoteApiService::class.java).getNoteById(id)
+        }
+        response.onFailure {
+            return null
+        }
+        response.getOrNull()?.data?.let {
+            return mapToCommunityNote(response.getOrNull()!!.data)
+        } ?: return null
     }
 }

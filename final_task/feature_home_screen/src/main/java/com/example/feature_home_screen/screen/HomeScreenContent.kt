@@ -2,6 +2,7 @@ package com.example.feature_home_screen.screen
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -132,6 +133,9 @@ fun HomeScreenContent(
             if (state.lastCommunityNote.data != null) {
                 val noteInfo = mapToCommunityNoteInfo(state.lastCommunityNote)
                 CustomCommunityNote(
+                    modifier = Modifier.clickable {
+                        onAction(HomeAction.CommunityNoteClick)
+                    },
                     noteInfo = noteInfo.copy(
                         noteCommonInfo = noteInfo.noteCommonInfo.copy(
                             date = formatUtcToLocalDate(

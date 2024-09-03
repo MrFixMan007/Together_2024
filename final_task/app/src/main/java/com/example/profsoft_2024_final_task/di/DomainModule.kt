@@ -4,6 +4,7 @@ import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.DatabaseRepository
 import com.example.common.data.UnauthenticatedApiRepository
 import com.example.common.domain.usecase.authenticated.GetAllCoursesUseCase
+import com.example.common.domain.usecase.authenticated.GetCommunityNoteByIdUseCase
 import com.example.common.domain.usecase.authenticated.GetCourseByIdUseCase
 import com.example.common.domain.usecase.authenticated.GetLastCommunityNoteUseCase
 import com.example.common.domain.usecase.authenticated.GetLastLocalNoteUseCase
@@ -53,6 +54,12 @@ class DomainModule {
     @Singleton
     fun provideGetLastLocalNoteUseCase(databaseRepository: DatabaseRepository): GetLastLocalNoteUseCase {
         return GetLastLocalNoteUseCase(databaseRepository = databaseRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCommunityNoteByIdUseCase(apiRepository: AuthenticatedApiRepository): GetCommunityNoteByIdUseCase {
+        return GetCommunityNoteByIdUseCase(apiRepository = apiRepository)
     }
 
 }

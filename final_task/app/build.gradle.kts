@@ -102,6 +102,7 @@ dependencies {
     implementation(project(":database"))
     implementation(project(":feature_login"))
     implementation(project(":feature_home_screen"))
+    implementation(project(":details"))
     implementation(project(":core:navigation:unauthenticated"))
     implementation(project(":core:navigation:authenticated"))
 
