@@ -1,7 +1,8 @@
-package com.example.profsoft_2024_final_task.data
+package com.example.profsoft_2024_final_task.database
 
 import android.util.Log
-import com.example.network.api.CourseApiService
+import com.example.database.MyDatabase
+import com.example.database.entity.NoteEntity
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import junit.framework.TestCase.assertNotNull
@@ -12,12 +13,12 @@ import org.junit.Test
 import javax.inject.Inject
 
 @HiltAndroidTest
-class CoursesPreviewResultApiServiceTest {
+class LocalNoteTest{
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    lateinit var apiService: CourseApiService
+    lateinit var database: MyDatabase
 
     @Before
     fun init() {
@@ -25,11 +26,15 @@ class CoursesPreviewResultApiServiceTest {
     }
 
     @Test
-    fun testGetCourseById() = runTest {
-        val response = apiService.getCourseById(courseId = "66c641bde9493f1f460dfd69")
+    fun testSaveLocalNote() = runTest {
+        val noteEntity = NoteEntity(
+            title = "test title",
+            description = "test description",
+        )
+        val noteDao = database.noteDao()
+        noteDao.save(noteEntity)
+        val response = noteDao.getLastNote()
         Log.e("response", response.toString())
         assertNotNull(response)
     }
-
-
 }

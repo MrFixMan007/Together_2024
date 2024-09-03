@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.data
+package com.example.profsoft_2024_final_task.network
 
 import android.util.Log
 import com.example.network.api.UserApiService

@@ -1,10 +1,12 @@
 package com.example.profsoft_2024_final_task.di
 
 import com.example.common.data.AuthenticatedApiRepository
+import com.example.common.data.DatabaseRepository
 import com.example.common.data.UnauthenticatedApiRepository
 import com.example.common.domain.usecase.authenticated.GetAllCoursesUseCase
 import com.example.common.domain.usecase.authenticated.GetCourseByIdUseCase
 import com.example.common.domain.usecase.authenticated.GetLastCommunityNoteUseCase
+import com.example.common.domain.usecase.authenticated.GetLastLocalNoteUseCase
 import com.example.common.domain.usecase.unauthenticated.AuthorizeUserUseCase
 import com.example.common.domain.usecase.unauthenticated.RegisterUserUseCase
 import dagger.Module
@@ -45,6 +47,12 @@ class DomainModule {
     @Singleton
     fun provideGetLastCommunityNoteUseCase(apiRepository: AuthenticatedApiRepository): GetLastCommunityNoteUseCase {
         return GetLastCommunityNoteUseCase(apiRepository = apiRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetLastLocalNoteUseCase(databaseRepository: DatabaseRepository): GetLastLocalNoteUseCase {
+        return GetLastLocalNoteUseCase(databaseRepository = databaseRepository)
     }
 
 }

@@ -99,8 +99,14 @@ dependencies {
     implementation(project(":core:utils"))
     implementation(project(":core:ui"))
     implementation(project(":network"))
+    implementation(project(":database"))
     implementation(project(":feature_login"))
     implementation(project(":feature_home_screen"))
     implementation(project(":core:navigation:unauthenticated"))
     implementation(project(":core:navigation:authenticated"))
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+    annotationProcessor(libs.room.compiler)
 }

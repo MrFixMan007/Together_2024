@@ -39,6 +39,7 @@ import com.example.ui.components.IndeterminateCircularIndicator
 import com.example.ui.components.custom_cards.CustomCommunityNote
 import com.example.ui.components.custom_cards.CustomSimpleNote
 import com.example.ui.theme.Yellow
+import com.example.ui.time_formating.formatFromDatabaseToLocalDate
 import com.example.ui.time_formating.formatUtcToLocalDate
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -110,7 +111,14 @@ fun HomeScreenContent(
                 onClick = {})
             Spacer(modifier = Modifier.height(12.dp))
             CustomSimpleNote(
-                noteInfo = mapToLocalNoteInfo(state.lastLocalNote)
+                noteInfo = mapToLocalNoteInfo(
+                    state.lastLocalNote.copy(
+                        date = formatFromDatabaseToLocalDate(
+                            date = state.lastLocalNote.date,
+                            context = context
+                        )
+                    )
+                )
             )
         }
 
@@ -127,8 +135,8 @@ fun HomeScreenContent(
                     noteInfo = noteInfo.copy(
                         noteCommonInfo = noteInfo.noteCommonInfo.copy(
                             date = formatUtcToLocalDate(
-                                noteInfo.noteCommonInfo.date,
-                                context
+                                date = noteInfo.noteCommonInfo.date,
+                                context = context
                             )
                         )
                     )
@@ -188,7 +196,7 @@ private fun Preview() {
             lastLocalNote = LocalNotePreview(
                 id = "",
                 title = "Для создания новой Activity",
-                date = "12 июля",
+                date = "2024-08-30 19:28:04",
                 description = "Нужно лишь применить старый дедовский визард"
             )
         ),

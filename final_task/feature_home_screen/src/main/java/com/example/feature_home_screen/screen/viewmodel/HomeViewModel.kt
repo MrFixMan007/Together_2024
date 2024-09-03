@@ -1,10 +1,10 @@
 package com.example.feature_home_screen.screen.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.common.domain.model.authenticated.LocalNotePreview
 import com.example.common.domain.model.authenticated.ResultMark
 import com.example.common.domain.usecase.authenticated.GetAllCoursesUseCase
 import com.example.common.domain.usecase.authenticated.GetLastCommunityNoteUseCase
+import com.example.common.domain.usecase.authenticated.GetLastLocalNoteUseCase
 import com.example.feature_home_screen.screen.model.HomeAction
 import com.example.feature_home_screen.screen.model.HomeSideEffect
 import com.example.feature_home_screen.screen.model.HomeSideNavigate
@@ -20,18 +20,12 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getAllCourses: GetAllCoursesUseCase,
-    private val getLastCommunityNote: GetLastCommunityNoteUseCase
+    private val getLastCommunityNote: GetLastCommunityNoteUseCase,
+    private val getLastLocalNote: GetLastLocalNoteUseCase
 ) : ContainerHost<HomeState, HomeSideEffect>, ViewModel() {
 
     override val container = container<HomeState, HomeSideEffect>(
-        HomeState(
-            lastLocalNote = LocalNotePreview(
-                id = "test",
-                title = "Эта заметка пока не берется с БД",
-                date = "28 августа",
-                description = "Чтобы просто увидеть как выглядит"
-            )
-        )
+        HomeState()
     )
 
     init {
@@ -46,18 +40,26 @@ class HomeViewModel @Inject constructor(
             state.copy(isLoading = true)
         }
         delay(300)
-        val respCourses = getAllCourses.execute()
+        val coursesResponse = getAllCourses.execute()
         reduce {
-            state.copy(courses = respCourses)
+            state.copy(courses = coursesResponse)
         }
-        val respNote = getLastCommunityNote.execute()
-        if (respNote.resultMark == ResultMark.Success) {
+
+        val communityNoteResponse = getLastCommunityNote.execute()
+        if (communityNoteResponse.resultMark == ResultMark.Success) {
             reduce {
-                state.copy(lastCommunityNote = respNote)
+                state.copy(lastCommunityNote = communityNoteResponse)
             }
         }
-        else if (respNote.resultMark == ResultMark.TokenIsNotValid){
+        else if (communityNoteResponse.resultMark == ResultMark.TokenIsNotValid){
             _sideNavigate.emit(HomeSideNavigate.NavigateToAuthorize)
+        }
+
+        val localNoteResponse = getLastLocalNote.execute()
+        if (localNoteResponse != null){
+            reduce {
+                state.copy(lastLocalNote = localNoteResponse)
+            }
         }
         reduce {
             state.copy(isLoading = false)

@@ -1,10 +1,7 @@
-package com.example.profsoft_2024_final_task.data
+package com.example.profsoft_2024_final_task.network
 
 import android.util.Log
-import com.example.network.TokenProvider
 import com.example.network.api.CourseApiService
-import com.example.network.api.NoteApiService
-import dagger.Provides
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import junit.framework.TestCase.assertNotNull
@@ -13,15 +10,14 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @HiltAndroidTest
-class NoteApiServiceTest {
+class CoursesPreviewResultApiServiceTest {
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    lateinit var apiService: NoteApiService
+    lateinit var apiService: CourseApiService
 
     @Before
     fun init() {
@@ -30,7 +26,7 @@ class NoteApiServiceTest {
 
     @Test
     fun testGetCourseById() = runTest {
-        val response = apiService.getNoteById(noteId = "66ba4b51a78cb71cee5542ef")
+        val response = apiService.getCourseById(courseId = "66c641bde9493f1f460dfd69")
         Log.e("response", response.toString())
         assertNotNull(response)
     }
