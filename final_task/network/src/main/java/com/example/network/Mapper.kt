@@ -78,7 +78,7 @@ fun mapToCommunityNotePreview(noteDto: NoteDto): CommunityNotePreviewResult {
         data = CommunityNotePreview(
             id = noteDto.id,
             title = noteDto.title,
-            description = noteDto.content.first().text,
+            description = noteDto.content.first().text ?: "",
             date = noteDto.date,
             author = mapToAuthor(noteDto.author)
         ),
