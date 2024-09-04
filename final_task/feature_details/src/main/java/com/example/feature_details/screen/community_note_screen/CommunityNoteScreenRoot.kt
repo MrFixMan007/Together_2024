@@ -1,10 +1,10 @@
-package com.example.details.screen.community_note_screen
+package com.example.feature_details.screen.community_note_screen
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.details.viewmodel.CommunityNoteViewModel
+import com.example.feature_details.viewmodel.CommunityNoteViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 
 @Composable

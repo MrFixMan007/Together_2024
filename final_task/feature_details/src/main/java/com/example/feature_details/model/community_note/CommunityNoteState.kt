@@ -1,4 +1,4 @@
-package com.example.details.model.community_note
+package com.example.feature_details.model.community_note
 
 import com.example.common.domain.model.authenticated.Author
 import com.example.common.domain.model.authenticated.CommunityNote

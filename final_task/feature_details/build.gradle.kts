@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.details"
+    namespace = "com.example.feature_details"
     compileSdk = 34
 
     defaultConfig {

@@ -1,7 +1,7 @@
-package com.example.details.di
+package com.example.feature_details.di
 
 import com.example.common.domain.usecase.authenticated.GetCommunityNoteByIdUseCase
-import com.example.details.viewmodel.CommunityNoteViewModel
+import com.example.feature_details.viewmodel.CommunityNoteViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

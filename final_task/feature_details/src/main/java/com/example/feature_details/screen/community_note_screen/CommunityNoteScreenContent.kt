@@ -1,4 +1,4 @@
-package com.example.details.screen.community_note_screen
+package com.example.feature_details.screen.community_note_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -22,8 +22,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.common.domain.model.authenticated.Text
-import com.example.details.model.community_note.CommunityNoteAction
-import com.example.details.model.community_note.CommunityNoteState
+import com.example.feature_details.model.community_note.CommunityNoteAction
+import com.example.feature_details.model.community_note.CommunityNoteState
 
 @Composable
 fun CommunityNoteScreenContent(

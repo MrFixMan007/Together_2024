@@ -1,10 +1,10 @@
-package com.example.details.viewmodel
+package com.example.feature_details.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.common.domain.usecase.authenticated.GetCommunityNoteByIdUseCase
-import com.example.details.model.community_note.CommunityNoteAction
-import com.example.details.model.community_note.CommunityNoteSideNavigate
-import com.example.details.model.community_note.CommunityNoteState
+import com.example.feature_details.model.community_note.CommunityNoteAction
+import com.example.feature_details.model.community_note.CommunityNoteSideNavigate
+import com.example.feature_details.model.community_note.CommunityNoteState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.viewmodel.container
