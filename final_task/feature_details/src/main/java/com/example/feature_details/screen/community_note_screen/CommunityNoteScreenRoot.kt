@@ -10,12 +10,14 @@ import org.orbitmvi.orbit.compose.collectAsState
 @Composable
 fun CommunityNoteScreenRoot(
     navController: NavController,
+    id: String
 ) {
     val viewModel: CommunityNoteViewModel = hiltViewModel()
 
     CommunityNoteScreenContent(
         state = viewModel.collectAsState().value,
         stack = navController.currentBackStackEntryAsState(),
+        id = id,
         onAction = { action -> viewModel.onAction(action) }
     )
 }

@@ -29,11 +29,14 @@ import com.example.feature_details.model.community_note.CommunityNoteState
 fun CommunityNoteScreenContent(
     state: CommunityNoteState,
     stack: State<NavBackStackEntry?>,
+    id: String,
     onAction: (CommunityNoteAction) -> Unit
 ) {
 
     LaunchedEffect(stack.value?.destination?.route) {
-        onAction(CommunityNoteAction.GetInfo("66ce5d60e9493f1f460dfe2d"))
+        if (id.isNotEmpty()) {
+            onAction(CommunityNoteAction.GetInfo(id))
+        }
     }
 
     LazyColumn {
@@ -84,6 +87,7 @@ private fun Preview() {
                 ),
             )
         ), stack = rememberNavController().currentBackStackEntryAsState(),
-        onAction = fakeOnAction
+        onAction = fakeOnAction,
+        id = ""
     )
 }

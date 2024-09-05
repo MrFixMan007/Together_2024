@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.feature_home_screen.screen.model.HomeSideNavigate
 import com.example.feature_home_screen.screen.viewmodel.HomeViewModel
-import com.example.navigation_authenticated.DETAILS_SCREEN_ROUTE
+import com.example.navigation_authenticated.navigateToDetailsScreen
 import com.example.navigation_unauthenticated.UnauthenticatedNavigation
 import org.orbitmvi.orbit.compose.collectAsState
 
@@ -27,8 +27,8 @@ fun HomeScreenRoot(
                 is HomeSideNavigate.NavigateToAuthorize -> navController.navigate(
                     UnauthenticatedNavigation.AUTHORIZATION_ROUTE
                 )
-                is HomeSideNavigate.NavigateToCommunityNote -> navController.navigate(
-                    DETAILS_SCREEN_ROUTE
+                is HomeSideNavigate.NavigateToCommunityNote -> navController.navigateToDetailsScreen(
+                    id = navigateEffect.id
                 )
             }
         }

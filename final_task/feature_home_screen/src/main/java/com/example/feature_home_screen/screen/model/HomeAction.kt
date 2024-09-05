@@ -11,7 +11,7 @@ sealed class HomeAction {
 
     data object CourseClick : HomeAction()
     data object LocalNoteClick : HomeAction()
-    data object CommunityNoteClick : HomeAction()
+    data class CommunityNoteClick(val id: String) : HomeAction()
 
     data object GetInfo : HomeAction()
 }

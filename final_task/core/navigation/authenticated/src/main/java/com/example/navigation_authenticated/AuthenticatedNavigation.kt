@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 
 const val MAIN_SCREEN_ROUTE = "main_screen_route"
 const val DETAILS_SCREEN_ROUTE = "details_screen_route"
+const val DETAILS_ID = "details_screen_route_id"
 
 sealed class AuthenticatedNavigation(
     val route: String
@@ -36,4 +37,10 @@ fun NavController.navigateToMainScreen(
             inclusive = true
         }
     }
+}
+
+fun NavController.navigateToDetailsScreen(
+    id: String,
+) {
+    this.navigate("$DETAILS_SCREEN_ROUTE/$id")
 }

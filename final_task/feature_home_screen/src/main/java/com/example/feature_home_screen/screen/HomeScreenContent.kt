@@ -134,7 +134,11 @@ fun HomeScreenContent(
                 val noteInfo = mapToCommunityNoteInfo(state.lastCommunityNote)
                 CustomCommunityNote(
                     modifier = Modifier.clickable {
-                        onAction(HomeAction.CommunityNoteClick)
+                        if (state.lastCommunityNote.data?.id != null) onAction(
+                            HomeAction.CommunityNoteClick(
+                                id = state.lastCommunityNote.data!!.id
+                            )
+                        )
                     },
                     noteInfo = noteInfo.copy(
                         noteCommonInfo = noteInfo.noteCommonInfo.copy(

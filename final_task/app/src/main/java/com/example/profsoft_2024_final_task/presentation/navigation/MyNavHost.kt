@@ -4,7 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.example.feature_details.screen.community_note_screen.CommunityNoteScreenRoot
+import com.example.feature_details.navigation.communityNoteScreen
 import com.example.feature_login.navigation.authorizationScreen
 import com.example.feature_login.navigation.registrationScreen
 import com.example.feature_home_screen.screen.HomeScreenRoot
@@ -29,7 +29,7 @@ fun MyNavHost(
             addScreenContent = { Text(text = "addScreenContent") },
             messageScreenContent = { Text(text = "messageScreenContent") },
             profileScreenContent = { Text(text = "profileScreenContent") },
-            communityNoteScreenContent = { CommunityNoteScreenRoot(navController) }
+            communityNoteScreenContent = { communityNoteScreen(navController = navController) }
         )
     }
 }
