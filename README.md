@@ -12,5 +12,7 @@ Modules:
 * feature_home_screen - getting last local note, last community note, courses
 * feature_login - authorization and registration screens
 
+Первая попытка в Compose
+
 https://github.com/user-attachments/assets/acbdee5d-163d-49b7-bcb3-5a5367d3d630
 
