@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.di
+package com.example.together.di
 
 import com.example.common.data.AuthenticatedApiRepository
 import com.example.common.data.DatabaseRepository

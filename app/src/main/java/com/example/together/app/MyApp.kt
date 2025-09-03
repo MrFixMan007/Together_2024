@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.app
+package com.example.together.app
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

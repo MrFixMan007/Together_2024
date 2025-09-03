@@ -6,18 +6,18 @@ plugins {
 }
 
 android {
-    namespace = "com.example.profsoft_2024_final_task"
+    namespace = "com.example.together"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.profsoft_2024_final_task"
+        applicationId = "com.example.together"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
 //        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunner = "com.example.profsoft_2024_final_task.CustomTestRunner"
+        testInstrumentationRunner = "com.example.together.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }

@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.database
+package com.example.together.database
 
 import android.util.Log
 import com.example.database.MyDatabase

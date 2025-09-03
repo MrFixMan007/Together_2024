@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.app.activity
+package com.example.together.app.activity
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.navigation_authenticated.MAIN_SCREEN_ROUTE
 import com.example.navigation_unauthenticated.UnauthenticatedNavigation
-import com.example.profsoft_2024_final_task.presentation.navigation.MyNavHost
+import com.example.together.presentation.navigation.MyNavHost
 import com.example.ui.theme.ComposeTheme
 import com.example.utils.TOKEN_NAME
 import com.example.utils.TOKEN_SHARED_PREFS

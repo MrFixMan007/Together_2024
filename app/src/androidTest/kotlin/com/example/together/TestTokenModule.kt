@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task
+package com.example.together
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
@@ -13,9 +13,9 @@ import com.example.network.api.CourseApiService
 import com.example.network.api.NoteApiService
 import com.example.network.api.UnauthenticatedApiRepositoryImpl
 import com.example.network.api.UserApiService
-import com.example.profsoft_2024_final_task.di.AuthenticatedRetrofitClient
-import com.example.profsoft_2024_final_task.di.NetworkModule
-import com.example.profsoft_2024_final_task.di.UnauthenticatedRetrofitClient
+import com.example.together.di.AuthenticatedRetrofitClient
+import com.example.together.di.NetworkModule
+import com.example.together.di.UnauthenticatedRetrofitClient
 import com.example.utils.PASSWORD_SHARED_PREFS
 import com.example.utils.PHONE_SHARED_PREFS
 import com.example.utils.TOKEN_SHARED_PREFS
@@ -42,7 +42,7 @@ class TestTokenModule {
     companion object {
         private const val READ_TIMEOUT_IN_SECONDS = 5L
         private const val CONNECTION_TIMEOUT_IN_SECONDS = 5L
-        private const val DEV_BASE_URL = "http://profsoft.ddns.net:8080"
+        private const val DEV_BASE_URL = "http://test:8080" // укажи адрес
     }
 
     @Provides

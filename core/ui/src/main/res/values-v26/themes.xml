@@ -3,6 +3,6 @@
     <style name="Theme.MyApp.Starting" parent="Theme.SplashScreen">
         <item name="android:windowBackground">@color/yellow</item>
         <item name="android:windowSplashscreenContent">@drawable/splashscreen_logo_centered</item>
-        <item name="postSplashScreenTheme">@style/Theme.ProfSoft2024FinalTask</item>
+        <item name="postSplashScreenTheme">@style/Theme.Together</item>
     </style>
 </resources>

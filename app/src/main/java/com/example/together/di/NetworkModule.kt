@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.di
+package com.example.together.di
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -38,7 +38,7 @@ class NetworkModule {
     companion object {
         private const val READ_TIMEOUT_IN_SECONDS = 5L
         private const val CONNECTION_TIMEOUT_IN_SECONDS = 5L
-        private const val DEV_BASE_URL = "http://profsoft.ddns.net:8080"
+        private const val DEV_BASE_URL = "http://test:8080" // укажи адрес
     }
 
     @Provides

@@ -1,9 +1,9 @@
-package com.example.profsoft_2024_final_task
+package com.example.together
 
 import android.content.Context
 import androidx.room.Room
 import com.example.database.MyDatabase
-import com.example.profsoft_2024_final_task.di.DatabaseModule
+import com.example.together.di.DatabaseModule
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext

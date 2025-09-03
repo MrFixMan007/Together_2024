@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task
+package com.example.together
 
 import android.app.Application
 import android.content.Context

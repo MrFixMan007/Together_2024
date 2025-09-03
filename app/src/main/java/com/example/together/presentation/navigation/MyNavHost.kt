@@ -1,4 +1,4 @@
-package com.example.profsoft_2024_final_task.presentation.navigation
+package com.example.together.presentation.navigation
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
