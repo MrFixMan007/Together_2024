@@ -1,6 +1,6 @@
 # mobile application "Together" for notes is multi-module project on Clean Architecture with DI Hilt.
 
-Первая попытка в Compose
+Первая попытка в Compose. Сейчас не работает работа с сетью, т.к. сервер не доступен
 
 Modules: 
 * app - application builder and graph navigation builder
