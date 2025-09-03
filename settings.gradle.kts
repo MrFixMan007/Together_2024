@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Profsoft-2024-Final-Task"
+rootProject.name = "Together"
 include(":app")
 include(":core:utils")
 include(":core:common")
